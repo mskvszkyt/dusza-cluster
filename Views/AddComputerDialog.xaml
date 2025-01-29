@@ -1,0 +1,16 @@
+﻿<Window x:Class="DuszaArpadWPF.Views.AddComputerDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Számítógép hozzáadása" Height="200" Width="300">
+    <Grid>
+        <StackPanel Margin="10">
+            <Label Content="Számítógép neve:"/>
+            <TextBox x:Name="ComputerNameTextBox"/>
+            <Label Content="Processzor kapacitás (millimág):"/>
+            <TextBox x:Name="CpuCapacityTextBox"/>
+            <Label Content="Memória kapacitás (MB):"/>
+            <TextBox x:Name="MemoryCapacityTextBox"/>
+            <Button Content="Hozzáadás" Click="AddButton_Click" Margin="0,10,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
