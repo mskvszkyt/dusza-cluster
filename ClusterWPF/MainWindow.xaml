@@ -1,0 +1,88 @@
+﻿<Window x:Class="ClusterWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClusterWPF"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50px"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabControl.Items>
+                <TabItem Header="Monitor">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/cmd.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
+                <TabItem Header="Számmítógép Hozzáadása">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/powershell.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
+                <TabItem Header="Számítógép törlése">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
+                <TabItem Header="Program törlése">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
+                <TabItem Header="Program leállítása">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
+                <TabItem Header="Program módosítása">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
+                <TabItem Header="Új program">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
+            </TabControl.Items>
+        </TabControl>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200px"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Background="LightGray">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ui:SimpleStackPanel>
+                    <TextBox Height="20"
+                             Margin="10px"
+                             ui:ControlHelper.PlaceholderText="Search...">
+                    </TextBox>
+                    <ListBox>
+                    </ListBox>
+                </ui:SimpleStackPanel>
+                <ui:SimpleStackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
+
+                    <TextBox
+                        Margin="10 0 10 0"
+                        ui:ControlHelper.PlaceholderText="PATH..."
+                        TextAlignment="Center">
+                    </TextBox>
+                    <Button Margin="10 0 10 0" HorizontalAlignment="Center">Add new cluster</Button>
+                </ui:SimpleStackPanel>
+            </Grid>
+            <Frame Grid.Column="1" x:Name="CurrentPage" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </Grid>
+</Window>

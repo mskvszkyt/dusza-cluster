@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CMv9nIxkk2A=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\szidor.mihaly\\source\\repos\\ClusterWPF\\ClusterWPF\\ClusterWPF.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\szidor.mihaly\\.nuget\\packages\\modernwpfui\\0.9.6\\modernwpfui.0.9.6.nupkg.sha512"
+  ],
+  "logs": []
+}
