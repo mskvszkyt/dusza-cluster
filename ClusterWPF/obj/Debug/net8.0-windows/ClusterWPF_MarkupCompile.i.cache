@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\
+C:\Users\muskovszky.tamas\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\
 ClusterWPF
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\App.xaml
+C:\Users\muskovszky.tamas\Source\Repos\dusza-cluster\ClusterWPF\App.xaml
 7-1621231625
 
 121129927855
-203-209447985
+203-434215243
 MainWindow.xaml;Pages\ComputerRemove.xaml;Pages\ModifyComputer.xaml;Pages\Monitor.xaml;Pages\RemoveProgram.xaml;Pages\StopProgramCopy.xaml;Pages\SzamitogepHozzaadasa.xaml;
 
 True
