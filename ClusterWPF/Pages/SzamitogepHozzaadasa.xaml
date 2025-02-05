@@ -1,4 +1,4 @@
-﻿<ui:Page x:Class="ClusterWPF.Pages.SzamitogepHozzaadasa"
+﻿<Page x:Class="ClusterWPF.Pages.SzamitogepHozzaadasa"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,12 +10,12 @@
       Title="SzamitogepHozzaadasa">
 
     <Grid>
-        <ui:SimpleStackPanel Width="400px">
+        <ui:SimpleStackPanel Width="400px" Spacing="20">
             <Label HorizontalAlignment="Center">Számítógép hozzáadása</Label>
-            <TextBox ui:ControlHelper.Header="Neve:"></TextBox>
-            <TextBox ui:ControlHelper.Header="Memória:"></TextBox>
-            <TextBox ui:ControlHelper.Header="Processzor:"></TextBox>
-            <s
+            <TextBox ui:ControlHelper.Header="Name:" x:Name="tbNewComputerName"></TextBox>
+            <TextBox ui:ControlHelper.Header="Memory:" x:Name="tbNewComputerMemory"></TextBox>
+            <TextBox ui:ControlHelper.Header="Processor:" x:Name="tbNewComputerProcessor"></TextBox>
+            <Button x:Name="btnAddNewComputer" HorizontalAlignment="Center">Add new computer</Button>
         </ui:SimpleStackPanel>
     </Grid>
-</ui:Page>
+</Page>

@@ -67,6 +67,7 @@
                 <ui:SimpleStackPanel>
                     <TextBox Height="20"
                              Margin="10px"
+                             x:Name="tbClusterSearch"
                              ui:ControlHelper.PlaceholderText="Search...">
                     </TextBox>
                     <ListBox>
@@ -77,9 +78,10 @@
                     <TextBox
                         Margin="10 0 10 0"
                         ui:ControlHelper.PlaceholderText="PATH..."
+                        x:Name="tbAddCluster"
                         TextAlignment="Center">
                     </TextBox>
-                    <Button Margin="10 0 10 0" HorizontalAlignment="Center">Add new cluster</Button>
+                    <Button x:Name="btnAddNewCluster" Margin="10 0 10 0" HorizontalAlignment="Center">Add new cluster</Button>
                 </ui:SimpleStackPanel>
             </Grid>
             <Frame Grid.Column="1" x:Name="CurrentPage" NavigationUIVisibility="Hidden"/>

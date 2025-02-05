@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\szidor.mihaly\\source\\repos\\ClusterWPF\\ClusterWPF\\ClusterWPF.csproj": {}
+    "C:\\Users\\szidor.mihaly\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj": {}
   },
   "projects": {
-    "C:\\Users\\szidor.mihaly\\source\\repos\\ClusterWPF\\ClusterWPF\\ClusterWPF.csproj": {
+    "C:\\Users\\szidor.mihaly\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\szidor.mihaly\\source\\repos\\ClusterWPF\\ClusterWPF\\ClusterWPF.csproj",
+        "projectUniqueName": "C:\\Users\\szidor.mihaly\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
         "projectName": "ClusterWPF",
-        "projectPath": "C:\\Users\\szidor.mihaly\\source\\repos\\ClusterWPF\\ClusterWPF\\ClusterWPF.csproj",
+        "projectPath": "C:\\Users\\szidor.mihaly\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
         "packagesPath": "C:\\Users\\szidor.mihaly\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\szidor.mihaly\\source\\repos\\ClusterWPF\\ClusterWPF\\obj\\",
+        "outputPath": "C:\\Users\\szidor.mihaly\\Source\\Repos\\dusza-cluster\\ClusterWPF\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
