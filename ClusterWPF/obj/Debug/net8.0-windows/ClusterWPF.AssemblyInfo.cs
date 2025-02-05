@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ClusterWPF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2e6c0ecee4e10b165232628baffbb6cae4e31ef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3d8a5e9f17e5ffe8b5746539187b16204e00c06")]
 [assembly: System.Reflection.AssemblyProductAttribute("ClusterWPF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ClusterWPF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
