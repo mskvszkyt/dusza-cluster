@@ -21,12 +21,12 @@
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/cmd.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Számmítógép Hozzáadása">
+                <TabItem Header="Add new computer">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/powershell.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Számítógép törlése">
+                <TabItem Header="Remove Computer">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>

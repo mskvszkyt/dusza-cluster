@@ -32,7 +32,8 @@ namespace ClusterWPF
             CurrentPage.Content = tabs switch
             {
                 "Monitor" => new Pages.Monitor(),
-                "Számmítógép Hozzáadása" => new Pages.SzamitogepHozzaadasa(),
+                "Add new computer" => new Pages.SzamitogepHozzaadasa(),
+                "Remove Computer" => new Pages.ComputerRemove(),
                 _ => new Pages.Monitor()
             };
         }
