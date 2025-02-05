@@ -31,7 +31,7 @@
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Program törlése">
+                <TabItem Header="Remove Program">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\App.xaml
-42121154147
+5155134041
 
-9170235927
+10-1272215751
 2001228863622
-MainWindow.xaml;Pages\ComputerRemove.xaml;Pages\Monitor.xaml;Pages\SzamitogepHozzaadasa.xaml;
+MainWindow.xaml;Pages\ComputerRemove.xaml;Pages\Monitor.xaml;Pages\RemoveProgram.xaml;Pages\SzamitogepHozzaadasa.xaml;
 
 False
 

@@ -310,3 +310,5 @@ C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-wi
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ref\ClusterWPF.dll
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\ComputerRemove.g.cs
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\ComputerRemove.baml
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\RemoveProgram.g.cs
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\RemoveProgram.baml
