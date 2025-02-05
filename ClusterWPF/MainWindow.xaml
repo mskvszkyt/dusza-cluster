@@ -81,7 +81,7 @@
                         x:Name="tbAddCluster"
                         TextAlignment="Center">
                     </TextBox>
-                    <Button x:Name="btnAddNewCluster" Margin="10 0 10 0" HorizontalAlignment="Center">Add new cluster</Button>
+                    <Button x:Name="btnAddNewCluster" Margin="10 0 10 0" HorizontalAlignment="Center" Click="btnAddNewCluster_Click">Add new cluster</Button>
                 </ui:SimpleStackPanel>
             </Grid>
             <Frame Grid.Column="1" x:Name="CurrentPage" NavigationUIVisibility="Hidden"/>
