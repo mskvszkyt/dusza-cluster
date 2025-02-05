@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using ConsoleApp1;
+using Microsoft.Win32;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,6 +19,7 @@ namespace ClusterWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Cluster> clusters = new List<Cluster>();
         public MainWindow()
         {
             InitializeComponent();
@@ -39,6 +43,13 @@ namespace ClusterWPF
                 "Modify Computer" => new Pages.ModifyComputer(),
                 _ => new Pages.Monitor()
             };
+        }
+
+        private void btnAddNewCluster_Click(object sender, RoutedEventArgs e)
+        {
+            string path = tbAddCluster.Text;
+            Cluster cluster = FileManager.GetClusterRequirements(path);
+            cluster.Instances = FileManager.ReadInstances(path);
         }
     }
 }
