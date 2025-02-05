@@ -31,17 +31,17 @@
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
+                <TabItem Header="Modify Computer">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
                 <TabItem Header="Remove Program">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Program leállítása">
-                    <ui:TabItemHelper.Icon>
-                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
-                    </ui:TabItemHelper.Icon>
-                </TabItem>
-                <TabItem Header="Program módosítása">
+                <TabItem Header="Stop Program Copy">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>

@@ -10,10 +10,16 @@
     <Compile Update="Pages\ComputerRemove.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\ModifyComputer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Monitor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\RemoveProgram.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\StopProgramCopy.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\SzamitogepHozzaadasa.xaml.cs">
@@ -27,10 +33,16 @@
     <Page Update="Pages\ComputerRemove.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\ModifyComputer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Monitor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\RemoveProgram.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\StopProgramCopy.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\SzamitogepHozzaadasa.xaml">

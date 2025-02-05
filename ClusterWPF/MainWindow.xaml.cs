@@ -35,6 +35,8 @@ namespace ClusterWPF
                 "Add new computer" => new Pages.SzamitogepHozzaadasa(),
                 "Remove Computer" => new Pages.ComputerRemove(),
                 "Remove Program" => new Pages.RemoveProgram(),
+                "Stop Program Copy" => new Pages.StopProgramCopy(),
+                "Modify Computer" => new Pages.ModifyComputer(),
                 _ => new Pages.Monitor()
             };
         }

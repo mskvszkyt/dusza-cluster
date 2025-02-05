@@ -312,3 +312,11 @@ C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-wi
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\ComputerRemove.baml
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\RemoveProgram.g.cs
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\RemoveProgram.baml
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\StopProgramCopy.g.cs
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\StopProgramCopy.baml
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\ModifyComputer.g.cs
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\ModifyComputer.baml
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\ControlzEx.dll
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\MahApps.Metro.dll
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\de\MahApps.Metro.resources.dll
