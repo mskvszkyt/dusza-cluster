@@ -37,6 +37,7 @@ namespace ClusterWPF
                 "Remove Program" => new Pages.RemoveProgram(),
                 "Stop Program Copy" => new Pages.StopProgramCopy(),
                 "Modify Computer" => new Pages.ModifyComputer(),
+                "Run program copy" => new Pages.NewProgramCopy(),
                 _ => new Pages.Monitor()
             };
         }

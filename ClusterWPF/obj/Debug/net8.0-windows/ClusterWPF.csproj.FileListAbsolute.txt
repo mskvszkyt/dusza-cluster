@@ -320,3 +320,5 @@ C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-wi
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\MahApps.Metro.dll
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\Microsoft.Xaml.Behaviors.dll
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\de\MahApps.Metro.resources.dll
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\NewProgramCopy.g.cs
+C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\NewProgramCopy.baml
