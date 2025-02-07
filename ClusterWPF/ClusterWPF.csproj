@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+    <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
   </ItemGroup>
 
 </Project>

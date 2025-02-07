@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "2GlQe1GUEM0=",
+  "dgSpecHash": "25/TIZo+mGoIVRk8um/nyZ2WCxX4jsmtj853YW/4sT5mnbCTjz+0RjcnDwI27xf0DV6pssc9tS/ZwRa/b5hUWw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\szidor.mihaly\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
+  "projectFilePath": "C:\\Users\\i7\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\szidor.mihaly\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
-    "C:\\Users\\szidor.mihaly\\.nuget\\packages\\mahapps.metro\\2.4.10\\mahapps.metro.2.4.10.nupkg.sha512",
-    "C:\\Users\\szidor.mihaly\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.19\\microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512",
-    "C:\\Users\\szidor.mihaly\\.nuget\\packages\\modernwpfui\\0.9.6\\modernwpfui.0.9.6.nupkg.sha512",
-    "C:\\Users\\szidor.mihaly\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
+    "C:\\Users\\i7\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\mahapps.metro\\2.4.10\\mahapps.metro.2.4.10.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.19\\microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\modernwpfui\\0.9.6\\modernwpfui.0.9.6.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\modernwpfui.mahapps\\0.9.5\\modernwpfui.mahapps.0.9.5.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
   "logs": []
 }

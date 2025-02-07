@@ -8,14 +8,19 @@
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SzamitogepHozzaadasa">
-
-    <Grid>
-        <ui:SimpleStackPanel Width="400px" Spacing="20">
-            <Label HorizontalAlignment="Center">Számítógép hozzáadása</Label>
-            <TextBox ui:ControlHelper.Header="Name:" x:Name="tbNewComputerName"></TextBox>
-            <TextBox ui:ControlHelper.Header="Memory:" x:Name="tbNewComputerMemory"></TextBox>
-            <TextBox ui:ControlHelper.Header="Processor:" x:Name="tbNewComputerProcessor"></TextBox>
-            <Button x:Name="btnAddNewComputer" HorizontalAlignment="Center">Add new computer</Button>
-        </ui:SimpleStackPanel>
-    </Grid>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" FontSize="20">Add New Computer</Label>
+        </Border>
+        <ui:SimpleStackPanel Width="400px" Spacing="20" Grid.Row="1" Margin="0 20 0 0">
+                <TextBox ui:ControlHelper.Header="Name:" x:Name="tbNewComputerName"></TextBox>
+                <TextBox ui:ControlHelper.Header="Memory:" x:Name="tbNewComputerMemory"></TextBox>
+                <TextBox ui:ControlHelper.Header="Processor:" x:Name="tbNewComputerProcessor"></TextBox>
+                <Button x:Name="btnAddNewComputer" HorizontalAlignment="Center">Add new computer</Button>
+            </ui:SimpleStackPanel>
+        </Grid>
 </Page>

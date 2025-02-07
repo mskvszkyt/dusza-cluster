@@ -464,6 +464,70 @@
           }
         }
       },
+      "ModernWpfUI.MahApps/0.9.5": {
+        "type": "package",
+        "dependencies": {
+          "MahApps.Metro": "2.4.9",
+          "ModernWpfUI": "0.9.5"
+        },
+        "compile": {
+          "lib/net5.0-windows7.0/ModernWpf.MahApps.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/ModernWpf.MahApps.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ],
+        "resource": {
+          "lib/net5.0-windows7.0/cs/ModernWpf.MahApps.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net5.0-windows7.0/de/ModernWpf.MahApps.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net5.0-windows7.0/es/ModernWpf.MahApps.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net5.0-windows7.0/fa/ModernWpf.MahApps.resources.dll": {
+            "locale": "fa"
+          },
+          "lib/net5.0-windows7.0/fr/ModernWpf.MahApps.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net5.0-windows7.0/it/ModernWpf.MahApps.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net5.0-windows7.0/ja/ModernWpf.MahApps.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net5.0-windows7.0/ko/ModernWpf.MahApps.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net5.0-windows7.0/pl/ModernWpf.MahApps.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net5.0-windows7.0/pt-BR/ModernWpf.MahApps.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net5.0-windows7.0/ru/ModernWpf.MahApps.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net5.0-windows7.0/tr/ModernWpf.MahApps.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net5.0-windows7.0/zh-Hans/ModernWpf.MahApps.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net5.0-windows7.0/zh-Hant/ModernWpf.MahApps.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
       "System.Text.Json/4.7.2": {
         "type": "package",
         "compile": {
@@ -1099,6 +1163,129 @@
         "readme.txt"
       ]
     },
+    "ModernWpfUI.MahApps/0.9.5": {
+      "sha512": "5xnKKXra3Hyn7k0HWhmd1g2vhtZC2cytLSdpAkuCd7s5vDTmN4vdCvLzY+meGtfjduk9Bi9Lr+wuuz1ILZXLBA==",
+      "type": "package",
+      "path": "modernwpfui.mahapps/0.9.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/ModernWpf.MahApps.dll",
+        "lib/net452/ModernWpf.MahApps.xml",
+        "lib/net452/cs/ModernWpf.MahApps.resources.dll",
+        "lib/net452/de/ModernWpf.MahApps.resources.dll",
+        "lib/net452/es/ModernWpf.MahApps.resources.dll",
+        "lib/net452/fa/ModernWpf.MahApps.resources.dll",
+        "lib/net452/fr/ModernWpf.MahApps.resources.dll",
+        "lib/net452/it/ModernWpf.MahApps.resources.dll",
+        "lib/net452/ja/ModernWpf.MahApps.resources.dll",
+        "lib/net452/ko/ModernWpf.MahApps.resources.dll",
+        "lib/net452/pl/ModernWpf.MahApps.resources.dll",
+        "lib/net452/pt-BR/ModernWpf.MahApps.resources.dll",
+        "lib/net452/ru/ModernWpf.MahApps.resources.dll",
+        "lib/net452/tr/ModernWpf.MahApps.resources.dll",
+        "lib/net452/zh-Hans/ModernWpf.MahApps.resources.dll",
+        "lib/net452/zh-Hant/ModernWpf.MahApps.resources.dll",
+        "lib/net46/ModernWpf.MahApps.dll",
+        "lib/net46/ModernWpf.MahApps.xml",
+        "lib/net46/cs/ModernWpf.MahApps.resources.dll",
+        "lib/net46/de/ModernWpf.MahApps.resources.dll",
+        "lib/net46/es/ModernWpf.MahApps.resources.dll",
+        "lib/net46/fa/ModernWpf.MahApps.resources.dll",
+        "lib/net46/fr/ModernWpf.MahApps.resources.dll",
+        "lib/net46/it/ModernWpf.MahApps.resources.dll",
+        "lib/net46/ja/ModernWpf.MahApps.resources.dll",
+        "lib/net46/ko/ModernWpf.MahApps.resources.dll",
+        "lib/net46/pl/ModernWpf.MahApps.resources.dll",
+        "lib/net46/pt-BR/ModernWpf.MahApps.resources.dll",
+        "lib/net46/ru/ModernWpf.MahApps.resources.dll",
+        "lib/net46/tr/ModernWpf.MahApps.resources.dll",
+        "lib/net46/zh-Hans/ModernWpf.MahApps.resources.dll",
+        "lib/net46/zh-Hant/ModernWpf.MahApps.resources.dll",
+        "lib/net462/ModernWpf.MahApps.dll",
+        "lib/net462/ModernWpf.MahApps.xml",
+        "lib/net462/cs/ModernWpf.MahApps.resources.dll",
+        "lib/net462/de/ModernWpf.MahApps.resources.dll",
+        "lib/net462/es/ModernWpf.MahApps.resources.dll",
+        "lib/net462/fa/ModernWpf.MahApps.resources.dll",
+        "lib/net462/fr/ModernWpf.MahApps.resources.dll",
+        "lib/net462/it/ModernWpf.MahApps.resources.dll",
+        "lib/net462/ja/ModernWpf.MahApps.resources.dll",
+        "lib/net462/ko/ModernWpf.MahApps.resources.dll",
+        "lib/net462/pl/ModernWpf.MahApps.resources.dll",
+        "lib/net462/pt-BR/ModernWpf.MahApps.resources.dll",
+        "lib/net462/ru/ModernWpf.MahApps.resources.dll",
+        "lib/net462/tr/ModernWpf.MahApps.resources.dll",
+        "lib/net462/zh-Hans/ModernWpf.MahApps.resources.dll",
+        "lib/net462/zh-Hant/ModernWpf.MahApps.resources.dll",
+        "lib/net47/ModernWpf.MahApps.dll",
+        "lib/net47/ModernWpf.MahApps.xml",
+        "lib/net47/cs/ModernWpf.MahApps.resources.dll",
+        "lib/net47/de/ModernWpf.MahApps.resources.dll",
+        "lib/net47/es/ModernWpf.MahApps.resources.dll",
+        "lib/net47/fa/ModernWpf.MahApps.resources.dll",
+        "lib/net47/fr/ModernWpf.MahApps.resources.dll",
+        "lib/net47/it/ModernWpf.MahApps.resources.dll",
+        "lib/net47/ja/ModernWpf.MahApps.resources.dll",
+        "lib/net47/ko/ModernWpf.MahApps.resources.dll",
+        "lib/net47/pl/ModernWpf.MahApps.resources.dll",
+        "lib/net47/pt-BR/ModernWpf.MahApps.resources.dll",
+        "lib/net47/ru/ModernWpf.MahApps.resources.dll",
+        "lib/net47/tr/ModernWpf.MahApps.resources.dll",
+        "lib/net47/zh-Hans/ModernWpf.MahApps.resources.dll",
+        "lib/net47/zh-Hant/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/ModernWpf.MahApps.dll",
+        "lib/net5.0-windows7.0/ModernWpf.MahApps.xml",
+        "lib/net5.0-windows7.0/cs/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/de/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/es/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/fa/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/fr/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/it/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/ja/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/ko/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/pl/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/pt-BR/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/ru/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/tr/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/zh-Hans/ModernWpf.MahApps.resources.dll",
+        "lib/net5.0-windows7.0/zh-Hant/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/ModernWpf.MahApps.dll",
+        "lib/netcoreapp3.0/ModernWpf.MahApps.xml",
+        "lib/netcoreapp3.0/cs/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/de/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/es/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/fa/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/fr/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/it/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/ja/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/ko/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/pl/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/pt-BR/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/ru/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/tr/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/zh-Hans/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.0/zh-Hant/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/ModernWpf.MahApps.dll",
+        "lib/netcoreapp3.1/ModernWpf.MahApps.xml",
+        "lib/netcoreapp3.1/cs/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/de/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/es/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/fa/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/fr/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/it/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/ja/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/ko/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/pl/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/pt-BR/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/ru/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/tr/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/zh-Hans/ModernWpf.MahApps.resources.dll",
+        "lib/netcoreapp3.1/zh-Hant/ModernWpf.MahApps.resources.dll",
+        "modernwpfui.mahapps.0.9.5.nupkg.sha512",
+        "modernwpfui.mahapps.nuspec"
+      ]
+    },
     "System.Text.Json/4.7.2": {
       "sha512": "TcMd95wcrubm9nHvJEQs70rC0H/8omiSGGpU4FQ/ZA1URIqD4pjmFJh2Mfv1yH1eHgJDWTi2hMDXwTET+zOOyg==",
       "type": "package",
@@ -1125,28 +1312,24 @@
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
       "MahApps.Metro >= 2.4.10",
-      "ModernWpfUI >= 0.9.6"
+      "ModernWpfUI >= 0.9.6",
+      "ModernWpfUI.MahApps >= 0.9.5"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\szidor.mihaly\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\i7\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\szidor.mihaly\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
+      "projectUniqueName": "C:\\Users\\i7\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
       "projectName": "ClusterWPF",
-      "projectPath": "C:\\Users\\szidor.mihaly\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
-      "packagesPath": "C:\\Users\\szidor.mihaly\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\szidor.mihaly\\source\\repos\\dusza-cluster\\ClusterWPF\\obj\\",
+      "projectPath": "C:\\Users\\i7\\source\\repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
+      "packagesPath": "C:\\Users\\i7\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\i7\\source\\repos\\dusza-cluster\\ClusterWPF\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\szidor.mihaly\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\i7\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1154,7 +1337,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1171,9 +1353,8 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+        "auditMode": "direct"
+      }
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -1186,6 +1367,10 @@
           "ModernWpfUI": {
             "target": "Package",
             "version": "[0.9.6, )"
+          },
+          "ModernWpfUI.MahApps": {
+            "target": "Package",
+            "version": "[0.9.5, )"
           }
         },
         "imports": [
@@ -1207,7 +1392,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

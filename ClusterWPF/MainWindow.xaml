@@ -7,10 +7,10 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1200">
+        Title="Cluster manager" Height="600" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50px"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -59,7 +59,7 @@
                 <ColumnDefinition Width="200px"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Background="LightGray">
+            <Grid Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition Height="100"></RowDefinition>

@@ -9,7 +9,8 @@
       "ClusterWPF/1.0.0": {
         "dependencies": {
           "MahApps.Metro": "2.4.10",
-          "ModernWpfUI": "0.9.6"
+          "ModernWpfUI": "0.9.6",
+          "ModernWpfUI.MahApps": "0.9.5"
         },
         "runtime": {
           "ClusterWPF.dll": {}
@@ -443,6 +444,62 @@
           }
         }
       },
+      "ModernWpfUI.MahApps/0.9.5": {
+        "dependencies": {
+          "MahApps.Metro": "2.4.10",
+          "ModernWpfUI": "0.9.6"
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/ModernWpf.MahApps.dll": {
+            "assemblyVersion": "0.9.5.0",
+            "fileVersion": "0.9.5.0"
+          }
+        },
+        "resources": {
+          "lib/net5.0-windows7.0/cs/ModernWpf.MahApps.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net5.0-windows7.0/de/ModernWpf.MahApps.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net5.0-windows7.0/es/ModernWpf.MahApps.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net5.0-windows7.0/fa/ModernWpf.MahApps.resources.dll": {
+            "locale": "fa"
+          },
+          "lib/net5.0-windows7.0/fr/ModernWpf.MahApps.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net5.0-windows7.0/it/ModernWpf.MahApps.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net5.0-windows7.0/ja/ModernWpf.MahApps.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net5.0-windows7.0/ko/ModernWpf.MahApps.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net5.0-windows7.0/pl/ModernWpf.MahApps.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net5.0-windows7.0/pt-BR/ModernWpf.MahApps.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net5.0-windows7.0/ru/ModernWpf.MahApps.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net5.0-windows7.0/tr/ModernWpf.MahApps.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net5.0-windows7.0/zh-Hans/ModernWpf.MahApps.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net5.0-windows7.0/zh-Hant/ModernWpf.MahApps.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
       "System.Text.Json/4.7.2": {}
     }
   },
@@ -479,6 +536,13 @@
       "sha512": "sha512-eWe90HciyudQQtZVbZ9QFssS74BwK69W7cBd52AEZHmrsS4hrSA+/BpUbAFWzzFDH6FBE1xsHPiRC+wHS7xgJw==",
       "path": "modernwpfui/0.9.6",
       "hashPath": "modernwpfui.0.9.6.nupkg.sha512"
+    },
+    "ModernWpfUI.MahApps/0.9.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5xnKKXra3Hyn7k0HWhmd1g2vhtZC2cytLSdpAkuCd7s5vDTmN4vdCvLzY+meGtfjduk9Bi9Lr+wuuz1ILZXLBA==",
+      "path": "modernwpfui.mahapps/0.9.5",
+      "hashPath": "modernwpfui.mahapps.0.9.5.nupkg.sha512"
     },
     "System.Text.Json/4.7.2": {
       "type": "package",

@@ -16,10 +16,12 @@
             <ColumnDefinition Width="250"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-            <Label HorizontalAlignment="Center" Grid.ColumnSpan="2">Modify computer</Label>
+        <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" FontSize="20" Grid.ColumnSpan="2">Modify computer</Label>
+        </Border>
         <DataGrid Grid.Row="1" Margin="10" GridLinesVisibility="Horizontal" HeadersVisibility="Column" HorizontalAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"></DataGridTextColumn>
@@ -27,8 +29,9 @@
                 <DataGridTextColumn Header="Procesor"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <ui:SimpleStackPanel Grid.Row="1" Grid.Column="1" Background="LightGray">
-            <Label Margin="10" HorizontalAlignment="Center">Filters:</Label>
+        <ui:SimpleStackPanel Grid.Row="1" Grid.Column="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
+            <Label Margin="10" HorizontalAlignment="Center" FontSize="18">Filters:</Label>
+            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 0 0 10" ></Border>
             <TextBox
                 ui:ControlHelper.Header="Name:"
                 x:Name="tbComputerName"
@@ -56,7 +59,8 @@
                              IsSnapToTickEnabled="True"
                              x:Name="sldProcessor"
                              />
-            <Label HorizontalAlignment="Center" Margin="10">Selected computer's specs:</Label>
+            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 10"></Border>
+            <Label HorizontalAlignment="Center" Margin="10" FontSize="16">Selected computer's specs:</Label>
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
                 <TextBox
                 ui:ControlHelper.Header="Memory:"

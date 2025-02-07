@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ControlzEx.Theming;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,8 @@ namespace ClusterWPF
         public MainWindow()
         {
             InitializeComponent();
+            ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncWithAppMode;
+            ThemeManager.Current.SyncTheme();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -38,7 +41,6 @@ namespace ClusterWPF
                 "Stop Program Copy" => new Pages.StopProgramCopy(),
                 "Modify Computer" => new Pages.ModifyComputer(),
                 "Run program copy" => new Pages.NewProgramCopy(),
-                _ => new Pages.Monitor()
             };
         }
     }
