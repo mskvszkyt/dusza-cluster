@@ -20,7 +20,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" FontSize="20" Grid.ColumnSpan="2">Modify computer</Label>
+            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Modify computer</Label>
         </Border>
         <DataGrid Grid.Row="1" Margin="10" GridLinesVisibility="Horizontal" HeadersVisibility="Column" HorizontalAlignment="Center">
             <DataGrid.Columns>
@@ -32,26 +32,31 @@
         <ui:SimpleStackPanel Grid.Row="1" Grid.Column="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
             <Label Margin="10" HorizontalAlignment="Center" FontSize="18">Filters:</Label>
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 0 0 10" ></Border>
+            
             <TextBox
                 ui:ControlHelper.Header="Name:"
                 x:Name="tbComputerName"
                 Margin="10"
                 />
+            
             <Label Margin="10">
-                Memory:
+                Memory usage:
             </Label>
+            
             <mah:RangeSlider Margin="10"
                              Minimum="0"
                              Maximum="20" 
                              TickFrequency="1"
                              IsSnapToTickEnabled="True"
                              x:Name="sldMemory"
+                             
                              />
             <!--TODO: maximumot kicserélni az elérhető legnagyobb adattal-->
 
             <Label Margin="10">
-                Processor:
+                Processor usage:
             </Label>
+            
             <mah:RangeSlider Margin="10"
                              Minimum="0"
                              Maximum="20" 
@@ -59,17 +64,21 @@
                              IsSnapToTickEnabled="True"
                              x:Name="sldProcessor"
                              />
+            
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 10"></Border>
             <Label HorizontalAlignment="Center" Margin="10" FontSize="16">Selected computer's specs:</Label>
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
+                
                 <TextBox
-                ui:ControlHelper.Header="Memory:"
-                Text="{Binding ElementName=dataGrid, Path=MinRowHeight}"
+                ui:ControlHelper.Header="Memory usage:"
+                Text=""
                 x:Name="tbMemoryChange"/>
+                
                 <TextBox
-                ui:ControlHelper.Header="Processor:"
-                Text="{Binding ElementName=dataGrid, Path=MinRowHeight}"
+                ui:ControlHelper.Header="Processor usage:"
+                Text=""
                 x:Name="tbProcessorChange"/>
+                
             </ui:SimpleStackPanel>
 
             <Button x:Name="btnSaveComputerSpecs" HorizontalAlignment="Center" Margin="10">Save</Button>

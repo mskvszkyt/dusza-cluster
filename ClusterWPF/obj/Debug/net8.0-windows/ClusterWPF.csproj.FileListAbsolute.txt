@@ -467,7 +467,6 @@ C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\NewProgramCopy.g.cs
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\RemoveProgram.g.cs
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\StopProgramCopy.g.cs
-C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\SzamitogepHozzaadasa.g.cs
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF_MarkupCompile.cache
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF_MarkupCompile.lref
@@ -479,7 +478,6 @@ C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\NewProgramCopy.baml
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\RemoveProgram.baml
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\StopProgramCopy.baml
-C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\SzamitogepHozzaadasa.baml
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF.g.resources
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\i7\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF.AssemblyInfoInputs.cache
@@ -507,3 +505,5 @@ C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\ru\Mo
 C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\tr\ModernWpf.MahApps.resources.dll
 C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\zh-Hans\ModernWpf.MahApps.resources.dll
 C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\zh-Hant\ModernWpf.MahApps.resources.dll
+C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\AddNewComputer.g.cs
+C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\AddNewComputer.baml

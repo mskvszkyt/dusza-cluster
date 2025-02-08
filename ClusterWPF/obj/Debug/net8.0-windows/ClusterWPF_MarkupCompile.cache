@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\App.xaml
-81389860180
+81928102560
 
-11-445261940
+111702969021
 204-337877
-MainWindow.xaml;Pages\ComputerRemove.xaml;Pages\ModifyComputer.xaml;Pages\Monitor.xaml;Pages\NewProgramCopy.xaml;Pages\RemoveProgram.xaml;Pages\StopProgramCopy.xaml;Pages\SzamitogepHozzaadasa.xaml;
+MainWindow.xaml;Pages\AddNewComputer.xaml;Pages\ComputerRemove.xaml;Pages\ModifyComputer.xaml;Pages\Monitor.xaml;Pages\NewProgramCopy.xaml;Pages\RemoveProgram.xaml;Pages\StopProgramCopy.xaml;
 
 False
 

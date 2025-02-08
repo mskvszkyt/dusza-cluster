@@ -18,9 +18,9 @@ namespace ClusterWPF.Pages
     /// <summary>
     /// Interaction logic for SzamitogepHozzaadasa.xaml
     /// </summary>
-    public partial class SzamitogepHozzaadasa : Page
+    public partial class AddNewComputer : Page
     {
-        public SzamitogepHozzaadasa()
+        public AddNewComputer()
         {
             InitializeComponent();
         }

@@ -15,7 +15,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" FontSize="20">Remove Computer</Label>
+            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Remove Computer</Label>
         </Border>
         <ui:SimpleStackPanel Width="400px" Spacing="20" Grid.Row="1" Margin="0 10 0 0">
             <Grid>

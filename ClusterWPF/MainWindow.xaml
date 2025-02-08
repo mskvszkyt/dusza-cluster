@@ -14,39 +14,39 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TabControl SelectionChanged="TabControl_SelectionChanged">
+        <TabControl SelectionChanged="TabControl_SelectionChanged" x:Name="tcPages">
             <TabControl.Items>
-                <TabItem Header="Monitor">
+                <TabItem Header="Monitor" Cursor="Hand">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/cmd.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Add new computer">
+                <TabItem Header="Add new computer" Cursor="Hand">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/powershell.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Remove Computer">
+                <TabItem Header="Remove Computer" Cursor="Hand">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Modify Computer">
+                <TabItem Header="Modify Computer" Cursor="Hand">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Remove Program">
+                <TabItem Header="Remove Program" Cursor="Hand">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Stop Program Copy">
+                <TabItem Header="Stop Program Copy" Cursor="Hand">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Run program copy">
+                <TabItem Header="Run program copy" Cursor="Hand">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>

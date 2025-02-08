@@ -13,6 +13,7 @@
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="AccentBrush" Color="Gray" />
             <!-- Other app resources here -->
         </ResourceDictionary>
     </Application.Resources>
