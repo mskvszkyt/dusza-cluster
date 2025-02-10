@@ -25,7 +25,13 @@
                 </Grid.RowDefinitions>
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
                     <Label Padding="10" HorizontalAlignment="Center">Existing Program copies:</Label>
-                    <ListBox x:Name="lbRemovableProgramCopies"></ListBox>
+                    <ListBox x:Name="lbRemovableProgramCopies">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FullName}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     <TextBox
                     Margin="10 0 10 0"
                     ui:ControlHelper.PlaceholderText="Search..."

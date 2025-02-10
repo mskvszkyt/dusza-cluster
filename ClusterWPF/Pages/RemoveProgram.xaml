@@ -25,7 +25,13 @@
                 </Grid.RowDefinitions>
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
                     <Label Padding="10" HorizontalAlignment="Center">Existing Programs:</Label>
-                    <ListBox x:Name="lbRemovablePrograms"></ListBox>
+                    <ListBox x:Name="lbRemovablePrograms" SelectionMode="Single" ItemsSource="{Binding FilteredPrograms}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ProgramName}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     <TextBox
                         Margin="10 0 10 0"
                         ui:ControlHelper.PlaceholderText="Search..."
