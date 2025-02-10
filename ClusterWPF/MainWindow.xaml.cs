@@ -1,4 +1,4 @@
-﻿using ControlzEx.Theming;
+using ControlzEx.Theming;
 using Microsoft.Win32;
 using System.Runtime;
 using System.Text;
@@ -21,6 +21,7 @@ namespace ClusterWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Cluster> clusters = new List<Cluster>();
         public MainWindow()
         {
             InitializeComponent();
@@ -61,6 +62,13 @@ namespace ClusterWPF
                     "Run program copy" => new Pages.NewProgramCopy(),
                 };
             }
+        }
+
+        private void btnAddNewCluster_Click(object sender, RoutedEventArgs e)
+        {
+            string path = tbAddCluster.Text;
+            Cluster cluster = FileManager.GetClusterRequirements(path);
+            cluster.Instances = FileManager.ReadInstances(path);
         }
     }
 }
