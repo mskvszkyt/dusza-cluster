@@ -1129,23 +1129,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\muskovszky.tamas\\.nuget\\packages\\": {},
+    "C:\\Users\\szidor.mihaly\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\muskovszky.tamas\\Source\\Repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
+      "projectUniqueName": "C:\\Users\\szidor.mihaly\\Source\\Repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
       "projectName": "ClusterWPF",
-      "projectPath": "C:\\Users\\muskovszky.tamas\\Source\\Repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
-      "packagesPath": "C:\\Users\\muskovszky.tamas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\muskovszky.tamas\\Source\\Repos\\dusza-cluster\\ClusterWPF\\obj\\",
+      "projectPath": "C:\\Users\\szidor.mihaly\\Source\\Repos\\dusza-cluster\\ClusterWPF\\ClusterWPF.csproj",
+      "packagesPath": "C:\\Users\\szidor.mihaly\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\szidor.mihaly\\Source\\Repos\\dusza-cluster\\ClusterWPF\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\muskovszky.tamas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\szidor.mihaly\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1171,8 +1171,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
-      }
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -1206,7 +1207,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
