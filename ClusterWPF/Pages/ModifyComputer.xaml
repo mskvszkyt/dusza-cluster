@@ -22,7 +22,7 @@
         <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
             <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Modify computer</Label>
         </Border>
-        <DataGrid Grid.Row="1" Margin="10" GridLinesVisibility="Horizontal" HeadersVisibility="Column" HorizontalAlignment="Center">
+        <DataGrid x:Name="dgdatas" Grid.Row="1" Margin="10" GridLinesVisibility="Horizontal" HeadersVisibility="Column" HorizontalAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"></DataGridTextColumn>
                 <DataGridTextColumn Header="Memory"></DataGridTextColumn>

@@ -1,3 +1,4 @@
+using ConsoleApp1;
 using ControlzEx.Theming;
 using Microsoft.Win32;
 using System.Runtime;
@@ -22,6 +23,8 @@ namespace ClusterWPF
     public partial class MainWindow : Window
     {
         List<Cluster> clusters = new List<Cluster>();
+        Cluster cluster = new Cluster();
+        string path;
         public MainWindow()
         {
             InitializeComponent();
@@ -54,11 +57,11 @@ namespace ClusterWPF
                 CurrentPage.Content = tabs switch
                 {
                     "Monitor" => new Pages.Monitor(),
-                    "Add new computer" => new Pages.AddNewComputer(),
-                    "Remove Computer" => new Pages.ComputerRemove(),
-                    "Remove Program" => new Pages.RemoveProgram(),
-                    "Stop Program Copy" => new Pages.StopProgramCopy(),
-                    "Modify Computer" => new Pages.ModifyComputer(),
+                    "Add new computer" => new Pages.AddNewComputer(cluster, path),
+                    "Remove Computer" => new Pages.ComputerRemove(cluster, path),
+                    "Remove Program" => new Pages.RemoveProgram(cluster, path),
+                    "Stop Program Copy" => new Pages.StopProgramCopy(cluster, path),
+                    "Modify Computer" => new Pages.ModifyComputer(cluster, path),
                     "Run program copy" => new Pages.NewProgramCopy(),
                 };
             }
@@ -66,8 +69,8 @@ namespace ClusterWPF
 
         private void btnAddNewCluster_Click(object sender, RoutedEventArgs e)
         {
-            string path = tbAddCluster.Text;
-            Cluster cluster = FileManager.GetClusterRequirements(path);
+            path = tbAddCluster.Text;
+            cluster = FileManager.GetClusterRequirements(path);
             cluster.Instances = FileManager.ReadInstances(path);
         }
     }
