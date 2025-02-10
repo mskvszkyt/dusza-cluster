@@ -125,7 +125,7 @@ namespace ClusterWPF.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ClusterWPF;component/pages/monitor.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ClusterWPF;V1.0.0.0;component/pages/monitor.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\Monitor.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
