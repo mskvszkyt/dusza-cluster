@@ -155,7 +155,6 @@ C:\Users\szidor.mihaly\source\repos\ClusterWPF\ClusterWPF\obj\Debug\net8.0-windo
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF.csproj.AssemblyReference.cache
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\Monitor.g.cs
-C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\SzamitogepHozzaadasa.g.cs
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF_MarkupCompile.cache
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF_MarkupCompile.lref
@@ -298,7 +297,6 @@ C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-wi
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\App.baml
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\MainWindow.baml
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\Monitor.baml
-C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\SzamitogepHozzaadasa.baml
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF.g.resources
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\szidor.mihaly\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\ClusterWPF.AssemblyInfoInputs.cache
@@ -507,3 +505,20 @@ C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\zh-Ha
 C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\zh-Hant\ModernWpf.MahApps.resources.dll
 C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\AddNewComputer.g.cs
 C:\Users\i7\source\repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\AddNewComputer.baml
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\ModernWpf.MahApps.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\cs\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\de\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\es\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\fa\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\fr\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\it\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\ja\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\ko\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\pl\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\pt-BR\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\ru\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\tr\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\zh-Hans\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\bin\Debug\net8.0-windows\zh-Hant\ModernWpf.MahApps.resources.dll
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\AddNewComputer.g.cs
+C:\Users\szidor.mihaly\Source\Repos\dusza-cluster\ClusterWPF\obj\Debug\net8.0-windows\Pages\AddNewComputer.baml
