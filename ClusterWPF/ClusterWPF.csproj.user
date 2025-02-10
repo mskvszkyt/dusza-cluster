@@ -16,13 +16,16 @@
     <Compile Update="Pages\Monitor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\NewProgramCopy.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\RemoveProgram.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\StopProgramCopy.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\SzamitogepHozzaadasa.xaml.cs">
+    <Compile Update="Pages\AddNewComputer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -39,13 +42,16 @@
     <Page Update="Pages\Monitor.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\NewProgramCopy.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\RemoveProgram.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\StopProgramCopy.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\SzamitogepHozzaadasa.xaml">
+    <Page Update="Pages\AddNewComputer.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
