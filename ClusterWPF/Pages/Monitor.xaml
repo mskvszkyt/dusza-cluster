@@ -28,7 +28,7 @@
         <!--PC's-->
         <ScrollViewer Grid.Row="1" >
             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center">
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10">
+                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
                             <ui:SimpleStackPanel>
                                 <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
                                 <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
@@ -60,7 +60,7 @@
                                 <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
                             </ui:SimpleStackPanel>
                         </Border>
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10">
+                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
         <ui:SimpleStackPanel>
             <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
@@ -92,7 +92,7 @@
             <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
         </ui:SimpleStackPanel>
     </Border>
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10">
+                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
         <ui:SimpleStackPanel>
             <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
@@ -124,7 +124,7 @@
             <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
         </ui:SimpleStackPanel>
     </Border>
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10">
+                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
         <ui:SimpleStackPanel>
             <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
@@ -156,7 +156,7 @@
             <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
         </ui:SimpleStackPanel>
     </Border>
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10">
+                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
         <ui:SimpleStackPanel>
             <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
