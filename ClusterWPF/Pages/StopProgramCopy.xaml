@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+
       xmlns:local="clr-namespace:ClusterWPF.Pages"
       xmlns:ui="http://schemas.modernwpf.com/2019" 
       mc:Ignorable="d" 
@@ -15,7 +16,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
-            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Stop Program Copy</Label>
+            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Stop Program Instance</Label>
         </Border>
         <ui:SimpleStackPanel Width="400px" Spacing="20" Grid.Row="1" Margin="0 20 0 0">
             <Grid>
@@ -24,7 +25,7 @@
                     <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
-                    <Label Padding="10" HorizontalAlignment="Center">Existing Program copies:</Label>
+                    <Label Padding="10" HorizontalAlignment="Center">Existing Program instances:</Label>
                     <ListBox x:Name="lbRemovableProgramCopies">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -39,7 +40,7 @@
                     TextAlignment="Center">
                     </TextBox>
                 </ui:SimpleStackPanel>
-                <Button x:Name="btnRemoveProgramCopy" HorizontalAlignment="Center" Grid.Row="1">Remove program copy</Button>
+                <Button x:Name="btnRemoveProgramCopy" HorizontalAlignment="Center" Grid.Row="1">Stop program instance</Button>
             </Grid>
         </ui:SimpleStackPanel>
     </Grid>

@@ -57,9 +57,9 @@ namespace ClusterWPF
                     "Add new computer" => new Pages.AddNewComputer(cluster, path),
                     "Remove Computer" => new Pages.ComputerRemove(cluster, path),
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
-                    "Stop Program Copy" => new Pages.StopProgramCopy(cluster, path),
+                    "Stop Program instance" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
-                    "Run program copy" => new Pages.NewProgramCopy(),
+                    "Run program instance" => new Pages.NewProgramCopy(),
                     _ => CurrentPage.Content
                 };
             }

@@ -32,6 +32,7 @@ namespace ClusterWPF.Pages
             // Get the program copies from all instances and project them into an anonymous type
             _programCopies = new ObservableCollection<dynamic>(_cluster.Instances
                 .SelectMany(i => i.Programs)
+                .Where(i => i.IsRunning)
                 .Select(p => new
                 {
                     Id = p.ProgramName.Split('-').Last(),
@@ -62,7 +63,7 @@ namespace ClusterWPF.Pages
 
             if (selectedProgramCopy == null)
             {
-                MessageBox.Show("Please select a program copy to remove.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please select a program copy to stop.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -82,7 +83,7 @@ namespace ClusterWPF.Pages
                     // Remove the program copy from the instance's list
                     instance.Programs.Remove(programCopy);
 
-                    MessageBox.Show($"Successfully removed program copy: {programName}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Successfully stopped program copy: {programName}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     LoadProgramCopies(); // Reload the program copies list
                     return;
                 }
