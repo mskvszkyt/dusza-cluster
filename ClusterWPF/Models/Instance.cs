@@ -9,5 +9,8 @@
 
         public int CalculateMemoryUsage() => Programs.Sum(prog => prog.MemoryUsage);
         public int CalculateProcessorUsage() => Programs.Sum(prog => prog.ProcessorUsage);
+
+        public double MemoryUsagePercentage => MemoryCapacity > 0 ? (double)CalculateMemoryUsage() / MemoryCapacity * 100 : 0;
+        public double ProcessorUsagePercentage => ProcessorCapacity > 0 ? (double)CalculateProcessorUsage() / ProcessorCapacity * 100 : 0;
     }
 }

@@ -9,6 +9,25 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Monitor">
 
+
+    <Page.Resources>
+        <DataTemplate x:Key="ProgramTemplate">
+            <ui:SimpleStackPanel>
+                <!-- Instance Name -->
+                <ui:SimpleStackPanel Orientation="Horizontal">
+                    <Label FontSize="16" Margin="5 0">Name:</Label>
+                    <Label FontSize="16" Foreground="{DynamicResource AccentBrush}" Content="{Binding Name}" />
+                </ui:SimpleStackPanel>
+
+
+                <Label FontSize="16" Margin="5 0" Content="{Binding RunningOn}" />
+                <Label FontSize="16" Margin="5 0" Content="{Binding MemoryUsage}" />
+                <Label FontSize="16" Margin="5 0" Content="{Binding ProcessorUsage}" />
+                <Border BorderBrush="Gray" BorderThickness="0 0 1 0" Margin="5 0"/>
+            </ui:SimpleStackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -27,167 +46,12 @@
 
         <!--PC's-->
         <ScrollViewer Grid.Row="1" >
-            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center">
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
-                            <ui:SimpleStackPanel>
-                                <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
-                                <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-                                <Image Width="100" Height="80" Source="Images/PC.png" RenderTransformOrigin="0.5,0.5">
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform AngleY="0"/>
-                                            <RotateTransform/>
-                                            <TranslateTransform Y="0"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform></Image>
-                            
-                                <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-                                <Label Padding="5">Memory Usage:</Label>
-                            
-                                <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-                                <Label HorizontalAlignment="Center" Padding="0 5 0 0">1000/1200</Label>
-                                <ui:ProgressBar Margin="5" Value="80"></ui:ProgressBar>
-                            
-                                <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-                                <Label Padding="5">Processor Usage:</Label>
-                            
-                                <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-                                <Label HorizontalAlignment="Center" Padding="0 5 0 0">20/100</Label>
-                                <ui:ProgressBar Margin="5" Value="20"></ui:ProgressBar>
-                            
-                                <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-                                <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
-                            </ui:SimpleStackPanel>
-                        </Border>
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
-        <ui:SimpleStackPanel>
-            <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Image Width="100" Height="80" Source="Images/PC.png" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="0"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="0"/>
-                    </TransformGroup>
-                </Image.RenderTransform></Image>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Label Padding="5">Memory Usage:</Label>
-        
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Label HorizontalAlignment="Center" Padding="0 5 0 0">1000/1200</Label>
-            <ui:ProgressBar Margin="5" Value="80"></ui:ProgressBar>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Label Padding="5">Processor Usage:</Label>
-        
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Label HorizontalAlignment="Center" Padding="0 5 0 0">20/100</Label>
-            <ui:ProgressBar Margin="5" Value="20"></ui:ProgressBar>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
-        </ui:SimpleStackPanel>
-    </Border>
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
-        <ui:SimpleStackPanel>
-            <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Image Width="100" Height="80" Source="Images/PC.png" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="0"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="0"/>
-                    </TransformGroup>
-                </Image.RenderTransform></Image>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Label Padding="5">Memory Usage:</Label>
-        
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Label HorizontalAlignment="Center" Padding="0 5 0 0">1000/1200</Label>
-            <ui:ProgressBar Margin="5" Value="80"></ui:ProgressBar>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Label Padding="5">Processor Usage:</Label>
-        
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Label HorizontalAlignment="Center" Padding="0 5 0 0">20/100</Label>
-            <ui:ProgressBar Margin="5" Value="20"></ui:ProgressBar>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
-        </ui:SimpleStackPanel>
-    </Border>
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
-        <ui:SimpleStackPanel>
-            <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Image Width="100" Height="80" Source="Images/PC.png" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="0"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="0"/>
-                    </TransformGroup>
-                </Image.RenderTransform></Image>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Label Padding="5">Memory Usage:</Label>
-        
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Label HorizontalAlignment="Center" Padding="0 5 0 0">1000/1200</Label>
-            <ui:ProgressBar Margin="5" Value="80"></ui:ProgressBar>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Label Padding="5">Processor Usage:</Label>
-        
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Label HorizontalAlignment="Center" Padding="0 5 0 0">20/100</Label>
-            <ui:ProgressBar Margin="5" Value="20"></ui:ProgressBar>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
-        </ui:SimpleStackPanel>
-    </Border>
-                        <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
-        <ui:SimpleStackPanel>
-            <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Image Width="100" Height="80" Source="Images/PC.png" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="0"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="0"/>
-                    </TransformGroup>
-                </Image.RenderTransform></Image>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Label Padding="5">Memory Usage:</Label>
-        
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Label HorizontalAlignment="Center" Padding="0 5 0 0">1000/1200</Label>
-            <ui:ProgressBar Margin="5" Value="80"></ui:ProgressBar>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Label Padding="5">Processor Usage:</Label>
-        
-            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-            <Label HorizontalAlignment="Center" Padding="0 5 0 0">20/100</Label>
-            <ui:ProgressBar Margin="5" Value="20"></ui:ProgressBar>
-        
-            <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
-            <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
-        </ui:SimpleStackPanel>
-    </Border>
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Margin="10">
+                <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" >
+                <WrapPanel Orientation="horizontal"  HorizontalAlignment="Center" Margin="10" x:Name="InstanceContainer">
+                    <!-- Instance content goes here -->
+                </WrapPanel>
+            </Border>
             </TextBlock>
         </ScrollViewer>
 
@@ -223,7 +87,7 @@
                     <ComboBoxItem Content="Search a specific program"/>
                 </ComboBox>
             </ui:SimpleStackPanel>
-            <ScrollViewer x:Name="svProgramDetails" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Visible" Padding="0 0 10 0">
+            <ScrollViewer x:Name="svProgramDetails" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Collapsed" Padding="0 0 10 0">
                 <!--Teszt adatok vannak a stackpanelben-->
                 <ui:SimpleStackPanel x:Name="ProgramDetailsContainer">
                     <Expander
@@ -335,48 +199,40 @@
                     </Expander>
                 </ui:SimpleStackPanel>
             </ScrollViewer>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Collapsed" Padding="0 0 10 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Visible" Padding="0 0 10 0">
                 <ui:SimpleStackPanel x:Name="svSpecificProgram">
-                    <ComboBox IsEditable="True" ui:ControlHelper.PlaceholderText="Search a program..." Margin="5 10" Width="220" HorizontalAlignment="Center"></ComboBox>
-                    <Button HorizontalAlignment="Center" Padding="5" Width="100">Search</Button>
-                    <Border BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0"></Border>
+                    <!-- ComboBox for search -->
+                    <ComboBox x:Name="searchComboBox"
+                          IsEditable="True"
+                          Width="220"
+                          Margin="5,10"
+                          HorizontalAlignment="Center"
+                          ui:ControlHelper.PlaceholderText="Search a program..." />
+
+                    <!-- Search Button -->
+                    <Button x:Name="searchButton"
+                        HorizontalAlignment="Center"
+                        Padding="5"
+                        Width="100"
+                        Content="Search"
+                        Click="SearchButton_Click" />
+
+                    <!-- Divider -->
+                    <Border BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0" />
+
+                    <!-- StackPanel for results -->
                     <ui:SimpleStackPanel x:Name="spShowResults">
                         <Label HorizontalAlignment="Center" FontSize="18" Margin="5">Copies details:</Label>
-                        <Border BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0"></Border>
-                        <ui:SimpleStackPanel>
-                            <ui:SimpleStackPanel Orientation="Horizontal">
-                                <Label FontSize="16" Margin="5 0">Name:</Label>
-                                <Label FontSize="16" Foreground="{DynamicResource AccentBrush}">ASDG2</Label>
-                            </ui:SimpleStackPanel>
-                            <Label FontSize="16" Margin="5 0">Running on: PC1</Label>
-                            <Label FontSize="16" Margin="5 0">Memory usage: 1024MB</Label>
-                            <Label FontSize="16" Margin="5 0">Processor usage: 100mm</Label>
-                        </ui:SimpleStackPanel>
-                        <Border BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0"></Border>
-                        <ui:SimpleStackPanel>
-                            <ui:SimpleStackPanel Orientation="Horizontal">
-                                <Label FontSize="16" Margin="5 0">Name:</Label>
-                                <Label FontSize="16" Foreground="{DynamicResource AccentBrush}">ASDWASDG2</Label>
-                            </ui:SimpleStackPanel>
-                            <Label FontSize="16" Margin="5 0">Running on: PC2</Label>
-                            <Label FontSize="16" Margin="5 0">Memory usage: 2024MB</Label>
-                            <Label FontSize="16" Margin="5 0">Processor usage: 140mm</Label>
-                        </ui:SimpleStackPanel>
-                        <Border BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0"></Border>
-                        <ui:SimpleStackPanel>
-                            <ui:SimpleStackPanel Orientation="Horizontal">
-                                <Label FontSize="16" Margin="5 0">Name:</Label>
-                                <Label FontSize="16" Foreground="{DynamicResource AccentBrush}">DASVC2</Label>
-                            </ui:SimpleStackPanel>
-                            <Label FontSize="16" Margin="5 0">Running on: PC3</Label>
-                            <Label FontSize="16" Margin="5 0">Memory usage: 4024MB</Label>
-                            <Label FontSize="16" Margin="5 0">Processor usage: 120mm</Label>
-                        </ui:SimpleStackPanel>
-                        <Border BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0"></Border>
+
+                        <!-- Divider -->
+                        <Border BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0" />
+
+                        <!-- Program instances -->
+                        <ItemsControl x:Name="programInstances" ItemTemplate="{StaticResource ProgramTemplate}" />
                     </ui:SimpleStackPanel>
                 </ui:SimpleStackPanel>
             </ScrollViewer>
         </Grid>
     </Grid>
-
+    
 </Page>

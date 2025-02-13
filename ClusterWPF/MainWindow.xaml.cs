@@ -14,25 +14,22 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Windows.UI.ViewManagement;
 
-
 namespace ClusterWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         List<Cluster> clusters = new List<Cluster>();
         Cluster cluster = new Cluster();
         string path;
+
         public MainWindow()
         {
             InitializeComponent();
             ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncWithAppMode;
             ThemeManager.Current.SyncTheme();
             UpdateAccentColor();
-
         }
+
         private void UpdateAccentColor()
         {
             var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\DWM");
@@ -56,13 +53,14 @@ namespace ClusterWPF
 
                 CurrentPage.Content = tabs switch
                 {
-                    "Monitor" => new Pages.Monitor(),
+                    "Monitor" => new Pages.Monitor(cluster.Instances),
                     "Add new computer" => new Pages.AddNewComputer(cluster, path),
                     "Remove Computer" => new Pages.ComputerRemove(cluster, path),
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
                     "Stop Program Copy" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
                     "Run program copy" => new Pages.NewProgramCopy(),
+                    _ => CurrentPage.Content
                 };
             }
         }
@@ -72,6 +70,28 @@ namespace ClusterWPF
             path = tbAddCluster.Text;
             cluster = FileManager.GetClusterRequirements(path);
             cluster.Instances = FileManager.ReadInstances(path);
+
+            RefreshCurrentPage();
+        }
+
+        private void RefreshCurrentPage()
+        {
+            var selectedTabHeader = tcPages.SelectedItem is TabItem selectedTab ? selectedTab.Header.ToString() : null;
+
+            if (selectedTabHeader != null)
+            {
+                CurrentPage.Content = selectedTabHeader switch
+                {
+                    "Monitor" => new Pages.Monitor(cluster.Instances),
+                    "Add new computer" => new Pages.AddNewComputer(cluster, path),
+                    "Remove Computer" => new Pages.ComputerRemove(cluster, path),
+                    "Remove Program" => new Pages.RemoveProgram(cluster, path),
+                    "Stop Program Copy" => new Pages.StopProgramCopy(cluster, path),
+                    "Modify Computer" => new Pages.ModifyComputer(cluster, path),
+                    "Run program copy" => new Pages.NewProgramCopy(),
+                    _ => CurrentPage.Content
+                };
+            }
         }
     }
 }
