@@ -13,14 +13,14 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
+        <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
             <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Add New Computer</Label>
         </Border>
         <ui:SimpleStackPanel Width="400px" Spacing="20" Grid.Row="1" Margin="0 20 0 0">
                 <TextBox ui:ControlHelper.Header="Name:" x:Name="tbNewComputerName"></TextBox>
                 <TextBox ui:ControlHelper.Header="Memory:" x:Name="tbNewComputerMemory"></TextBox>
                 <TextBox ui:ControlHelper.Header="Processor:" x:Name="tbNewComputerProcessor"></TextBox>
-                <Button x:Name="btnAddNewComputer" HorizontalAlignment="Center">Add new computer</Button>
+                <Button x:Name="btnAddNewComputer" HorizontalAlignment="Center" Cursor="Hand">Add new computer</Button>
             </ui:SimpleStackPanel>
         </Grid>
 </Page>

@@ -18,7 +18,7 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
+        <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Padding="10" FontSize="20">Monitoring:</Label>
                 <Label Padding="00 10 10 10" FontSize="20" x:Name="lbMonitoring">Example</Label>
@@ -31,32 +31,22 @@
                         <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
                             <ui:SimpleStackPanel>
                                 <Label FontSize="20" Padding="5" HorizontalAlignment="Center">PC1</Label>
-                                <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
-                                <Image Width="100" Height="80" Source="Images/PC.png" RenderTransformOrigin="0.5,0.5">
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform AngleY="0"/>
-                                            <RotateTransform/>
-                                            <TranslateTransform Y="0"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform></Image>
+                                <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
+                                <Image Width="100" Height="80" Source="Images/PC.png">
+                                   </Image>
                             
                                 <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
                                 <Label Padding="5">Memory Usage:</Label>
                             
-                                <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
                                 <Label HorizontalAlignment="Center" Padding="0 5 0 0">1000/1200</Label>
-                                <ui:ProgressBar Margin="5" Value="80"></ui:ProgressBar>
+                                <ui:ProgressBar Margin="5" Foreground="Red" Value="80"></ui:ProgressBar>
                             
-                                <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
                                 <Label Padding="5">Processor Usage:</Label>
                             
-                                <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
                                 <Label HorizontalAlignment="Center" Padding="0 5 0 0">20/100</Label>
-                                <ui:ProgressBar Margin="5" Value="20"></ui:ProgressBar>
+                                <ui:ProgressBar Margin="5 10" Foreground="Green" Value="20"></ui:ProgressBar>
                             
-                                <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
+                                <Border BorderThickness="1" BorderBrush="{DynamicResource AccentBrush}"></Border>
                                 <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
                             </ui:SimpleStackPanel>
                         </Border>
@@ -79,14 +69,14 @@
         
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
             <Label HorizontalAlignment="Center" Padding="0 5 0 0">1000/1200</Label>
-            <ui:ProgressBar Margin="5" Value="80"></ui:ProgressBar>
+            <ui:ProgressBar Margin="5" Value="70" Foreground="Yellow"></ui:ProgressBar>
         
             <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
             <Label Padding="5">Processor Usage:</Label>
         
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"></Border>
             <Label HorizontalAlignment="Center" Padding="0 5 0 0">20/100</Label>
-            <ui:ProgressBar Margin="5" Value="20"></ui:ProgressBar>
+            <ui:ProgressBar Margin="5" Value="20" Foreground="Green"></ui:ProgressBar>
         
             <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
             <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
@@ -193,7 +183,7 @@
 
 
         <!--STATISTICS-->
-        <Grid Grid.Row="1" Grid.Column="1" >
+        <Grid Grid.RowSpan="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -201,13 +191,12 @@
             <ui:SimpleStackPanel Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" VerticalAlignment="Stretch">
                 <Label Margin="10" HorizontalAlignment="Center" FontSize="18">Statistics:</Label>
                 <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 0 0 10" ></Border>
-
                 <ui:SimpleStackPanel Orientation="Horizontal">
                     <Label Margin="10 0 0 0" FontSize="16">Active processes:</Label>
                     <Label Margin="5 0 0 0" FontSize="16" x:Name="lbActiveProcesses" FontWeight="Bold" Foreground="{DynamicResource AccentBrush}">0</Label>
                 </ui:SimpleStackPanel>
 
-                <ui:SimpleStackPanel Orientation="Horizontal">
+                <ui:SimpleStackPanel Orientation="Horizontal" Margin="0 10">
                     <Label Margin="10 0 0 0" FontSize="16">Inactive processes:</Label>
                     <Label Margin="5 0 0 0" FontSize="16" x:Name="lbInactiveProcesses" FontWeight="Bold" Foreground="{DynamicResource AccentBrush}">0</Label>
                 </ui:SimpleStackPanel>

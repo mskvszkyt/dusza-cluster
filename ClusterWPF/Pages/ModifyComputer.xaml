@@ -19,7 +19,7 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
+        <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
             <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Modify computer</Label>
         </Border>
         <DataGrid x:Name="dgdatas" Grid.Row="1" Margin="10" GridLinesVisibility="Horizontal" HeadersVisibility="Column" HorizontalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False">
@@ -29,7 +29,7 @@
                 <DataGridTextColumn Header="Procesor" Binding="{Binding ProcessorCapacity, StringFormat='0 mm'}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <ui:SimpleStackPanel Grid.Row="1" Grid.Column="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
+        <ui:SimpleStackPanel Grid.RowSpan="2" Grid.Column="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
             <Label Margin="10" HorizontalAlignment="Center" FontSize="18">Filters:</Label>
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 0 0 10" ></Border>
             
@@ -81,7 +81,7 @@
                 
             </ui:SimpleStackPanel>
 
-            <Button x:Name="btnSaveComputerSpecs" HorizontalAlignment="Center" Margin="10">Save</Button>
+            <Button x:Name="btnSaveComputerSpecs" HorizontalAlignment="Center" Margin="10" Cursor="Hand">Save</Button>
 
         </ui:SimpleStackPanel>
     </Grid>
