@@ -46,7 +46,7 @@
                                 <Label HorizontalAlignment="Center" Padding="0 5 0 0">20/100</Label>
                                 <ui:ProgressBar Margin="5 10" Foreground="Green" Value="20"></ui:ProgressBar>
                             
-                                <Border BorderThickness="1" BorderBrush="{DynamicResource AccentBrush}"></Border>
+                                <Border BorderThickness="2" BorderBrush="{DynamicResource AccentBrush}"></Border>
                                 <Button HorizontalAlignment="Center" Width="200" Margin="5">Remove</Button>
                             </ui:SimpleStackPanel>
                         </Border>
