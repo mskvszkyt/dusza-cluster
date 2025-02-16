@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Pages\Charts.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\ClustersManagement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,9 +34,15 @@
     <Compile Update="Pages\AddNewComputer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ChartView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Charts.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\ClustersManagement.xaml">
@@ -58,6 +67,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\AddNewComputer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ChartView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

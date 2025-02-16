@@ -15,7 +15,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
-            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">New Program Copy</Label>
+            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">New Program Instance</Label>
         </Border>
         <ui:SimpleStackPanel Spacing="20" Grid.Row="1" Margin="0 10 0 0">
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">

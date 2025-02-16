@@ -51,6 +51,11 @@
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
+                <TabItem Header="Charts" Cursor="Hand">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/cmd.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
             </TabControl.Items>
         </TabControl>
         
