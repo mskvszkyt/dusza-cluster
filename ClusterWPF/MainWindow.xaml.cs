@@ -19,6 +19,7 @@ namespace ClusterWPF
     public partial class MainWindow : Window
     {
         List<Cluster> clusters = new List<Cluster>();
+        bool _clusterState;
         Cluster cluster = new Cluster();
         string path;
 
@@ -53,7 +54,7 @@ namespace ClusterWPF
 
                 CurrentPage.Content = tabs switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster.Instances),
+                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState),
                     "Add new computer" => new Pages.AddNewComputer(cluster, path),
                     "Remove Computer" => new Pages.ComputerRemove(cluster, path),
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
@@ -67,11 +68,19 @@ namespace ClusterWPF
 
         private void btnAddNewCluster_Click(object sender, RoutedEventArgs e)
         {
-            path = tbAddCluster.Text;
-            cluster = FileManager.GetClusterRequirements(path);
-            cluster.Instances = FileManager.ReadInstances(path);
-
-            RefreshCurrentPage();
+            try
+            {
+                path = tbAddCluster.Text;
+                cluster = FileManager.GetClusterRequirements(path);
+                cluster.Instances = FileManager.ReadInstances(path);
+                _clusterState = true;
+                RefreshCurrentPage();
+            }
+            catch (Exception exception)
+            {
+                _clusterState = false;
+                MessageBox.Show(exception.Message);
+            }
         }
 
         private void RefreshCurrentPage()
@@ -82,7 +91,7 @@ namespace ClusterWPF
             {
                 CurrentPage.Content = selectedTabHeader switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster.Instances),
+                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState),
                     "Add new computer" => new Pages.AddNewComputer(cluster, path),
                     "Remove Computer" => new Pages.ComputerRemove(cluster, path),
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
