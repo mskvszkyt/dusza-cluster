@@ -126,46 +126,6 @@
                                 Focusable="False">
                         <ListBox VerticalAlignment="Stretch" IsHitTestVisible="False">
 
-                            <ListBoxItem VerticalAlignment="Stretch">
-                                <ui:SimpleStackPanel Orientation="Horizontal">
-                                    <Label>8f024</Label>
-                                    <Label Margin="10 0">:</Label>
-                                    <Label Foreground="Red">Inactive</Label>
-                                </ui:SimpleStackPanel>
-                            </ListBoxItem>
-
-                            <ListBoxItem VerticalAlignment="Stretch">
-                                <ui:SimpleStackPanel Orientation="Horizontal">
-                                    <Label>8f024</Label>
-                                    <Label Margin="10 0">:</Label>
-                                    <Label Foreground="Red">Inactive</Label>
-                                </ui:SimpleStackPanel>
-                            </ListBoxItem>
-
-                            <ListBoxItem VerticalAlignment="Stretch">
-                                <ui:SimpleStackPanel Orientation="Horizontal">
-                                    <Label>8f024</Label>
-                                    <Label Margin="10 0">:</Label>
-                                    <Label Foreground="Red">Inactive</Label>
-                                </ui:SimpleStackPanel>
-                            </ListBoxItem>
-
-                            <ListBoxItem VerticalAlignment="Stretch">
-                                <ui:SimpleStackPanel Orientation="Horizontal">
-                                    <Label>8f024</Label>
-                                    <Label Margin="10 0">:</Label>
-                                    <Label Foreground="Red">Inactive</Label>
-                                </ui:SimpleStackPanel>
-                            </ListBoxItem>
-
-                            <ListBoxItem>
-                                <ui:SimpleStackPanel Orientation="Horizontal">
-                                    <Label>210SD</Label>
-                                    <Label Margin="10 0">:</Label>
-                                    <Label Foreground="Green">Active</Label>
-                                </ui:SimpleStackPanel>
-                            </ListBoxItem>
-
                         </ListBox>
                     </Expander>
 
@@ -198,7 +158,7 @@
                     </Expander>
                 </ui:SimpleStackPanel>
             </ScrollViewer>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Collapsed" Padding="0 0 10 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Visible" Padding="0 0 10 0">
                 <ui:SimpleStackPanel x:Name="svSpecificProgram">
                     <!-- ComboBox for search -->
                     <ComboBox x:Name="searchComboBox"

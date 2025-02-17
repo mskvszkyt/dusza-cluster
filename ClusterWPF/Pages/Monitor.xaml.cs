@@ -11,6 +11,7 @@ using ProgressBar = ModernWpf.Controls.ProgressBar;
 using MahApps.Metro.Controls;
 using ModernWpf.Controls.Primitives;
 using Page = System.Windows.Controls.Page;
+using System.Diagnostics;
 
 namespace ClusterWPF.Pages
 {
@@ -37,6 +38,82 @@ namespace ClusterWPF.Pages
 
         private void PopulateUI()
         {
+
+            // Clear existing items
+            ProgramDetailsContainer.Children.Clear();
+
+            // Group programs by base name (before '-')
+            var groupedPrograms = _instances
+                .SelectMany(instance => instance.Programs.Select(program => new { instance, program }))
+                .GroupBy(x => x.program.ProgramName.Split('-')[0]);
+
+            foreach (var group in groupedPrograms)
+            {
+                var expander = new Expander
+                {
+                    Padding = new Thickness(10),
+                    Header = $"ProgramName: {group.Key}",
+                    ExpandDirection = ExpandDirection.Down,
+                    IsExpanded = false,
+                    FontSize = 16,
+                    Focusable = false
+                };
+
+                var listBox = new ListBox { VerticalAlignment = VerticalAlignment.Stretch, IsHitTestVisible = false };
+                foreach (var item in group)
+                {
+                    var statusColor = item.program.IsRunning ? Brushes.Green : Brushes.Red;
+
+                    var listBoxItem = new ListBoxItem { VerticalAlignment = VerticalAlignment.Stretch };
+                    var stackPanel = new SimpleStackPanel { Orientation = Orientation.Horizontal };
+
+                    stackPanel.Children.Add(new Label { Content = item.program.ProgramName.Split("-")[1] });
+                    stackPanel.Children.Add(new Label { Content = ":", Margin = new Thickness(10, 0, 10, 0) });
+                    stackPanel.Children.Add(new Label { Content = item.program.IsRunning ? "Active" : "Inactive", Foreground = statusColor });
+
+                    listBoxItem.Content = stackPanel;
+                    listBox.Items.Add(listBoxItem);
+                }
+
+                expander.Content = listBox;
+                ProgramDetailsContainer.Children.Add(expander);
+            }
+
+            // Clear existing items
+            ProgramDetailsContainer.Children.Clear();
+
+            foreach (var group in groupedPrograms)
+            {
+                var expander = new Expander
+                {
+                    Padding = new Thickness(10),
+                    Header = $"ProgramName: {group.Key}",
+                    ExpandDirection = ExpandDirection.Down,
+                    IsExpanded = false,
+                    FontSize = 16,
+                    Focusable = false
+                };
+
+                var listBox = new ListBox { VerticalAlignment = VerticalAlignment.Stretch, IsHitTestVisible = false };
+                foreach (var item in group)
+                {
+                    var statusColor = item.program.IsRunning ? Brushes.Green : Brushes.Red;
+
+                    var listBoxItem = new ListBoxItem { VerticalAlignment = VerticalAlignment.Stretch };
+                    var stackPanel = new SimpleStackPanel { Orientation = Orientation.Horizontal };
+
+                    stackPanel.Children.Add(new Label { Content = item.program.ProgramName.Split("-")[1] });
+                    stackPanel.Children.Add(new Label { Content = ":", Margin = new Thickness(10, 0, 10, 0) });
+                    stackPanel.Children.Add(new Label { Content = item.program.IsRunning ? "Active" : "Inactive", Foreground = statusColor });
+
+                    listBoxItem.Content = stackPanel;
+                    listBox.Items.Add(listBoxItem);
+                }
+
+                expander.Content = listBox;
+                ProgramDetailsContainer.Children.Add(expander);
+            }
+
             // Initialize the program instances collection for the ItemsControl
             var programList = _instances.SelectMany(instance => instance.Programs.Where(x => x.IsRunning == true).Select(program => new
             {
@@ -224,13 +301,26 @@ namespace ClusterWPF.Pages
 
                 if (selectedText == "Running programs details")
                 {
-                    svProgramDetails.Visibility = Visibility.Visible;
-                    svSpecificProgram.Visibility = Visibility.Collapsed;
+                    Dispatcher.Invoke(() =>
+                    {
+                        svProgramDetails.Visibility = Visibility.Visible;
+                        svSpecificProgram.Visibility = Visibility.Collapsed;
+                        Debug.WriteLine(svProgramDetails.Visibility);
+                        svProgramDetails.UpdateLayout();
+                    });
+
+
                 }
                 else if (selectedText == "Search a specific program")
                 {
-                    svProgramDetails.Visibility = Visibility.Collapsed;
-                    svSpecificProgram.Visibility = Visibility.Visible;
+                    Dispatcher.Invoke(() =>
+                    {
+                        svProgramDetails.Visibility = Visibility.Collapsed;
+                        svSpecificProgram.Visibility = Visibility.Visible;
+                        svSpecificProgram.UpdateLayout();
+                        svProgramDetails.UpdateLayout();
+                        Debug.WriteLine(svSpecificProgram.Visibility);
+                    });
                 }
             }
         }
