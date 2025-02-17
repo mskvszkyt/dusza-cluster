@@ -1,6 +1,7 @@
 using ConsoleApp1;
 using ControlzEx.Theming;
 using Microsoft.Win32;
+using System.ComponentModel;
 using System.Runtime;
 using System.Text;
 using System.Windows;
@@ -69,12 +70,22 @@ namespace ClusterWPF
 
         private void btnAddNewCluster_Click(object sender, RoutedEventArgs e)
         {
-            path = tbAddCluster.Text;
-            cluster = FileManager.GetClusterRequirements(path);
-            cluster.Instances = FileManager.ReadInstances(path);
-            clusters.Add(cluster)
-            clusterNames.Add(path.Split('\\').Last());
-            RefreshCurrentPage();
+            try
+            {
+                path = tbAddCluster.Text;
+                cluster = FileManager.GetClusterRequirements(path);
+                cluster.Instances = FileManager.ReadInstances(path);
+                clusters.Add(cluster);
+                clusterNames.Add(path.Split('\\').Last());
+                RefreshCurrentPage();
+                tbAddCluster.Text = string.Empty;
+
+                lbClusterNames.SelectedItem = path.Split('\\').Last();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
         }
 
         private void RefreshCurrentPage()
@@ -95,6 +106,12 @@ namespace ClusterWPF
                     _ => CurrentPage.Content
                 };
             }
+        }
+
+        private void Cluster_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //path = clusters.FirstOrDefault(c => c.Path.EndsWith(selectedName));
+            //cluster.
         }
     }
 }

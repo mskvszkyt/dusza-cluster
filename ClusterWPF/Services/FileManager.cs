@@ -65,6 +65,10 @@ namespace ConsoleApp1
                     });
                 }
             }
+            else
+            {
+                throw   new FileNotFoundException("The cluster file could not be found.");
+            }
 
             return cluster;
         }

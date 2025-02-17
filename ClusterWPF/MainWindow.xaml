@@ -75,7 +75,7 @@
                              x:Name="tbClusterSearch"
                              ui:ControlHelper.PlaceholderText="Search...">
                     </TextBox>
-                    <ListBox>
+                    <ListBox x:Name="lbClusterNames" SelectionChanged="Cluster_SelectionChanged">
                     </ListBox>
                 </ui:SimpleStackPanel>
                 <ui:SimpleStackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
