@@ -2,6 +2,4 @@
 obj
 /ClusterWPF/obj
 *.cache
-/ClusterWPF/bin/Debug/net8.0-windows/ClusterWPF.dll
-/ClusterWPF/bin/Debug/net8.0-windows/ClusterWPF.exe
-/ClusterWPF/bin/Debug/net8.0-windows/ClusterWPF.pdb
+/ClusterWPF/bin
