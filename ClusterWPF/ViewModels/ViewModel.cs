@@ -1,11 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
+using LiveChartsCore;
 
 namespace ClusterWPF.ViewModels;
-
 public partial class ViewModel : ObservableObject
 {
     public ISeries[] Series { get; set; } = [
@@ -26,17 +24,21 @@ public partial class ViewModel : ObservableObject
         }
     ];
 
-    // Define custom X-axis labels (updated with 10 new labels)
+    // Define custom X-axis labels
     public Axis[] XAxes { get; set; } =
     [
         new Axis
         {
-            Labels = ["PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8", "PC9", "PC10", "PC11", "PC12", "PC13", "PC14", "PC15", "PC16", "PC17", "PC18", "PC19", "PC20"], // Added 10 new labels
-            LabelsRotation = 0, // Optional: Rotate labels (0 degrees)
-            SeparatorsAtCenter = false, // Hide separators (grid lines at the center)
-            ForceStepToMin = true // Ensure all labels are shown
+            Labels = ["EZACOMPUTER2", "ASDASDASDszevasz", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8", "PC9", "PC10",
+                      "PC11", "PC12", "PC13", "PC14", "PC15", "PC16", "PC17", "PC18", "PC19", "PC20"],
+            LabelsRotation = 0, // Rotate labels by 45 degrees
+            SeparatorsAtCenter = false,
+            ForceStepToMin = true
         }
     ];
+
+    // Calculate chart width (100 pixels per label)
+    public double ChartWidth => XAxes[0].Labels.Count * 200; // Use Length instead of Count
 
     [RelayCommand]
     public void ToggleSeries0() => Series[0].IsVisible = !Series[0].IsVisible;
@@ -46,6 +48,4 @@ public partial class ViewModel : ObservableObject
 
     [RelayCommand]
     public void ToggleSeries2() => Series[2].IsVisible = !Series[2].IsVisible;
-
-    public double ChartWidth => XAxes[0].Labels.Count * 100;
 }

@@ -25,6 +25,15 @@
                 </Grid.RowDefinitions>
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
                     <Label Padding="10" HorizontalAlignment="Center">Computers:</Label>
+
+                    <ComboBox
+                        IsEditable="True"
+                        Width="220"
+                        Margin="10 0 10 0"
+                        x:Name="cbComputers"
+                        HorizontalAlignment="Center"
+                        ui:ControlHelper.PlaceholderText="Search a computer..." />
+
                     <ListBox x:Name="lbRemovableComputers"></ListBox>
                     <TextBox
                         Margin="10 0 10 0"
