@@ -1,4 +1,4 @@
-﻿<Page x:Class="ClusterWPF.Pages.NewProgramCopy"
+<Page x:Class="ClusterWPF.Pages.NewProgramCopy"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,30 +17,30 @@
         <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
             <Label HorizontalAlignment="Center" Padding="10" FontSize="20">New Program Instance</Label>
         </Border>
-        <ui:SimpleStackPanel Spacing="20" Grid.Row="1" Margin="0 10 0 0">
+        <ui:SimpleStackPanel Spacing="5" Grid.Row="1" Margin="0 10 0 0">
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
                     <Label Padding="10" HorizontalAlignment="Center">Computers:</Label>
-                    <ListBox x:Name="lbExistingComputers"></ListBox>
-                    <TextBox
+                    <ComboBox
+                        IsEditable="True"
+                        Width="220"
                         Margin="10 0 10 0"
-                        ui:ControlHelper.PlaceholderText="Search computer..."
-                        x:Name="tbExistingComputersSearch"
-                        TextAlignment="Center">
-                    </TextBox>
+                        x:Name="cbComputers"
+                        HorizontalAlignment="Center"
+                        ui:ControlHelper.PlaceholderText="Search a program..." />
                 </ui:SimpleStackPanel>
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
                     <Label Padding="10" HorizontalAlignment="Center">Existing programs:</Label>
-                    <ListBox x:Name="lbExistingPrograms"></ListBox>
-                    <TextBox
-                        Margin="10 0 10 0"
-                        ui:ControlHelper.PlaceholderText="Search program..."
-                        x:Name="tbExistingProgramSearch"
-                        TextAlignment="Center">
-                    </TextBox>
+                    <ComboBox
+                    IsEditable="True"
+                    Width="220"
+                    Margin="10 0 10 0"
+                    x:Name="cbPrograms"
+                    HorizontalAlignment="Center"
+                    ui:ControlHelper.PlaceholderText="Search a program..." />
                 </ui:SimpleStackPanel>
             </ui:SimpleStackPanel>
-                <Button x:Name="btnRunProgram" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand">Run Program</Button>
+                <Button x:Name="btnRunProgram" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand" Margin="0 0 0 10">Run Program</Button>
             <ui:SimpleStackPanel>
                 <TextBox
                             ui:ControlHelper.PlaceholderText="New program's name..."

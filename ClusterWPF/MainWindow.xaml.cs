@@ -20,6 +20,7 @@ namespace ClusterWPF
     public partial class MainWindow : Window
     {
         List<Cluster> clusters = new List<Cluster>();
+        bool _clusterState;
         Cluster cluster = new Cluster();
         string path;
         BindingList<string> clusterNames = new();
@@ -56,7 +57,7 @@ namespace ClusterWPF
 
                 CurrentPage.Content = tabs switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster.Instances),
+                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState),
                     "Add new computer" => new Pages.AddNewComputer(cluster, path),
                     "Remove Computer" => new Pages.ComputerRemove(cluster, path),
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
@@ -82,11 +83,13 @@ namespace ClusterWPF
 
                 lbClusterNames.SelectedItem = path.Split('\\').Last();
             }
-            catch (Exception err)
+            catch (Exception exception)
             {
-                MessageBox.Show(err.Message);
+                _clusterState = false;
+                MessageBox.Show(exception.Message);
             }
         }
+            
 
         private void RefreshCurrentPage()
         {
@@ -96,7 +99,7 @@ namespace ClusterWPF
             {
                 CurrentPage.Content = selectedTabHeader switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster.Instances),
+                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState),
                     "Add new computer" => new Pages.AddNewComputer(cluster, path),
                     "Remove Computer" => new Pages.ComputerRemove(cluster, path),
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
