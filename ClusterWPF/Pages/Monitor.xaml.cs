@@ -18,7 +18,6 @@ namespace ClusterWPF.Pages
     public partial class Monitor : Page
     {
         private List<Instance> _instances;
-        private bool _isLoaded = false; // Flag to track if the window is initialized
 
         public Monitor(List<Instance> instances)
         {
@@ -27,25 +26,20 @@ namespace ClusterWPF.Pages
             PopulateUI();
             PopulateStatistics();
             PopulateSearchComboBox();
+            cbSelect.SelectionChanged += ComboBox_SelectionChanged;
         }
 
         
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private void PopulatePrograms()
         {
-            _isLoaded = true;
-        }
-
-        private void PopulateUI()
-        {
-
-            // Clear existing items
-            ProgramDetailsContainer.Children.Clear();
-
-            // Group programs by base name (before '-')
             var groupedPrograms = _instances
                 .SelectMany(instance => instance.Programs.Select(program => new { instance, program }))
                 .GroupBy(x => x.program.ProgramName.Split('-')[0]);
+
+
+            // Clear existing items
+            ProgramDetailsContainer.Children.Clear();
 
             foreach (var group in groupedPrograms)
             {
@@ -78,7 +72,19 @@ namespace ClusterWPF.Pages
                 expander.Content = listBox;
                 ProgramDetailsContainer.Children.Add(expander);
             }
+        }
 
+        private void PopulateUI()
+        {
+
+            PopulatePrograms();
+
+            // Group programs by base name (before '-')
+            var groupedPrograms = _instances
+                .SelectMany(instance => instance.Programs.Select(program => new { instance, program }))
+                .GroupBy(x => x.program.ProgramName.Split('-')[0]);
+
+           
             // Clear existing items
             ProgramDetailsContainer.Children.Clear();
 
@@ -293,35 +299,16 @@ namespace ClusterWPF.Pages
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!_isLoaded) return; // Prevents execution before UI is fully loaded
-
-            if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem selectedItem)
+            if (cbSelect.SelectedIndex == 0)
             {
-                string selectedText = selectedItem.Content?.ToString();
-
-                if (selectedText == "Running programs details")
-                {
-                    Dispatcher.Invoke(() =>
-                    {
-                        svProgramDetails.Visibility = Visibility.Visible;
-                        svSpecificProgram.Visibility = Visibility.Collapsed;
-                        Debug.WriteLine(svProgramDetails.Visibility);
-                        svProgramDetails.UpdateLayout();
-                    });
-
-
-                }
-                else if (selectedText == "Search a specific program")
-                {
-                    Dispatcher.Invoke(() =>
-                    {
-                        svProgramDetails.Visibility = Visibility.Collapsed;
-                        svSpecificProgram.Visibility = Visibility.Visible;
-                        svSpecificProgram.UpdateLayout();
-                        svProgramDetails.UpdateLayout();
-                        Debug.WriteLine(svSpecificProgram.Visibility);
-                    });
-                }
+                svProgramDetails.Visibility = Visibility.Visible;
+                scrollViewerSpecific.Visibility = Visibility.Collapsed;
+                PopulatePrograms();
+            }
+            else
+            {
+                svProgramDetails.Visibility = Visibility.Collapsed;
+                scrollViewerSpecific.Visibility = Visibility.Visible;
             }
         }
 

@@ -28,7 +28,7 @@
         </DataTemplate>
     </Page.Resources>
     
-    <Grid Loaded="OnLoaded">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="250"></ColumnDefinition>
@@ -79,8 +79,7 @@
                 </ui:SimpleStackPanel>
 
                 <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0"></Border>
-                <ComboBox FontSize="16" HorizontalAlignment="Stretch" Padding="5 10"
-          SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox FontSize="16" HorizontalAlignment="Stretch" Padding="5 10" x:Name="cbSelect">
                     <ComboBoxItem IsSelected="True" Content="Running programs details"/>
                     <ComboBoxItem Content="Search a specific program"/>
                 </ComboBox>
@@ -157,7 +156,7 @@
                     </Expander>
                 </ui:SimpleStackPanel>
             </ScrollViewer>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Visible" Padding="0 0 10 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Collapsed" Padding="0 0 10 0" x:Name="scrollViewerSpecific">
                 <ui:SimpleStackPanel x:Name="svSpecificProgram">
                     <!-- ComboBox for search -->
                     <ComboBox x:Name="searchComboBox"
