@@ -28,7 +28,7 @@
         </DataTemplate>
     </Page.Resources>
     
-    <Grid>
+    <Grid Loaded="OnLoaded">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="250"></ColumnDefinition>
@@ -40,7 +40,6 @@
         <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Padding="10" FontSize="20">Monitoring:</Label>
-                <Label Padding="00 10 10 10" FontSize="20" x:Name="lbMonitoring">Example</Label>
             </ui:SimpleStackPanel>
         </Border>
 
@@ -49,7 +48,6 @@
             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Margin="10">
                 <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Margin="5 10" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" >
                 <WrapPanel Orientation="horizontal"  HorizontalAlignment="Center" Margin="10" x:Name="InstanceContainer">
-                    <!-- Instance content goes here -->
                 </WrapPanel>
             </Border>
             </TextBlock>
@@ -82,12 +80,13 @@
                 </ui:SimpleStackPanel>
 
                 <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0"></Border>
-                <ComboBox FontSize="16" HorizontalAlignment="Stretch" Padding="5 10">
+                <ComboBox FontSize="16" HorizontalAlignment="Stretch" Padding="5 10"
+          SelectionChanged="ComboBox_SelectionChanged">
                     <ComboBoxItem IsSelected="True" Content="Running programs details"/>
                     <ComboBoxItem Content="Search a specific program"/>
                 </ComboBox>
             </ui:SimpleStackPanel>
-            <ScrollViewer x:Name="svProgramDetails" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Collapsed" Padding="0 0 10 0">
+            <ScrollViewer x:Name="svProgramDetails" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Visible" Padding="0 0 10 0">
                 <!--Teszt adatok vannak a stackpanelben-->
                 <ui:SimpleStackPanel x:Name="ProgramDetailsContainer">
                     <Expander
@@ -199,7 +198,7 @@
                     </Expander>
                 </ui:SimpleStackPanel>
             </ScrollViewer>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Visible" Padding="0 0 10 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" Grid.Row="1" Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" Visibility="Collapsed" Padding="0 0 10 0">
                 <ui:SimpleStackPanel x:Name="svSpecificProgram">
                     <!-- ComboBox for search -->
                     <ComboBox x:Name="searchComboBox"

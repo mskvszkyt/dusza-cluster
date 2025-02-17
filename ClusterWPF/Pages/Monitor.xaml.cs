@@ -17,6 +17,7 @@ namespace ClusterWPF.Pages
     public partial class Monitor : Page
     {
         private List<Instance> _instances;
+        private bool _isLoaded = false; // Flag to track if the window is initialized
 
         public Monitor(List<Instance> instances)
         {
@@ -25,6 +26,13 @@ namespace ClusterWPF.Pages
             PopulateUI();
             PopulateStatistics();
             PopulateSearchComboBox();
+        }
+
+        
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _isLoaded = true;
         }
 
         private void PopulateUI()
@@ -205,5 +213,27 @@ namespace ClusterWPF.Pages
 
             searchComboBox.ItemsSource = programNames;
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!_isLoaded) return; // Prevents execution before UI is fully loaded
+
+            if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string selectedText = selectedItem.Content?.ToString();
+
+                if (selectedText == "Running programs details")
+                {
+                    svProgramDetails.Visibility = Visibility.Visible;
+                    svSpecificProgram.Visibility = Visibility.Collapsed;
+                }
+                else if (selectedText == "Search a specific program")
+                {
+                    svProgramDetails.Visibility = Visibility.Collapsed;
+                    svSpecificProgram.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
     }
 }
