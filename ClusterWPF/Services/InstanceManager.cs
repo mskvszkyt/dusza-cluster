@@ -41,37 +41,5 @@ namespace ConsoleApp1
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-
-        public static void AddInstance(string path)
-        {
-            string notAllowedChars = "áéöőüűóúí";
-            string instanceName;
-            do
-            {
-                Console.WriteLine("Add meg az új gép nevét");
-                instanceName = Console.ReadLine();
-            } while (instanceName.Any(c => notAllowedChars.Contains(c)));
-
-            int processor;
-            while (true)
-            {
-                Console.WriteLine("Add meg a gép processzor kapacitását");
-                if (int.TryParse(Console.ReadLine(), out processor) && processor > 0) break;
-            }
-
-            int memory;
-            while (true)
-            {
-                Console.WriteLine("Add meg a gép memória kapacitását");
-                if (int.TryParse(Console.ReadLine(), out memory) && memory > 0) break;
-            }
-
-            string instancePath = Path.Combine(path, instanceName);
-            Directory.CreateDirectory(instancePath);
-            File.WriteAllText(
-                Path.Combine(instancePath, ".szamitogep_config"),
-                $"{processor}\n{memory}"
-            );
-        }
     }
 }
