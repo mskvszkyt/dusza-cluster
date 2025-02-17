@@ -22,10 +22,12 @@ namespace ClusterWPF
         bool _clusterState;
         Cluster cluster = new Cluster();
         string path;
+        BindingList<string> clusterNames = new();
 
         public MainWindow()
         {
             InitializeComponent();
+            lbClusterNames.ItemsSource = clusterNames;
             ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncWithAppMode;
             ThemeManager.Current.SyncTheme();
             UpdateAccentColor();
@@ -73,7 +75,8 @@ namespace ClusterWPF
                 path = tbAddCluster.Text;
                 cluster = FileManager.GetClusterRequirements(path);
                 cluster.Instances = FileManager.ReadInstances(path);
-                _clusterState = true;
+                clusters.Add(cluster);
+                clusterNames.Add(path.Split('\\').Last());
                 RefreshCurrentPage();
             }
             catch (Exception exception)
