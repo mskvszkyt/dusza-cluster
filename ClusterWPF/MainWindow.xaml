@@ -41,14 +41,19 @@
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Stop Program Copy" Cursor="Hand">
+                <TabItem Header="Stop Program Instance" Cursor="Hand">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
-                <TabItem Header="Run program copy" Cursor="Hand">
+                <TabItem Header="Run program Instance" Cursor="Hand">
                     <ui:TabItemHelper.Icon>
                         <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
+                    </ui:TabItemHelper.Icon>
+                </TabItem>
+                <TabItem Header="Charts" Cursor="Hand">
+                    <ui:TabItemHelper.Icon>
+                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/cmd.png" ShowAsMonochrome="False" />
                     </ui:TabItemHelper.Icon>
                 </TabItem>
             </TabControl.Items>
@@ -56,13 +61,13 @@
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200px"></ColumnDefinition>
+                <ColumnDefinition Width="250px"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}">
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <ui:SimpleStackPanel>
                     <TextBox Height="20"
@@ -74,14 +79,16 @@
                     </ListBox>
                 </ui:SimpleStackPanel>
                 <ui:SimpleStackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
-
+                    <Label></Label>
+                    <Button Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand">Select folder</Button>
                     <TextBox
                         Margin="10 0 10 0"
                         ui:ControlHelper.PlaceholderText="PATH..."
                         x:Name="tbAddCluster"
                         TextAlignment="Center">
                     </TextBox>
-                    <Button x:Name="btnAddNewCluster" Margin="10 0 10 0" HorizontalAlignment="Center" Click="btnAddNewCluster_Click">Add new cluster</Button>
+                    <Button x:Name="btnAddNewCluster" Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand" Click="btnAddNewCluster_Click">Add new cluster</Button>
+                    <Label></Label>
                 </ui:SimpleStackPanel>
             </Grid>
             <Frame Grid.Column="1" x:Name="CurrentPage" NavigationUIVisibility="Hidden"/>

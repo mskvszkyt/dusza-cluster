@@ -37,7 +37,7 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
+        <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Padding="10" FontSize="20">Monitoring:</Label>
             </ui:SimpleStackPanel>
@@ -55,7 +55,7 @@
 
 
         <!--STATISTICS-->
-        <Grid Grid.Row="1" Grid.Column="1" >
+        <Grid Grid.RowSpan="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -63,13 +63,12 @@
             <ui:SimpleStackPanel Background="{DynamicResource MahApps.Brushes.SystemControlBackgroundListLow}" VerticalAlignment="Stretch">
                 <Label Margin="10" HorizontalAlignment="Center" FontSize="18">Statistics:</Label>
                 <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 0 0 10" ></Border>
-
                 <ui:SimpleStackPanel Orientation="Horizontal">
                     <Label Margin="10 0 0 0" FontSize="16">Active processes:</Label>
                     <Label Margin="5 0 0 0" FontSize="16" x:Name="lbActiveProcesses" FontWeight="Bold" Foreground="{DynamicResource AccentBrush}">0</Label>
                 </ui:SimpleStackPanel>
 
-                <ui:SimpleStackPanel Orientation="Horizontal">
+                <ui:SimpleStackPanel Orientation="Horizontal" Margin="0 10">
                     <Label Margin="10 0 0 0" FontSize="16">Inactive processes:</Label>
                     <Label Margin="5 0 0 0" FontSize="16" x:Name="lbInactiveProcesses" FontWeight="Bold" Foreground="{DynamicResource AccentBrush}">0</Label>
                 </ui:SimpleStackPanel>

@@ -14,8 +14,8 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
-            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">New Program Copy</Label>
+        <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
+            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">New Program Instance</Label>
         </Border>
         <ui:SimpleStackPanel Spacing="20" Grid.Row="1" Margin="0 10 0 0">
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -40,7 +40,7 @@
                     </TextBox>
                 </ui:SimpleStackPanel>
             </ui:SimpleStackPanel>
-                <Button x:Name="btnRunProgram" HorizontalAlignment="Center" Grid.Row="1">Run Program</Button>
+                <Button x:Name="btnRunProgram" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand">Run Program</Button>
             <ui:SimpleStackPanel>
                 <TextBox
                             ui:ControlHelper.PlaceholderText="New program's name..."
@@ -48,7 +48,7 @@
                             TextAlignment="Center"
                             Width="200px">
                 </TextBox>
-                <Button x:Name="btnRunNewProgram" HorizontalAlignment="Center" Grid.Row="1" Width="200px">Run a new program</Button>
+                <Button x:Name="btnRunNewProgram" HorizontalAlignment="Center" Grid.Row="1" Width="200px" Cursor="Hand">Run a new program</Button>
             </ui:SimpleStackPanel>
         </ui:SimpleStackPanel>
     </Grid>
