@@ -18,10 +18,12 @@ namespace ClusterWPF.Pages
     public partial class Monitor : Page
     {
         private List<Instance> _instances;
+        bool _clusterState;
 
-        public Monitor(List<Instance> instances)
+        public Monitor(List<Instance> instances, bool clusterState)
         {
             _instances = instances;
+            _clusterState = clusterState;
             InitializeComponent();
             PopulateUI();
             PopulateStatistics();
@@ -78,6 +80,17 @@ namespace ClusterWPF.Pages
         {
 
             PopulatePrograms();
+
+            if (_clusterState)
+            {
+                lbClusterStatus.Content = "Correct";
+                lbClusterStatus.Foreground = Brushes.Green;
+
+            } else
+            {
+                lbClusterStatus.Content = "Incorrect";
+                lbClusterStatus.Foreground = Brushes.Red;
+            }
 
             // Group programs by base name (before '-')
             var groupedPrograms = _instances
@@ -155,10 +168,16 @@ namespace ClusterWPF.Pages
                     HorizontalAlignment = HorizontalAlignment.Center
                 });
 
+                //stackPanel.Children.Add(new Border
+                //{
+                //    BorderThickness = new Thickness(1),
+                //    BorderBrush = (Brush)FindResource("MahApps.Brushes.Button.Border")
+                //});
+
                 stackPanel.Children.Add(new Border
                 {
-                    BorderThickness = new Thickness(1),
-                    BorderBrush = (Brush)FindResource("MahApps.Brushes.Button.Border")
+                    BorderThickness = new Thickness(2),
+                    BorderBrush = (Brush)FindResource("AccentBrush")
                 });
 
                 // PC Image
@@ -196,11 +215,6 @@ namespace ClusterWPF.Pages
                     Value = (double)instance.CalculateMemoryUsage() / instance.MemoryCapacity * 100
                 });
 
-                stackPanel.Children.Add(new Border
-                {
-                    BorderThickness = new Thickness(2),
-                    BorderBrush = (Brush)FindResource("AccentBrush")
-                });
 
                 // Processor Usage
                 stackPanel.Children.Add(new Label
@@ -225,6 +239,7 @@ namespace ClusterWPF.Pages
                 stackPanel.Children.Add(new Border
                 {
                     BorderThickness = new Thickness(2),
+                    Margin = new Thickness(0, 5, 0, 0),
                     BorderBrush = (Brush)FindResource("AccentBrush")
                 });
 
