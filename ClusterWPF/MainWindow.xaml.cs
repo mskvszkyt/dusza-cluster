@@ -110,8 +110,9 @@ namespace ClusterWPF
 
         private void Cluster_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //path = clusters.FirstOrDefault(c => c.Path.EndsWith(selectedName));
-            //cluster.
+            cluster = clusters.FirstOrDefault(c => c.Path.EndsWith(lbClusterNames.SelectedItem.ToString()));
+            path = cluster.Path;
+            RefreshCurrentPage();
         }
     }
 }

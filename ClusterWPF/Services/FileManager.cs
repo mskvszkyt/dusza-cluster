@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -49,6 +50,7 @@ namespace ConsoleApp1
         public static Cluster GetClusterRequirements(string path)
         {
             Cluster cluster = new Cluster();
+            cluster.Path = path;
             string clusterFile = Path.Combine(path, ".klaszter");
 
             if (File.Exists(clusterFile))
