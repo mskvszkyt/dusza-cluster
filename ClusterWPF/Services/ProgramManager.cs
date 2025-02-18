@@ -164,10 +164,12 @@ namespace ConsoleApp1
 
             // 3. Find optimal instance
             Instance? optimalInstance = cluster.Instances
-                .Where(i => i.CalculateProcessorUsage() + progInstance.ProcessorUsage <= i.ProcessorCapacity &&
-                            i.CalculateMemoryUsage() + progInstance.MemoryUsage <= i.MemoryCapacity)
-                .OrderBy(i => (i.CalculateProcessorUsage() + i.CalculateMemoryUsage()))
-                .FirstOrDefault();
+            .Where(i => i.CalculateProcessorUsage() + progInstance.ProcessorUsage <= i.ProcessorCapacity &&
+                        i.CalculateMemoryUsage() + progInstance.MemoryUsage <= i.MemoryCapacity)
+            .OrderBy(i => i.CalculateProcessorUsage() + i.CalculateMemoryUsage())
+            .FirstOrDefault(i =>
+                i.CalculateProcessorUsage() + progInstance.ProcessorUsage <= i.ProcessorCapacity &&
+                i.CalculateMemoryUsage() + progInstance.MemoryUsage <= i.MemoryCapacity);
 
             if (optimalInstance == null)
             {
