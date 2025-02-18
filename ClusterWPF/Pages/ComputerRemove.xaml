@@ -34,13 +34,6 @@
                         HorizontalAlignment="Center"
                         ui:ControlHelper.PlaceholderText="Search a computer..." />
 
-                    <ListBox x:Name="lbRemovableComputers"></ListBox>
-                    <TextBox
-                        Margin="10 0 10 0"
-                        ui:ControlHelper.PlaceholderText="Search..."
-                        x:Name="tbSearchRemoveableComputers"
-                        TextAlignment="Center">
-                    </TextBox>
                 </ui:SimpleStackPanel>
                 <Button x:Name="btnRemoveComputer" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand">Remove computer</Button>
             </Grid>

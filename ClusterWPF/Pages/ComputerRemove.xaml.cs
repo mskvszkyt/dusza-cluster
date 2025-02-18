@@ -21,18 +21,7 @@ namespace ClusterWPF.Pages
             _clusterPath = clusterPath;
             _allInstances = _cluster.Instances.ToList();
             cbComputers.ItemsSource = _allInstances.Select(i => i.Name).ToList();
-
-            cbComputers.TextChanged += TbSearchRemoveableComputers_TextChanged;
             btnRemoveComputer.Click += BtnRemoveComputer_Click;
-        }
-
-        private void TbSearchRemoveableComputers_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string searchText = cbComputers.Text.ToLower();
-            cbComputers.ItemsSource = _allInstances
-                .Where(i => i.Name.ToLower().Contains(searchText))
-                .Select(i => i.Name)
-                .ToList();
         }
 
         private void BtnRemoveComputer_Click(object sender, RoutedEventArgs e)

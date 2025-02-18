@@ -34,19 +34,6 @@
                         ItemsSource="{Binding FilteredPrograms}"
                         ui:ControlHelper.PlaceholderText="Search a program..." />      
                     
-                    <ListBox x:Name="lbRemovablePrograms" SelectionMode="Single" ItemsSource="{Binding FilteredPrograms}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding ProgramName}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <TextBox
-                        Margin="10 0 10 0"
-                        ui:ControlHelper.PlaceholderText="Search..."
-                        x:Name="tbSearchRemoveablePrograms"
-                        TextAlignment="Center">
-                    </TextBox>
                 </ui:SimpleStackPanel>
                 <Button x:Name="btnRemoveProgram" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand">Remove program</Button>
             </Grid>
