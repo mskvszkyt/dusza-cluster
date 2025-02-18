@@ -12,16 +12,23 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Command="{Binding ToggleSeries0Command}" Margin="8 0" Padding="5">Toggle first</Button>
-            <Button Command="{Binding ToggleSeries1Command}" Margin="8 0" Padding="5">Toggle second</Button>
-            <Button Command="{Binding ToggleSeries2Command}" Margin="8 0" Padding="5">Toggle third</Button>
+            <Button Command="{Binding ToggleSeries0Command}" Margin="8 0" Padding="5">Toggle memory usage</Button>
+            <Button Command="{Binding ToggleSeries1Command}" Margin="8 0" Padding="5">Toggle processor usage</Button>
+            <Button Command="{Binding ToggleSeries2Command}" Margin="8 0" Padding="5">Toggle average usage</Button>
         </StackPanel>
-        <lvc:CartesianChart 
+
+        <!-- Add ScrollViewer -->
+        <ScrollViewer 
             Grid.Row="1" 
-            Series="{Binding Series}" 
-            XAxes="{Binding XAxes}"
-            LegendPosition="Hidden">
-            <!-- Hide the legend -->
-        </lvc:CartesianChart>
+            HorizontalScrollBarVisibility="Auto" 
+            VerticalScrollBarVisibility="Disabled">
+            <lvc:CartesianChart 
+                Width="{Binding ChartWidth}"
+                HorizontalAlignment="Left"
+                Series="{Binding Series}" 
+                XAxes="{Binding XAxes}"
+                LegendPosition="Hidden">
+            </lvc:CartesianChart>
+        </ScrollViewer>
     </Grid>
 </UserControl>

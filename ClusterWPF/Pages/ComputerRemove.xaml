@@ -25,13 +25,15 @@
                 </Grid.RowDefinitions>
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
                     <Label Padding="10" HorizontalAlignment="Center">Computers:</Label>
-                    <ListBox x:Name="lbRemovableComputers"></ListBox>
-                    <TextBox
+
+                    <ComboBox
+                        IsEditable="True"
+                        Width="220"
                         Margin="10 0 10 0"
-                        ui:ControlHelper.PlaceholderText="Search..."
-                        x:Name="tbSearchRemoveableComputers"
-                        TextAlignment="Center">
-                    </TextBox>
+                        x:Name="cbComputers"
+                        HorizontalAlignment="Center"
+                        ui:ControlHelper.PlaceholderText="Search a computer..." />
+
                 </ui:SimpleStackPanel>
                 <Button x:Name="btnRemoveComputer" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand">Remove computer</Button>
             </Grid>

@@ -20,24 +20,13 @@ namespace ClusterWPF.Pages
             _cluster = cluster;
             _clusterPath = clusterPath;
             _allInstances = _cluster.Instances.ToList();
-            lbRemovableComputers.ItemsSource = _allInstances.Select(i => i.Name).ToList();
-
-            tbSearchRemoveableComputers.TextChanged += TbSearchRemoveableComputers_TextChanged;
+            cbComputers.ItemsSource = _allInstances.Select(i => i.Name).ToList();
             btnRemoveComputer.Click += BtnRemoveComputer_Click;
-        }
-
-        private void TbSearchRemoveableComputers_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string searchText = tbSearchRemoveableComputers.Text.ToLower();
-            lbRemovableComputers.ItemsSource = _allInstances
-                .Where(i => i.Name.ToLower().Contains(searchText))
-                .Select(i => i.Name)
-                .ToList();
         }
 
         private void BtnRemoveComputer_Click(object sender, RoutedEventArgs e)
         {
-            if (lbRemovableComputers.SelectedItem is not string selectedInstanceName)
+            if (cbComputers.SelectedItem is not string selectedInstanceName)
             {
                 MessageBox.Show("Please select a computer to remove.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -79,7 +68,7 @@ namespace ClusterWPF.Pages
 
             // Refresh the list
             _allInstances = _cluster.Instances.ToList();
-            lbRemovableComputers.ItemsSource = _allInstances.Select(i => i.Name).ToList();
+            cbComputers.ItemsSource = _allInstances.Select(i => i.Name).ToList();
         }
     }
 }

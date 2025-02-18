@@ -25,19 +25,15 @@
                 </Grid.RowDefinitions>
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
                     <Label Padding="10" HorizontalAlignment="Center">Existing Programs:</Label>
-                    <ListBox x:Name="lbRemovablePrograms" SelectionMode="Single" ItemsSource="{Binding FilteredPrograms}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding ProgramName}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <TextBox
+                    <ComboBox
+                        IsEditable="True"
+                        Width="220"
                         Margin="10 0 10 0"
-                        ui:ControlHelper.PlaceholderText="Search..."
-                        x:Name="tbSearchRemoveablePrograms"
-                        TextAlignment="Center">
-                    </TextBox>
+                        x:Name="cbPrograms"
+                        HorizontalAlignment="Center"
+                        ItemsSource="{Binding FilteredPrograms}"
+                        ui:ControlHelper.PlaceholderText="Search a program..." />      
+                    
                 </ui:SimpleStackPanel>
                 <Button x:Name="btnRemoveProgram" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand">Remove program</Button>
             </Grid>

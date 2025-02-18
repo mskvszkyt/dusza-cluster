@@ -23,7 +23,6 @@ namespace ClusterWPF.Pages
             _path = path;
             LoadPrograms();
 
-            tbSearchRemoveablePrograms.TextChanged += TbSearchRemoveablePrograms_TextChanged;
             btnRemoveProgram.Click += BtnRemoveProgram_Click;
         }
 
@@ -34,33 +33,19 @@ namespace ClusterWPF.Pages
                 .Select(p => new { p.ProgramName })
                 .ToList());
 
-            lbRemovablePrograms.ItemsSource = _programs;
-        }
-
-        private void TbSearchRemoveablePrograms_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // Filter the programs based on the search text
-            string searchText = tbSearchRemoveablePrograms.Text.ToLower();
-
-            // Filter using LINQ, and replace the ObservableCollection
-            var filteredPrograms = _programs
-                .Where(p => p.ProgramName.ToLower().Contains(searchText))
-                .ToList();
-
-            // Reset the ObservableCollection to reflect the filtered results
-            lbRemovablePrograms.ItemsSource = new ObservableCollection<dynamic>(filteredPrograms);
+            cbPrograms.ItemsSource = _programs;
         }
 
         private void BtnRemoveProgram_Click(object sender, RoutedEventArgs e)
         {
-            if (lbRemovablePrograms.SelectedItem == null)
+            if (cbPrograms.SelectedItem == null)
             {
                 MessageBox.Show("Please select a program to remove.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             // Get the selected program details
-            var selectedProgram = lbRemovablePrograms.SelectedItem as dynamic;
+            var selectedProgram = cbPrograms.SelectedItem as dynamic;
             string programName = selectedProgram.ProgramName;
 
             // Call the method to shut down the program

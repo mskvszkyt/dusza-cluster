@@ -26,19 +26,14 @@
                 </Grid.RowDefinitions>
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
                     <Label Padding="10" HorizontalAlignment="Center">Existing Program instances:</Label>
-                    <ListBox x:Name="lbRemovableProgramCopies">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding FullName}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <TextBox
-                    Margin="10 0 10 0"
-                    ui:ControlHelper.PlaceholderText="Search..."
-                    x:Name="tbSearchRemoveableProgramCopies"
-                    TextAlignment="Center">
-                    </TextBox>
+                    <ComboBox
+                        IsEditable="True"
+                        Width="220"
+                        Margin="10 0 10 0"
+                        x:Name="cbProgramInstances"
+                        HorizontalAlignment="Center"
+                        ItemsSource="{Binding FilteredPrograms}"
+                        ui:ControlHelper.PlaceholderText="Search a program Instance..." />
                 </ui:SimpleStackPanel>
                 <Button x:Name="btnRemoveProgramCopy" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand">Remove program copy</Button>
             </Grid>

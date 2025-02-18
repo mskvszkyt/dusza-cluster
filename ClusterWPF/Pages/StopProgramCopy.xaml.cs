@@ -23,7 +23,6 @@ namespace ClusterWPF.Pages
             _path = path;
             LoadProgramCopies();
 
-            tbSearchRemoveableProgramCopies.TextChanged += TbSearchRemoveableProgramCopies_TextChanged;
             btnRemoveProgramCopy.Click += BtnRemoveProgramCopy_Click;
         }
 
@@ -40,26 +39,13 @@ namespace ClusterWPF.Pages
                 })
                 .ToList());
 
-            lbRemovableProgramCopies.ItemsSource = _programCopies;
-        }
-
-        private void TbSearchRemoveableProgramCopies_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string searchText = tbSearchRemoveableProgramCopies.Text.ToLower();
-
-            // Filter the program copies based on the search text
-            var filteredProgramCopies = _programCopies
-                .Where(p => p.FullName.ToLower().Contains(searchText))
-                .ToList();
-
-            // Rebind the filtered result to the ListBox
-            lbRemovableProgramCopies.ItemsSource = new ObservableCollection<dynamic>(filteredProgramCopies);
+            cbProgramInstances.ItemsSource = _programCopies;
         }
 
         private void BtnRemoveProgramCopy_Click(object sender, RoutedEventArgs e)
         {
             // Explicitly cast the selected item to an anonymous type
-            var selectedProgramCopy = lbRemovableProgramCopies.SelectedItem as dynamic;
+            var selectedProgramCopy = cbProgramInstances.SelectedItem as dynamic;
 
             if (selectedProgramCopy == null)
             {
