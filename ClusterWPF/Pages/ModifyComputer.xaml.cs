@@ -72,8 +72,6 @@ namespace ClusterWPF.Pages
                 tbMemoryChange.Text = selectedInstance.MemoryCapacity.ToString();
                 tbProcessorChange.Text = selectedInstance.ProcessorCapacity.ToString();
             }
-            Debug.WriteLine(_cluster.Instances[0].CalculateMemoryUsage());
-            Debug.WriteLine(_cluster.Instances[0].MemoryCapacity);
         }
 
         private void BtnSaveComputerSpecs_Click(object sender, RoutedEventArgs e)

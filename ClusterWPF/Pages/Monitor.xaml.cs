@@ -209,11 +209,23 @@ namespace ClusterWPF.Pages
                     Padding = new Thickness(0, 5, 0, 0)
                 });
 
-                stackPanel.Children.Add(new ProgressBar
+                var memoryUsage = (double)instance.CalculateMemoryUsage() / instance.MemoryCapacity * 100;
+                var memoryProgressBar = new ProgressBar
                 {
                     Margin = new Thickness(5),
-                    Value = (double)instance.CalculateMemoryUsage() / instance.MemoryCapacity * 100
-                });
+                    Value = memoryUsage
+                };
+
+
+                if (memoryUsage <= 60)
+                    memoryProgressBar.Foreground = new SolidColorBrush(Colors.Green);
+                else if (memoryUsage <= 80)
+                    memoryProgressBar.Foreground = new SolidColorBrush(Colors.Yellow);
+                else
+                    memoryProgressBar.Foreground = new SolidColorBrush(Colors.Red);
+
+                stackPanel.Children.Add(memoryProgressBar);
+
 
 
                 // Processor Usage
@@ -230,11 +242,25 @@ namespace ClusterWPF.Pages
                     Padding = new Thickness(0, 5, 0, 0)
                 });
 
-                stackPanel.Children.Add(new ProgressBar
+                
+
+                var usage = (double)instance.CalculateProcessorUsage() / instance.ProcessorCapacity * 100;
+                var progressBar = new ProgressBar
                 {
                     Margin = new Thickness(5),
-                    Value = (double)instance.CalculateProcessorUsage() / instance.ProcessorCapacity * 100
-                });
+                    Value = usage
+                };
+
+                // Set color based on usage
+                if (usage <= 60)
+                    progressBar.Foreground = new SolidColorBrush(Colors.Green);
+                else if (usage <= 80)
+                    progressBar.Foreground = new SolidColorBrush(Colors.Yellow);
+                else
+                    progressBar.Foreground = new SolidColorBrush(Colors.Red);
+
+                stackPanel.Children.Add(progressBar);
+
 
                 stackPanel.Children.Add(new Border
                 {
