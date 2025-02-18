@@ -1,6 +1,8 @@
 ﻿using ConsoleApp1;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -32,6 +34,7 @@ namespace ClusterWPF.Pages
             sldProcessor.ValueChanged += FiltersChanged;
             dgdatas.SelectionChanged += DataGrid_SelectionChanged;
             btnSaveComputerSpecs.Click += BtnSaveComputerSpecs_Click;
+            
         }
 
         private void TbComputerName_TextChanged(object sender, TextChangedEventArgs e) => ApplyFilters();
@@ -69,6 +72,8 @@ namespace ClusterWPF.Pages
                 tbMemoryChange.Text = selectedInstance.MemoryCapacity.ToString();
                 tbProcessorChange.Text = selectedInstance.ProcessorCapacity.ToString();
             }
+            Debug.WriteLine(_cluster.Instances[0].CalculateMemoryUsage());
+            Debug.WriteLine(_cluster.Instances[0].MemoryCapacity);
         }
 
         private void BtnSaveComputerSpecs_Click(object sender, RoutedEventArgs e)

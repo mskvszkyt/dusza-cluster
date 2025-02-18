@@ -14,8 +14,9 @@
         <DataTemplate x:Key="ProgramTemplate">
             <ui:SimpleStackPanel>
                 <!-- Instance Name -->
-                <Border BorderThickness="2" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 0" />
+                
                 <ui:SimpleStackPanel Orientation="Horizontal">
+
                     <Label FontSize="16" Margin="5 0">Name:</Label>
                     <Label FontSize="16" Foreground="{DynamicResource AccentBrush}" Content="{Binding Name}" />
                 </ui:SimpleStackPanel>
