@@ -80,7 +80,7 @@
                 </ui:SimpleStackPanel>
                 <ui:SimpleStackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
                     <Label></Label>
-                    <Button Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand">Select folder</Button>
+                    <Button Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand" x:Name="btnSelectFolder" Click="btnSelectFolder_Click">Select folder</Button>
                     <TextBox
                         Margin="10 0 10 0"
                         ui:ControlHelper.PlaceholderText="PATH..."
