@@ -14,6 +14,7 @@
                 <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
             <SolidColorBrush x:Key="AccentBrush" Color="Gray" />
+            <SolidColorBrush x:Key="ChartLabelBrush" Color="{DynamicResource MahApps.Colors.ThemeForeground}" />
             <!-- Other app resources here -->
         </ResourceDictionary>
     </Application.Resources>

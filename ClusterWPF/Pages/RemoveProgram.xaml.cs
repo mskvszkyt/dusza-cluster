@@ -30,7 +30,7 @@ namespace ClusterWPF.Pages
         {
             // Fetch all scheduled programs and display them in the ListBox
             _programs = new ObservableCollection<dynamic>(_cluster.ScheduledPrograms
-                .Select(p => new { p.ProgramName })
+                .Select(p => p.ProgramName)
                 .ToList());
 
             cbPrograms.ItemsSource = _programs;
@@ -46,7 +46,7 @@ namespace ClusterWPF.Pages
 
             // Get the selected program details
             var selectedProgram = cbPrograms.SelectedItem as dynamic;
-            string programName = selectedProgram.ProgramName;
+            string programName = selectedProgram;
 
             // Call the method to shut down the program
             ShutDownProgram(programName, _path, _cluster);
