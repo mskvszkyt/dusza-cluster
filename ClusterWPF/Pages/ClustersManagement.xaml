@@ -25,7 +25,7 @@
                     <ui:SimpleStackPanel Width="200">
                         <Label HorizontalAlignment="Center">From:</Label>
                         <ScrollViewer Height="250">
-                            <ListBox x:Name="lbFromCluster"></ListBox>
+                            <ListBox x:Name="lbFromCluster" SelectionChanged="lbFromCluster_SelectionChanged"></ListBox>
                         </ScrollViewer>
                     </ui:SimpleStackPanel>
 
@@ -63,7 +63,7 @@
                     </ui:SimpleStackPanel>
                 </ui:SimpleStackPanel>
 
-                <Button x:Name="btnMerge" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center">Merge</Button>
+                <Button x:Name="btnMerge" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMerge_Click">Merge</Button>
                 
                 <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
                 
@@ -83,7 +83,7 @@
                 <ScrollViewer Height="250" Width="200">
                     <ListBox x:Name="lbClustersForInstance"></ListBox>
                 </ScrollViewer>
-                <Button x:Name="btnMoveInstance" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center">Move</Button>
+                <Button x:Name="btnMoveInstance" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMoveInstance_Click">Move</Button>
 
                 <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
 
@@ -103,7 +103,7 @@
                 <ScrollViewer Height="250" Width="200">
                     <ListBox x:Name="lbClustersForPC"></ListBox>
                 </ScrollViewer>
-                <Button x:Name="btnMovePC" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center">Move</Button>
+                <Button x:Name="btnMovePC" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMovePC_Click">Move</Button>
 
             </ui:SimpleStackPanel>
         </ScrollViewer>

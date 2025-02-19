@@ -15,14 +15,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Windows.UI.ViewManagement;
 using ClusterWPF.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace ClusterWPF
 {
     public partial class MainWindow : Window
     {
-        List<Cluster> clusters = new List<Cluster>();
+        public ObservableCollection<Cluster> clusters { get; set; }
         bool _clusterState;
-        Cluster cluster = new Cluster();
+        public Cluster cluster { get; set; }
         string path;
         BindingList<string> clusterNames = new();
 

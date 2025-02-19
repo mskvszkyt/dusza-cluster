@@ -1,6 +1,7 @@
 ﻿using ConsoleApp1;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
@@ -24,9 +25,138 @@ namespace ClusterWPF.Pages
     /// </summary>
     public partial class ClustersManagement : Page
     {
+        MainWindow mainWindow;
         public ClustersManagement()
         {
             InitializeComponent();
+            mainWindow = (MainWindow)Application.Current.MainWindow;
+        }
+
+        public Cluster MergeClusters(Cluster cluster1, Cluster cluster2, string mergedClusterPath)
+        {
+            if (!ValidateMerge(cluster1, cluster2, mergedClusterPath))
+                throw new InvalidOperationException("Merge validation failed");
+
+            var mergedCluster = new Cluster
+            {
+                Path = mergedClusterPath,
+                Instances = new(),
+                ScheduledPrograms = new()
+            };
+
+            MergeInstances(cluster1, mergedCluster);
+            MergeInstances(cluster2, mergedCluster);
+
+            MergeScheduledPrograms(cluster1, mergedCluster);
+            MergeScheduledPrograms(cluster2, mergedCluster);
+
+            MoveComputerFiles(cluster1, mergedClusterPath);
+            MoveComputerFiles(cluster2, mergedClusterPath);
+
+            FileManager.WriteCluster(mergedClusterPath, mergedCluster);
+            return mergedCluster;
+        }
+
+        private bool ValidateMerge(Cluster cluster1, Cluster cluster2, string targetPath)
+        {
+            if (cluster1.Path == cluster2.Path)
+                throw new ArgumentException("Cannot merge identical clusters");
+
+            if (Directory.Exists(targetPath) && Directory.GetFiles(targetPath).Any())
+                throw new InvalidOperationException("Target path must be empty");
+
+            if (cluster1.Instances.Select(c => c.Name)
+                .Intersect(cluster2.Instances.Select(c => c.Name)).Any())
+                throw new InvalidOperationException("Duplicate computer names detected");
+
+            return true;
+        }
+
+        private void MergeInstances(Cluster source, Cluster target)
+        {
+            foreach (var instance in source.Instances)
+            {
+                // Create clone to avoid reference issues
+                var newInstance = new Instance
+                {
+                    Name = instance.Name,
+                    ProcessorCapacity = instance.ProcessorCapacity,
+                    MemoryCapacity = instance.MemoryCapacity,
+                    Programs = new()
+                };
+
+                foreach (var program in instance.Programs)
+                {
+                    newInstance.Programs.Add(new ProgInstance
+                    {
+                        ProgramName = program.ProgramName,
+                        ProcessorUsage = program.ProcessorUsage,
+                        MemoryUsage = program.MemoryUsage
+                    });
+                }
+
+                target.Instances.Add(newInstance);
+            }
+        }
+
+        private void MergeScheduledPrograms(Cluster source, Cluster target)
+        {
+            foreach (ScheduledProgram sourceProgram in source.ScheduledPrograms)
+            {
+                ScheduledProgram? existingProgram = target.ScheduledPrograms
+                    .FirstOrDefault(p => p.ProgramName == sourceProgram.ProgramName);
+
+                if (existingProgram != null)
+                {
+                    // Merge program requirements using maximum values
+                    existingProgram.ProcessorRequirement = Math.Max(
+                        existingProgram.ProcessorRequirement,
+                        sourceProgram.ProcessorRequirement);
+
+                    existingProgram.MemoryRequirement = Math.Max(
+                        existingProgram.MemoryRequirement,
+                        sourceProgram.MemoryRequirement);
+
+                    existingProgram.InstanceCount += sourceProgram.InstanceCount;
+                }
+                else
+                {
+                    target.ScheduledPrograms.Add(new ScheduledProgram
+                    {
+                        ProgramName = sourceProgram.ProgramName,
+                        ProcessorRequirement = sourceProgram.ProcessorRequirement,
+                        MemoryRequirement = sourceProgram.MemoryRequirement,
+                        InstanceCount = sourceProgram.InstanceCount
+                    });
+                }
+            }
+        }
+
+        private void MoveComputerFiles(Cluster source, string targetPath)
+        {
+            foreach (var instance in source.Instances)
+            {
+                string sourceDir = Path.Combine(source.Path, instance.Name);
+                string targetDir = Path.Combine(targetPath, instance.Name);
+
+                if (Directory.Exists(targetDir))
+                    throw new IOException($"Duplicate directory: {targetDir}");
+
+                Directory.Move(sourceDir, targetDir);
+            }
+        }
+
+        public static void RollbackMerge(string mergedClusterPath)
+        {
+            try
+            {
+                if (Directory.Exists(mergedClusterPath))
+                    Directory.Delete(mergedClusterPath, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Rollback failed: {ex.Message}");
+            }
         }
 
         public void TransferProgramToCluster(ProgInstance program, Cluster sourceCluster, Cluster targetCluster)
@@ -170,8 +300,8 @@ namespace ClusterWPF.Pages
                 FileManager.WriteCluster(sourceCluster.Path, sourceCluster);
             }
 
-                sourceCluster.Instances.Remove(computer);
-                targetCluster.Instances.Add(computer);
+            sourceCluster.Instances.Remove(computer);
+            targetCluster.Instances.Add(computer);
 
             try
             {
@@ -193,6 +323,49 @@ namespace ClusterWPF.Pages
                 .ThenBy(c => c.MemoryUsagePercentage)
                 .FirstOrDefault(c => c.MemoryCapacity >= c.CalculateMemoryUsage() + program.MemoryUsage
                                 && c.ProcessorCapacity >= c.CalculateProcessorUsage() + program.ProcessorUsage);
+        }
+
+        private void btnMerge_Click(object sender, RoutedEventArgs e)
+        {
+            Cluster? cluster1 = mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbFromCluster.SelectedItem);
+            Cluster? cluster2 = mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbToCluster.SelectedItem);
+            if (cluster1 == null || cluster2 == null)
+            {
+                MessageBox.Show("Válassz egy klasztert előbb!");
+                return;
+            }
+            MergeClusters(cluster1, cluster2, Path.GetDirectoryName(cluster2.Path));
+        }
+
+        private void btnMoveInstance_Click(object sender, RoutedEventArgs e)
+        {
+            if (mainWindow.cluster == null)
+            {
+                MessageBox.Show("Válassz ki egy klasztert előbb!");
+                return;
+            }
+            if (cbProgramInstances.SelectedItem == null)
+            {
+                MessageBox.Show("Válassz ki egy programot előbb!");
+                return;
+            }
+            ProgInstance program = mainWindow.cluster.Instances.SelectMany(c => c.Programs).First(p => p.ProgramName == cbProgramInstances.SelectedItem.ToString());
+            TransferProgramToCluster(program, mainWindow.cluster, mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbClustersForInstance.SelectedItem));
+        }
+
+        private void btnMovePC_Click(object sender, RoutedEventArgs e)
+        {
+            if (mainWindow.cluster == null)
+            {
+                MessageBox.Show("Válassz ki egy klasztert előbb!");
+                return;
+            }
+            if (cbPCs.SelectedItem == null)
+            {
+                MessageBox.Show("Válassz ki egy gépet előbb!");
+                return;
+            }
+            TransferComputerToCluster(cbPCs.SelectedItem.ToString(), mainWindow.cluster, mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbClustersForPC.SelectedItem));
         }
     }
 }
