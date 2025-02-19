@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Windows.UI.ViewManagement;
+using ClusterWPF.ViewModels;
 
 namespace ClusterWPF
 {
@@ -64,7 +65,7 @@ namespace ClusterWPF
                     "Stop Program Instance" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
                     "Run program Instance" => new Pages.NewProgramCopy(),
-                    "Charts" => new Pages.Charts()
+                    "Charts" => new Pages.Charts(cluster)
                 };
             }
         }
@@ -106,6 +107,7 @@ namespace ClusterWPF
                     "Stop Program Copy" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
                     "Run program copy" => new Pages.NewProgramCopy(),
+                    "Charts" => new Pages.Charts(cluster),
                     _ => CurrentPage.Content
                 };
             }

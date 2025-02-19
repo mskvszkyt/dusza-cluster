@@ -19,6 +19,6 @@
         <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
             <Label HorizontalAlignment="Center" Padding="10" FontSize="20" Content="Charts"/>
         </Border>
-            <views:ChartView Margin="0 20 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"/>
+        <views:ChartView x:Name="chartView" Margin="0 20 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" />
     </Grid>
 </Page>

@@ -1,51 +1,94 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace ClusterWPF.ViewModels;
+
 public partial class ViewModel : ObservableObject
 {
-    public ISeries[] Series { get; set; } = [
-        new ColumnSeries<double>
-        {
-            Values = [2, 5, 4, 3, 5, 6, 3, 2, 8, 5, 7, 3, 9, 2, 6, 4, 5, 8, 1, 7],
-            IsVisible = true
-        },
-        new ColumnSeries<double>
-        {
-            Values = [6, 3, 2, 8, 5, 6, 3, 2, 8, 5, 4, 7, 5, 6, 9, 2, 3, 8, 5, 7],
-            IsVisible = true
-        },
-        new ColumnSeries<double>
-        {
-            Values = [4, 2, 8, 7, 5, 6, 3, 2, 8, 5, 9, 3, 4, 6, 2, 7, 3, 5, 6, 8],
-            IsVisible = true
-        }
-    ];
+    // Use ObservableProperty to auto-implement INotifyPropertyChanged
+    [ObservableProperty]
+    private ObservableCollection<ISeries> _series;
 
-    // Define custom X-axis labels
-    public Axis[] XAxes { get; set; } =
-    [
-        new Axis
+    [ObservableProperty]
+    private ObservableCollection<Axis> _xAxes;
+
+    [ObservableProperty]
+    private Axis[] _yAxes;
+
+    public ViewModel()
+    {
+        var brush = (SolidColorBrush)System.Windows.Application.Current.Resources["ChartLabelBrush"];
+        var skColor = new SKColor(brush.Color.R, brush.Color.G, brush.Color.B, brush.Color.A);
+
+        _series = new ObservableCollection<ISeries>();
+        _xAxes = new ObservableCollection<Axis>();
+
+        _yAxes = new Axis[]
         {
-            Labels = ["EZACOMPUTER2", "ASDASDASDszevasz", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8", "PC9", "PC10",
-                      "PC11", "PC12", "PC13", "PC14", "PC15", "PC16", "PC17", "PC18", "PC19", "PC20"],
-            LabelsRotation = 0, // Rotate labels by 45 degrees
+            new Axis
+            {
+                MinLimit = 0, 
+                MaxLimit = 100,
+                Name = "Usage (%)",
+                NamePaint = new SolidColorPaint(skColor),
+                LabelsPaint = new SolidColorPaint(skColor)
+            }
+        };
+
+    }
+
+    // Method to update chart data
+    public void UpdateChartData(
+        List<double> memoryPercentages,
+        List<double> processorPercentages,
+        List<double> averagePercentages,
+        List<string> labels)
+    {
+        // Clear existing data
+        Series.Clear();
+        Series.Add(new ColumnSeries<double> { Values = memoryPercentages, IsVisible = true });
+        Series.Add(new ColumnSeries<double> { Values = processorPercentages, IsVisible = true });
+        Series.Add(new ColumnSeries<double> { Values = averagePercentages, IsVisible = true });
+
+        // Clear and update XAxes
+        XAxes.Clear();
+
+        var brush = (SolidColorBrush)System.Windows.Application.Current.Resources["ChartLabelBrush"];
+        var skColor = new SKColor(brush.Color.R, brush.Color.G, brush.Color.B, brush.Color.A);
+
+        XAxes.Add(new Axis
+        {
+            LabelsPaint = new SolidColorPaint(skColor),
+            NamePaint = new SolidColorPaint(skColor),
+            Labels = labels,
+            LabelsRotation = 0,
             SeparatorsAtCenter = false,
             ForceStepToMin = true
-        }
-    ];
+        });
 
-    // Calculate chart width (100 pixels per label)
-    public double ChartWidth => XAxes[0].Labels.Count * 200; // Use Length instead of Count
+        // Explicitly notify changes
+        OnPropertyChanged(nameof(Series));
+        OnPropertyChanged(nameof(XAxes));
+        OnPropertyChanged(nameof(ChartWidth));
+    }
+
+
+    // Calculate chart width (200 pixels per label)
+    public double ChartWidth => XAxes.Count() > 0 ? XAxes[0].Labels.Count * 200 : 0;
 
     [RelayCommand]
-    public void ToggleSeries0() => Series[0].IsVisible = !Series[0].IsVisible;
+    private void ToggleSeries0() => Series[0].IsVisible = !Series[0].IsVisible;
 
     [RelayCommand]
-    public void ToggleSeries1() => Series[1].IsVisible = !Series[1].IsVisible;
+    private void ToggleSeries1() => Series[1].IsVisible = !Series[1].IsVisible;
 
     [RelayCommand]
-    public void ToggleSeries2() => Series[2].IsVisible = !Series[2].IsVisible;
+    private void ToggleSeries2() => Series[2].IsVisible = !Series[2].IsVisible;
 }
