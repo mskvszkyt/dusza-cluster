@@ -29,257 +29,170 @@ namespace ClusterWPF.Pages
             InitializeComponent();
         }
 
-        public void TransferProgramToCluster(string programName, Cluster sourceCluster, Cluster targetCluster)
+        public void TransferProgramToCluster(ProgInstance program, Cluster sourceCluster, Cluster targetCluster)
         {
-            Instance sourceComputer = sourceCluster.Instances.FirstOrDefault(c => c.Programs.Any(p => p.ProgramName == programName));
+            Instance? sourceComputer = sourceCluster.Instances.FirstOrDefault(c => c.Programs.Any(p => p.ProgramName == program.ProgramName));
             if (sourceComputer == null)
             {
                 MessageBox.Show("A program nem található a forrás klaszterben!");
                 return;
             }
 
-            if (targetCluster.Instances.Any(c => c.Programs.Any(p => p.ProgramName == programName)))
+            Instance? targetComputer = FindSuitableTargetComputer(program, targetCluster);
+            if (targetComputer == null)
             {
-                
+                MessageBox.Show("Nincs megfelelő gép a célklaszterben!");
+                return;
             }
+
+            if (targetCluster.Instances.Any(c => c.Programs.Any(p => p.ProgramName == program.ProgramName)))
+            {
+                string newKey = ProgramManager.GenerateUniqueKey(FileManager.GetExistingKeys(targetCluster.Path));
+                program.ProgramName = $"{program.ProgramName}-{newKey}";
+                MessageBox.Show($"A program már létezik a célklaszterben, új kulcs hozzáadva! {newKey}");
+            }
+
+            ScheduledProgram newScheduledProgram = new ScheduledProgram
+            {
+                ProgramName = program.ProgramName.Split('-').Last(),
+                InstanceCount = 1,
+                ProcessorRequirement = program.ProcessorUsage,
+                MemoryRequirement = program.MemoryUsage
+            };
+
+
+            ScheduledProgram? scheduledProgram = targetCluster.ScheduledPrograms
+                .FirstOrDefault(s => s.ProgramName == newScheduledProgram.ProgramName
+                && s.MemoryRequirement == newScheduledProgram.MemoryRequirement
+                && s.ProcessorRequirement == newScheduledProgram.ProcessorRequirement);
+
+            if (scheduledProgram != null)
+            {
+                scheduledProgram.InstanceCount++;
+            }
+            else
+            {
+                targetCluster.ScheduledPrograms.Add(newScheduledProgram);
+            }
+
+            sourceComputer.Programs.Remove(program);
+            targetComputer.Programs.Add(program);
+            sourceCluster.ScheduledPrograms.First(s => s.ProgramName == program.ProgramName).InstanceCount--;
+            string sourcePath = Path.Combine(sourceCluster.Path, sourceComputer.Name, program.ProgramName);
+            string targetPath = Path.Combine(targetCluster.Path, targetComputer.Name, program.ProgramName);
+            File.Move(sourcePath, targetPath);
+            FileManager.WriteCluster(targetCluster.Path, targetCluster);
+            FileManager.WriteCluster(sourceCluster.Path, sourceCluster);
+            MessageBox.Show("Program sikeresen áthelyezve!");
         }
 
         public void TransferComputerToCluster(string computerName, Cluster sourceCluster, Cluster targetCluster)
         {
-            // Validate clusters are different
-            if (sourceCluster.Path == targetCluster.Path)
+            string sourceComputerPath = Path.Combine(sourceCluster.Path, computerName);
+            string targetComputerPath = Path.Combine(targetCluster.Path, computerName);
+
+            if (!Directory.Exists(sourceComputerPath))
             {
-                MessageBox.Show("Forrás és célklaszter azonos!");
+                MessageBox.Show($"Forrás számítógép nem található: {computerName}");
                 return;
             }
 
-            // Initial validation
-            if (!ValidateTransferPrerequisites(computerName, sourceCluster, targetCluster))
+            if (Directory.Exists(targetComputerPath))
             {
-                MessageBox.Show("Áthelyezés előfeltételei nem teljesülnek!");
+                MessageBox.Show($"Cél számítógép már létezik: {computerName}");
                 return;
             }
 
-            // Create operation context
-            var operation = new TransferOperationContext
+            Instance? computer = sourceCluster.Instances.FirstOrDefault(c => c.Name == computerName);
+            if (computer == null)
             {
-                ComputerName = computerName,
-                SourceCluster = sourceCluster,
-                TargetCluster = targetCluster,
-                MovedFiles = new Dictionary<string, string>(),
-                OriginalProgramLocations = new Dictionary<ProgInstance, string>()
-            };
+                MessageBox.Show("Számítógép nem található a klaszterben");
+                return;
+            }
 
-            try
+            List<ProgInstance> unmovablePrograms = new();
+            List<string> deletedPrograms = new();
+            Dictionary<ProgInstance, string> movedPrograms = new();
+
+            foreach (var program in computer.Programs.ToList())
             {
-                if (!PrepareProgramTransfers(operation))
+                Instance? targetComputer = sourceCluster.Instances
+                    .Where(c => c.Name != computerName)
+                    .OrderByDescending(c => c.AvailableProcessorCapacity)
+                    .ThenByDescending(c => c.AvailableMemoryCapacity)
+                    .FirstOrDefault(c => c.CanAccommodateProgram(program));
+
+                if (targetComputer != null)
                 {
-                    //RollbackProgramTransfers(operation);
-                    return;
-                }
+                    try
+                    {
+                        string sourcePath = Path.Combine(sourceComputerPath, program.ProgramName);
+                        string targetPath = Path.Combine(sourceCluster.Path, targetComputer.Name, program.ProgramName);
 
-                // Perform physical computer transfer
-                MoveComputerFiles(operation);
+                        File.Move(sourcePath, targetPath);
+                        movedPrograms.Add(program, targetComputer.Name);
 
-                // Finalize cluster changes
-                FinalizeClusterTransfer(operation);
-
-                MessageBox.Show("Áthelyezés sikeresen befejeződött!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Hiba történt: {ex.Message}");
-                //RollbackFullOperation(operation);
-            }
-        }
-
-        private bool ValidateTransferPrerequisites(string computerName, Cluster sourceCluster, Cluster targetCluster)
-        {
-            if (sourceCluster == null || targetCluster == null)
-            {
-                MessageBox.Show("Érvénytelen klaszter kiválasztás!");
-                return false;
-            }
-
-            if (targetCluster.Instances.Any(c => c.Name == computerName))
-            {
-                MessageBox.Show("A gép már létezik a célklaszterben!");
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool PrepareProgramTransfers(TransferOperationContext context)
-        {
-            var computer = context.SourceCluster.Instances.First(c => c.Name == context.ComputerName);
-            var programsToMove = new List<ProgInstance>(computer.Programs);
-            var unmovablePrograms = new List<ProgInstance>();
-
-            foreach (var program in programsToMove)
-            {
-                try
-                {
-                    string originalPath = Path.Combine(context.SourceCluster.Path, computer.Name, program.ProgramName);
-                    context.OriginalProgramLocations.Add(program, originalPath);
-
-                    var targetComputer = FindSuitableTargetComputer(program, context.SourceCluster, computer.Name);
-                    if (targetComputer == null)
+                        targetComputer.Programs.Add(program);
+                        computer.Programs.Remove(program);
+                    }
+                    catch (Exception ex)
                     {
                         unmovablePrograms.Add(program);
-                        continue;
+                        MessageBox.Show($"Hiba a(z) {program.ProgramName} áthelyezésekor: {ex.Message}");
                     }
-
-                    // Move physical file
-                    string newPath = Path.Combine(context.SourceCluster.Path, targetComputer.Name, program.ProgramName);
-                    File.Move(originalPath, newPath);
-
-                    context.MovedFiles.Add(originalPath, newPath);
-
-                    targetComputer.Programs.Add(program);
-                    computer.Programs.Remove(program);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Hiba a(z) {program.ProgramName} áthelyezésekor: {ex.Message}");
-                    return false;
+                    unmovablePrograms.Add(program);
                 }
             }
 
             if (unmovablePrograms.Count > 0)
             {
-                var result = ShowUnmovableProgramsDialog(unmovablePrograms);
-                if (result != MessageBoxResult.Yes)
-                {
-                    return false;
-                }
-
-                // Delete unmovable programs
-                foreach (var program in unmovablePrograms)
+                foreach (ProgInstance program in unmovablePrograms)
                 {
                     try
                     {
-                        string path = context.OriginalProgramLocations[program];
-                        File.Delete(path);
+                        string filePath = Path.Combine(sourceComputerPath, program.ProgramName);
+                        File.Delete(filePath);
+                        sourceCluster.ScheduledPrograms.First(s => s.ProgramName == program.ProgramName).InstanceCount--;
                         computer.Programs.Remove(program);
+                        deletedPrograms.Add(program.ProgramName);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Nem sikerült törölni {program.ProgramName}: {ex.Message}");
-                        return false;
                     }
                 }
+                MessageBox.Show($"Törölt programok:\n{string.Join("\n", deletedPrograms)}",
+                              "Program törlések",
+                              MessageBoxButton.OK);
+                FileManager.WriteCluster(sourceCluster.Path, sourceCluster);
             }
 
-            return true;
+                sourceCluster.Instances.Remove(computer);
+                targetCluster.Instances.Add(computer);
+
+            try
+            {
+                Directory.Move(sourceComputerPath, targetComputerPath);
+                MessageBox.Show("Áthelyezés sikeresen befejeződött!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Végső áthelyezési hiba: {ex.Message}\n" +
+                              "A számítógép mappa nem került átmozgatásra, de a klaszter állományok frissültek!");
+            }
         }
 
-        private Instance FindSuitableTargetComputer(ProgInstance program, Cluster cluster, string excludeComputer)
+        private Instance? FindSuitableTargetComputer(ProgInstance program, Cluster cluster, string excludeComputer = "")
         {
             return cluster.Instances
                 .Where(c => c.Name != excludeComputer)
                 .OrderBy(c => c.ProcessorUsagePercentage)
                 .ThenBy(c => c.MemoryUsagePercentage)
-                .FirstOrDefault(c => c.MemoryCapacity >= c.CalculateMemoryUsage() + program.MemoryUsage 
+                .FirstOrDefault(c => c.MemoryCapacity >= c.CalculateMemoryUsage() + program.MemoryUsage
                                 && c.ProcessorCapacity >= c.CalculateProcessorUsage() + program.ProcessorUsage);
-        }
-
-        private void MoveComputerFiles(TransferOperationContext context)
-        {
-            string sourcePath = Path.Combine(context.SourceCluster.Path, context.ComputerName);
-            string targetPath = Path.Combine(context.TargetCluster.Path, context.ComputerName);
-
-            if (!Directory.Exists(sourcePath))
-            {
-                throw new DirectoryNotFoundException($"Forrás mappa nem található: {sourcePath}");
-            }
-
-            Directory.CreateDirectory(targetPath);
-
-            foreach (var file in Directory.GetFiles(sourcePath))
-            {
-                string fileName = Path.GetFileName(file);
-                string destFile = Path.Combine(targetPath, fileName);
-                File.Move(file, destFile);
-            }
-
-            Directory.Delete(sourcePath);
-        }
-
-        private void FinalizeClusterTransfer(TransferOperationContext context)
-        {
-            var computer = context.SourceCluster.Instances.First(c => c.Name == context.ComputerName);
-
-            context.SourceCluster.Instances.Remove(computer);
-            context.TargetCluster.Instances.Add(computer);
-        }
-
-        //private void RollbackFullOperation(TransferOperationContext context)
-        //{
-        //    try
-        //    {
-        //        // Rollback file movements
-        //        foreach (var kvp in context.MovedFiles)
-        //        {
-        //            if (File.Exists(kvp.Value))
-        //            {
-        //                File.Move(kvp.Value, kvp.Key);
-        //            }
-        //        }
-
-        //        // Rollback program associations
-        //        var computer = context.SourceCluster.Instances.FirstOrDefault(c => c.Name == context.ComputerName);
-        //        if (computer != null)
-        //        {
-        //            foreach (var program in context.OriginalProgramLocations.Keys)
-        //            {
-        //                var targetComputer = context.SourceCluster.Instances
-        //                    .FirstOrDefault(c => c.Programs.Contains(program));
-
-        //                if (targetComputer != null)
-        //                {
-        //                    targetComputer.Programs.Remove(program);
-        //                    computer.Programs.Add(program);
-        //                }
-        //            }
-        //        }
-
-        //        // Remove from target cluster if added
-        //        if (context.TargetCluster.Instances.Contains(computer))
-        //        {
-        //            context.TargetCluster.Instances.Remove(computer);
-        //            context.SourceCluster.Instances.Add(computer);
-        //        }
-
-        //        MessageBox.Show("Áthelyezés visszavonva. Az eredeti állapot helyreállt.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Visszavonási hiba: {ex.Message}\nKézi beavatkozás szükséges!");
-        //    }
-        //}
-
-        private MessageBoxResult ShowUnmovableProgramsDialog(List<ProgInstance> programs)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine("Nem áthelyezhető programok:");
-            foreach (var program in programs)
-            {
-                sb.AppendLine($"- {program.ProgramName}");
-            }
-            sb.AppendLine("\nSzeretné törölni ezeket a programokat?");
-
-            return MessageBox.Show(sb.ToString(), "Nem áthelyezhető programok",
-                MessageBoxButton.YesNo, MessageBoxImage.Warning);
-        }
-
-        private class TransferOperationContext
-        {
-            public string ComputerName { get; set; }
-            public Cluster SourceCluster { get; set; }
-            public Cluster TargetCluster { get; set; }
-            public Dictionary<string, string> MovedFiles { get; set; } 
-            public Dictionary<ProgInstance, string> OriginalProgramLocations { get; set; }
         }
     }
 }
