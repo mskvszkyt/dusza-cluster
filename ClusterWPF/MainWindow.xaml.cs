@@ -72,22 +72,29 @@ namespace ClusterWPF
 
         private void btnAddNewCluster_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (!clusterNames.Contains(tbAddCluster.Text.Split('\\').Last()))
             {
-                path = tbAddCluster.Text;
-                cluster = FileManager.GetClusterRequirements(path);
-                cluster.Instances = FileManager.ReadInstances(path);
-                clusters.Add(cluster);
-                clusterNames.Add(path.Split('\\').Last());
-                RefreshCurrentPage();
-                tbAddCluster.Text = string.Empty;
+                try
+                {
+                    path = tbAddCluster.Text;
+                    cluster = FileManager.GetClusterRequirements(path);
+                    cluster.Instances = FileManager.ReadInstances(path);
+                    clusters.Add(cluster);
+                    clusterNames.Add(path.Split('\\').Last());
+                    RefreshCurrentPage();
+                    tbAddCluster.Text = string.Empty;
 
-                lbClusterNames.SelectedItem = path.Split('\\').Last();
+                    lbClusterNames.SelectedItem = path.Split('\\').Last();
+                }
+                catch (Exception exception)
+                {
+                    _clusterState = false;
+                    MessageBox.Show(exception.Message);
+                }
             }
-            catch (Exception exception)
+            else
             {
-                _clusterState = false;
-                MessageBox.Show(exception.Message);
+                MessageBox.Show($"The cluster is already loaded.");
             }
         }
             
@@ -130,27 +137,38 @@ namespace ClusterWPF
 
             if (dialog.ShowDialog() == true)
             {
-                // Get the selected folder path
                 string[] selectedFolderPath = dialog.FolderNames;
+                List<string> failed = new();
                 Console.WriteLine(selectedFolderPath);
                 selectedFolderPath.ToList().ForEach(currentpath =>
                 {
-                    try
+                    if (!clusterNames.Contains(currentpath.Split('\\').Last()))
                     {
-                        path = currentpath;
-                        cluster = FileManager.GetClusterRequirements(path);
-                        cluster.Instances = FileManager.ReadInstances(path);
-                        clusters.Add(cluster);
-                        clusterNames.Add(path.Split('\\').Last());
-                        RefreshCurrentPage();
-                        lbClusterNames.SelectedItem = path.Split('\\').Last();
+                        try
+                        {
+                                path = currentpath;
+                                cluster = FileManager.GetClusterRequirements(path);
+                                cluster.Instances = FileManager.ReadInstances(path);
+                                clusters.Add(cluster);
+                                clusterNames.Add(path.Split('\\').Last());
+                                RefreshCurrentPage();
+                                lbClusterNames.SelectedItem = path.Split('\\').Last();
+                        }
+                        catch (Exception exception)
+                        {
+                            _clusterState = false;
+                            MessageBox.Show(exception.Message);
+                        }
                     }
-                    catch (Exception exception)
+                    else
                     {
-                        _clusterState = false;
-                        MessageBox.Show(exception.Message);
+                        failed.Add(currentpath);
                     }
                 });
+                if (failed.Count != 0)
+                {
+                    MessageBox.Show($"The following clusters are already loaded: {string.Join(", ", failed)}");
+                }
             }
         }
     }
