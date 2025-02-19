@@ -32,6 +32,8 @@
                 </TabItem>
                 <TabItem Header="Charts" Cursor="Hand">
                 </TabItem>
+                <TabItem Header="Cluster management" Cursor="Hand">
+                </TabItem>
             </TabControl.Items>
         </TabControl>
         

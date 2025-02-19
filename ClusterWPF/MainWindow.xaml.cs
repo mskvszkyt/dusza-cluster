@@ -65,7 +65,8 @@ namespace ClusterWPF
                     "Stop Program Instance" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
                     "Run program Instance" => new Pages.NewProgramCopy(),
-                    "Charts" => new Pages.Charts(cluster)
+                    "Charts" => new Pages.Charts(cluster),
+                    "Cluster management" => new Pages.ClustersManagement()
                 };
             }
         }
@@ -115,6 +116,7 @@ namespace ClusterWPF
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
                     "Run program copy" => new Pages.NewProgramCopy(),
                     "Charts" => new Pages.Charts(cluster),
+                    "Cluster management" => new Pages.ClustersManagement(),
                     _ => CurrentPage.Content
                 };
             }
