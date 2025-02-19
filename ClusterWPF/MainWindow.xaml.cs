@@ -119,5 +119,39 @@ namespace ClusterWPF
             path = cluster.Path;
             RefreshCurrentPage();
         }
+
+        private void btnSelectFolder_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFolderDialog dialog = new OpenFolderDialog
+            {
+                Title = "Select a Folder",
+                Multiselect = true 
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Get the selected folder path
+                string[] selectedFolderPath = dialog.FolderNames;
+                Console.WriteLine(selectedFolderPath);
+                selectedFolderPath.ToList().ForEach(currentpath =>
+                {
+                    try
+                    {
+                        path = currentpath;
+                        cluster = FileManager.GetClusterRequirements(path);
+                        cluster.Instances = FileManager.ReadInstances(path);
+                        clusters.Add(cluster);
+                        clusterNames.Add(path.Split('\\').Last());
+                        RefreshCurrentPage();
+                        lbClusterNames.SelectedItem = path.Split('\\').Last();
+                    }
+                    catch (Exception exception)
+                    {
+                        _clusterState = false;
+                        MessageBox.Show(exception.Message);
+                    }
+                });
+            }
+        }
     }
 }

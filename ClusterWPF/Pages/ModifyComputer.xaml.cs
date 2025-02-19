@@ -30,8 +30,6 @@ namespace ClusterWPF.Pages
 
             // Event handlers
             tbComputerName.TextChanged += TbComputerName_TextChanged;
-            sldMemory.ValueChanged += FiltersChanged;
-            sldProcessor.ValueChanged += FiltersChanged;
             dgdatas.SelectionChanged += DataGrid_SelectionChanged;
             btnSaveComputerSpecs.Click += BtnSaveComputerSpecs_Click;
             
@@ -46,20 +44,9 @@ namespace ClusterWPF.Pages
             string searchText = tbComputerName.Text.ToLower();
 
 
-            int minMemory = (int)sldMemory.LowerValue;
-            int maxMemory = (int)sldMemory.UpperValue;
-            int minProcessor = (int)sldProcessor.LowerValue;
-            int maxProcessor = (int)sldProcessor.UpperValue;
-
 
             var filteredInstances = _allInstances
-                .Where(i =>
-                    (string.IsNullOrEmpty(searchText) || i.Name.ToLower().Contains(searchText)) &&
-
-                    i.MemoryCapacity >= minMemory && i.MemoryCapacity <= maxMemory &&
-                    // Processor Capacity filter
-                    i.ProcessorCapacity >= minProcessor && i.ProcessorCapacity <= maxProcessor)
-                .ToList();
+                .Where(i => i.Name.ToLower().Contains(searchText)).ToList();
 
             // Update the DataGrid with the filtered instances
             dgdatas.ItemsSource = new ObservableCollection<Instance>(filteredInstances);
