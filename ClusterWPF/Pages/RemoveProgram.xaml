@@ -31,7 +31,6 @@
                         Margin="10 0 10 0"
                         x:Name="cbPrograms"
                         HorizontalAlignment="Center"
-                        ItemsSource="{Binding FilteredPrograms}"
                         ui:ControlHelper.PlaceholderText="Search a program..." />      
                     
                 </ui:SimpleStackPanel>
