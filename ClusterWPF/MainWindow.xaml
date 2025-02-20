@@ -7,7 +7,7 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
-        Title="Cluster manager" Height="600" Width="1200">
+        Title="Klaszter kezelő" Height="600" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -18,21 +18,21 @@
             <TabControl.Items>
                 <TabItem Header="Monitor" Cursor="Hand">
                 </TabItem>
-                <TabItem Header="Add new computer" Cursor="Hand">
+                <TabItem Header="Új gép hozzáadása" Cursor="Hand">
                 </TabItem>
-                <TabItem Header="Remove Computer" Cursor="Hand">
+                <TabItem Header="Gép eltávolítása" Cursor="Hand">
                 </TabItem>
-                <TabItem Header="Modify Computer" Cursor="Hand">
+                <TabItem Header="Gép módosítása" Cursor="Hand">
                 </TabItem>
-                <TabItem Header="Remove Program" Cursor="Hand">
+                <TabItem Header="Program eltávolítása" Cursor="Hand">
                 </TabItem>
-                <TabItem Header="Stop Program Instance" Cursor="Hand">
+                <TabItem Header="Programpélány leállítása" Cursor="Hand">
                 </TabItem>
-                <TabItem Header="Run program Instance" Cursor="Hand">
+                <TabItem Header="Program futtatása" Cursor="Hand">
                 </TabItem>
-                <TabItem Header="Charts" Cursor="Hand">
+                <TabItem Header="Grafikonok" Cursor="Hand">
                 </TabItem>
-                <TabItem Header="Cluster management" Cursor="Hand">
+                <TabItem Header="Klaszter műveletek" Cursor="Hand">
                 </TabItem>
             </TabControl.Items>
         </TabControl>
@@ -51,21 +51,21 @@
                     <TextBox Height="20"
                              Margin="10px"
                              x:Name="tbClusterSearch"
-                             ui:ControlHelper.PlaceholderText="Search...">
+                             ui:ControlHelper.PlaceholderText="Keresés...">
                     </TextBox>
                     <ListBox x:Name="lbClusterNames" SelectionChanged="Cluster_SelectionChanged">
                     </ListBox>
                 </ui:SimpleStackPanel>
                 <ui:SimpleStackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
                     <Label></Label>
-                    <Button Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand" x:Name="btnSelectFolder" Click="btnSelectFolder_Click">Select folder</Button>
+                    <Button Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand" x:Name="btnSelectFolder" Click="btnSelectFolder_Click">Válassz mappát</Button>
                     <TextBox
                         Margin="10 0 10 0"
-                        ui:ControlHelper.PlaceholderText="PATH..."
+                        ui:ControlHelper.PlaceholderText="Elérési út..."
                         x:Name="tbAddCluster"
                         TextAlignment="Center">
                     </TextBox>
-                    <Button x:Name="btnAddNewCluster" Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand" Click="btnAddNewCluster_Click">Add new cluster</Button>
+                    <Button x:Name="btnAddNewCluster" Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand" Click="btnAddNewCluster_Click">Klaszter hozzáadása</Button>
                     <Label></Label>
                 </ui:SimpleStackPanel>
             </Grid>

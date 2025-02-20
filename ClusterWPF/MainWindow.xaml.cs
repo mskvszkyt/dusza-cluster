@@ -21,9 +21,9 @@ namespace ClusterWPF
 {
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Cluster> clusters { get; set; }
-        bool _clusterState;
-        public Cluster cluster { get; set; }
+        public ObservableCollection<Cluster> clusters { get; set; } = new();
+        bool _clusterState = false;
+        public Cluster cluster { get; set; } = new();
         string path;
         BindingList<string> clusterNames = new();
 
@@ -59,7 +59,7 @@ namespace ClusterWPF
 
                 CurrentPage.Content = tabs switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState),
+                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState, path),
                     "Add new computer" => new Pages.AddNewComputer(cluster, path),
                     "Remove Computer" => new Pages.ComputerRemove(cluster, path),
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
@@ -74,18 +74,18 @@ namespace ClusterWPF
 
         private void btnAddNewCluster_Click(object sender, RoutedEventArgs e)
         {
-            if (!clusterNames.Contains(tbAddCluster.Text.Split('\\').Last()))
+            if (!clusterNames.Contains(tbAddCluster.Text.TrimEnd('\\').Split('\\').Last()))
             {
                 try
                 {
                     path = tbAddCluster.Text;
-                    cluster = FileManager.GetClusterRequirements(path);
-                    cluster.Instances = FileManager.ReadInstances(path);
+                    cluster = FileManager.GetClusterRequirements(path.TrimEnd('\\'));
+                    cluster.Instances = FileManager.ReadInstances(path.TrimEnd('\\'));
                     clusters.Add(cluster);
-                    clusterNames.Add(path.Split('\\').Last());
+                    clusterNames.Add(path.TrimEnd('\\').Split('\\').Last());
                     RefreshCurrentPage();
                     tbAddCluster.Text = string.Empty;
-                    lbClusterNames.SelectedItem = path.Split('\\').Last();
+                    lbClusterNames.SelectedItem = path.TrimEnd('\\').Split('\\').Last();
                 }
                 catch (Exception exception)
                 {
@@ -95,11 +95,10 @@ namespace ClusterWPF
             }
             else
             {
-                MessageBox.Show($"The cluster is already loaded.");
+                MessageBox.Show($"Ez a klaszter már be van töltve.");
             }
         }
             
-
         private void RefreshCurrentPage()
         {
             var selectedTabHeader = tcPages.SelectedItem is TabItem selectedTab ? selectedTab.Header.ToString() : null;
@@ -108,13 +107,12 @@ namespace ClusterWPF
             {
                 CurrentPage.Content = selectedTabHeader switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState),
+                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState, path),
                     "Add new computer" => new Pages.AddNewComputer(cluster, path),
                     "Remove Computer" => new Pages.ComputerRemove(cluster, path),
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
                     "Stop Program Copy" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
-
                     "Run program copy" => new Pages.NewProgramCopy(cluster, path),
                     "Charts" => new Pages.Charts(cluster),
                     "Cluster management" => new Pages.ClustersManagement(),
@@ -145,7 +143,7 @@ namespace ClusterWPF
                 Console.WriteLine(selectedFolderPath);
                 selectedFolderPath.ToList().ForEach(currentpath =>
                 {
-                    if (!clusterNames.Contains(currentpath.Split('\\').Last()))
+                    if (!clusterNames.Contains(currentpath.TrimEnd('\\').Split('\\').Last()))
                     {
                         try
                         {
@@ -153,9 +151,9 @@ namespace ClusterWPF
                                 cluster = FileManager.GetClusterRequirements(path);
                                 cluster.Instances = FileManager.ReadInstances(path);
                                 clusters.Add(cluster);
-                                clusterNames.Add(path.Split('\\').Last());
+                                clusterNames.Add(path.TrimEnd('\\').Split('\\').Last());
                                 RefreshCurrentPage();
-                                lbClusterNames.SelectedItem = path.Split('\\').Last();
+                                lbClusterNames.SelectedItem = path.TrimEnd('\\').Split('\\').Last();
                         }
                         catch (Exception exception)
                         {
@@ -170,7 +168,7 @@ namespace ClusterWPF
                 });
                 if (failed.Count != 0)
                 {
-                    MessageBox.Show($"The following clusters are already loaded: {string.Join(", ", failed)}");
+                    MessageBox.Show($"A következõ klaszterek már be vannak töltve: {string.Join(", ", failed)}");
                 }
             }
         }
