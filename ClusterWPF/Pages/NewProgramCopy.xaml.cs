@@ -25,6 +25,7 @@ namespace ClusterWPF.Pages
     {
         private Cluster _cluster;
         private string _clusterPath;
+        private bool _isUpdating = false;
         public NewProgramCopy(Cluster cluster, string path)
         {
             InitializeComponent();
@@ -32,7 +33,12 @@ namespace ClusterWPF.Pages
             _clusterPath = path;
             PopulateComboBoxes();
         }
-
+       
+        /// <summary>
+        /// Populates the ComboBoxes with available scheduled programs and inactive program instances.  
+        /// Scheduled programs are those that can be run, while inactive programs are already on the machine  
+        /// but not currently running.
+        /// </summary>
         private void PopulateComboBoxes()
         {
             // Get scheduled programs (Programs that can be run)
@@ -51,6 +57,25 @@ namespace ClusterWPF.Pages
 
             cbPrograms.ItemsSource = scheduledPrograms;
             cbComputers.ItemsSource = inactivePrograms;
+        }
+
+        private void cbPrograms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_isUpdating) return; // Prevent recursive calls
+
+            _isUpdating = true;
+            cbComputers.SelectedItem = null; // Clear the other ComboBox
+            _isUpdating = false;
+        }
+
+        // Event handler for ComboBox selection changed (for cbComputers)
+        private void cbComputers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_isUpdating) return; // Prevent recursive calls
+
+            _isUpdating = true;
+            cbPrograms.SelectedItem = null; // Clear the other ComboBox
+            _isUpdating = false;
         }
 
 
@@ -223,14 +248,6 @@ namespace ClusterWPF.Pages
                     MessageBox.Show($"Összesen {instancesStarted} példány indult el.", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-        }
-
-
-
-        private bool CanRunOnInstance(Instance instance, ProgInstance program)
-        {
-            return instance.CalculateProcessorUsage() + program.ProcessorUsage <= instance.ProcessorCapacity &&
-                   instance.CalculateMemoryUsage() + program.MemoryUsage <= instance.MemoryCapacity;
         }
 
 

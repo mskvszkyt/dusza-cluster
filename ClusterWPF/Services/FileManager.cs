@@ -16,6 +16,13 @@ namespace ConsoleApp1
                 .ToList();
         }
 
+        /// <summary>
+        /// Reads instance directories from the specified path and creates a list of <see cref="Instance"/> objects, 
+        /// each containing information about running programs and system resources.
+        /// </summary>
+        /// <param name="path">The root directory containing instance subdirectories.</param>
+        /// <returns>A list of <see cref="Instance"/> objects representing the instances found in the specified path.</returns>
+
         public static List<Instance> ReadInstances(string path)
         {
             return Directory.GetDirectories(path).Select(dir =>
@@ -47,6 +54,13 @@ namespace ConsoleApp1
             }).ToList();
         }
 
+        /// <summary>
+        /// Reads the cluster requirements from a specified path and constructs a <see cref="Cluster"/> object.
+        /// </summary>
+        /// <param name="path">The directory path containing the cluster configuration file.</param>
+        /// <returns>A <see cref="Cluster"/> object populated with scheduled programs from the cluster file.</returns>
+        /// <exception cref="FileNotFoundException">Thrown when the cluster file is not found.</exception>
+
         public static Cluster GetClusterRequirements(string path)
         {
             Cluster cluster = new Cluster();
@@ -75,6 +89,11 @@ namespace ConsoleApp1
             return cluster;
         }
 
+        /// <summary>
+        /// Writes the cluster requirements to a file in the specified directory.
+        /// </summary>
+        /// <param name="path">The directory path where the cluster file will be created or overwritten.</param>
+        /// <param name="cluster">The <see cref="Cluster"/> object containing scheduled programs to be written.</param>
         public static void WriteCluster(string path, Cluster cluster)
         {
             using (StreamWriter sw = new StreamWriter(Path.Combine(path, ".klaszter"), false))

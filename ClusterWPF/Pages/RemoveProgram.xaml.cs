@@ -36,6 +36,8 @@ namespace ClusterWPF.Pages
             cbPrograms.ItemsSource = _programs;
         }
 
+
+
         private void BtnRemoveProgram_Click(object sender, RoutedEventArgs e)
         {
             if (cbPrograms.SelectedItem == null)
@@ -54,6 +56,13 @@ namespace ClusterWPF.Pages
             // Reload the list of programs after removal
             LoadPrograms();
         }
+        /// <summary>
+        /// Shuts down a program by removing it from the scheduled programs, deleting all related instances 
+        /// and files, and updating the cluster configuration.
+        /// </summary>
+        /// <param name="programName">The name of the program to shut down.</param>
+        /// <param name="path">The base path where program files are stored.</param>
+        /// <param name="cluster">The cluster containing the program instances.</param>
 
         public static void ShutDownProgram(string programName, string path, Cluster cluster)
         {

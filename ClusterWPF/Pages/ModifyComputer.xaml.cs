@@ -39,6 +39,10 @@ namespace ClusterWPF.Pages
 
         private void FiltersChanged(object sender, RoutedPropertyChangedEventArgs<double> e) => ApplyFilters();
 
+        /// <summary>
+        /// Applies filters to the list of instances based on the text entered in the search box.
+        /// It filters instances by comparing their names (case-insensitive) with the search text.
+        /// </summary>
         private void ApplyFilters()
         {
             string searchText = tbComputerName.Text.ToLower();

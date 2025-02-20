@@ -39,6 +39,12 @@ namespace ClusterWPF.Pages
             }
         }
 
+
+        /// <summary>
+        /// Populates the program details container with a grouped list of program instances.  
+        /// Programs are grouped by their base name, and each group is displayed in an expandable  
+        /// section containing a list of instances with their status (Active/Inactive).
+        /// </summary>
         private void PopulatePrograms()
         {
             var groupedPrograms = _instances
@@ -81,6 +87,15 @@ namespace ClusterWPF.Pages
                 ProgramDetailsContainer.Children.Add(expander);
             }
         }
+
+        /// <summary>
+        /// Populates the UI with program and instance details.  
+        /// - Updates the cluster status label.  
+        /// - Groups and displays running programs in an expandable list.  
+        /// - Lists running program details in an ItemsControl.  
+        /// - Displays instance details including memory and processor usage with visual indicators.  
+        /// - Adds a remove button for each instance.
+        /// </summary>
 
         private void PopulateUI()
         {
@@ -413,6 +428,10 @@ namespace ClusterWPF.Pages
             lbInactiveProcesses.Content = inactiveCount.ToString();
         }
 
+        /// <summary>
+        /// Populates the search combo box with the names of currently running programs.
+        /// </summary>
+
         private void PopulateSearchComboBox()
         {
            
@@ -424,6 +443,11 @@ namespace ClusterWPF.Pages
 
             searchComboBox.ItemsSource = programNames;
         }
+
+        /// <summary>
+        /// Handles the selection change event for the combo box, toggling visibility between program details 
+        /// and specific details based on the selected index.
+        /// </summary>
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
