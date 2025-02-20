@@ -1,0 +1,18 @@
+Továbbá a felhasználónak lehetősége van választani, hogy megtekintse a futó programok részleteit, ami lenyitható listában megjeleníti a futó programokat és azok példányainak állapotát vagy választhatja a program keresése opciót is, ahol egy programot kiválasztva lehet látni a program példányainak részleteit.
+
+Számítógépek kezelése:
+A programban lehetőség van a kiválasztott klaszterhez új gépet hozzáadni, meglévőt módosítani illetve törölni.
+Az új gép hozzáadása oldalon lehet létrehozni új számítógépet a neve, memória illetve processzor paraméterei megadásaival.
+A gép eltávolítása oldalon egy listából lehet kiválasztani a törlendő gépet majd törlésnél lehetőség van választani ha fut program példány a gépen, hogy azokat szeretné-e áthelyezni más elérhető gépekre a felhasználó vagy pedig végleg törölni szeretné.
+A számítógép módosítása oldalon láthatjuk a gépek teljesítményét illetve terheltségét és egy számítógépet kiválasztva módosíthatjuk annak paramétereit.
+
+Programok és példányaik kezelése:
+A program futtatása oldalon a bal oldali lista segítségével egy inaktív programpéldányt aktívvá tehetünk, a jobb oldali listával pedig futtathatunk egy új programpéldányt a meglévő programokból. Ha a klaszter elérte a maximális futtatható példányszámot a programból akkor a felhasználó eldöntheti, hogy szeretné-e növelni ezt a limitet ezzel megtartva a klaszter helyes állapotát vagy pedig nem. Az oldalon lehetőség van egy teljesen új program létrehozására is megadva a program nevét, memória illetve processzor használatát.
+A program eltávolítása oldalon lehet törölni egy programot és futó példányait a klaszterből.
+A program példány leállítása oldalon kiválaszthatunk egy program példányt és törölhetjük.
+
+Diagram:
+A Diagram oldalon megtekinthetjük a kiválasztott klaszteren lévő gépek memória és processzor használatát illetve ezen adatok átlagát százalékban kifejezve.
+
+Klaszter műveletek:
+A klaszter műveletek oldalon 3 funkció érhető el: klaszterek összefűzése, programpéldány áthelyezése, illetve számítógép áthelyezése.
