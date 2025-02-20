@@ -93,7 +93,7 @@ namespace ClusterWPF.Pages
                 }
             }
 
-            // Számítógép eltávolítása
+            // Deleting the computer
             _cluster.Instances.Remove(instanceToRemove);
 
             string instanceFolderPath = Path.Combine(_clusterPath, instanceToRemove.Name);
@@ -110,7 +110,7 @@ namespace ClusterWPF.Pages
                 }
             }
 
-            // Üres cluster mappa törlése, ha szükséges
+            // Removing the cluster folder if it's empty
             if (Directory.Exists(_clusterPath) && !Directory.EnumerateFileSystemEntries(_clusterPath).Any())
             {
                 try
@@ -124,7 +124,7 @@ namespace ClusterWPF.Pages
                 }
             }
 
-            // Lista frissítése
+            // Refreshing the list
             _allInstances = _cluster.Instances.ToList();
             cbComputers.ItemsSource = _allInstances.Select(i => i.Name).ToList();
         }

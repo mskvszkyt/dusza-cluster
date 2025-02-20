@@ -33,7 +33,12 @@ namespace ClusterWPF.Pages
             _clusterPath = path;
             PopulateComboBoxes();
         }
-
+       
+        /// <summary>
+        /// Populates the ComboBoxes with available scheduled programs and inactive program instances.  
+        /// Scheduled programs are those that can be run, while inactive programs are already on the machine  
+        /// but not currently running.
+        /// </summary>
         private void PopulateComboBoxes()
         {
             // Get scheduled programs (Programs that can be run)
@@ -243,14 +248,6 @@ namespace ClusterWPF.Pages
                     MessageBox.Show($"Összesen {instancesStarted} példány indult el.", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-        }
-
-
-
-        private bool CanRunOnInstance(Instance instance, ProgInstance program)
-        {
-            return instance.CalculateProcessorUsage() + program.ProcessorUsage <= instance.ProcessorCapacity &&
-                   instance.CalculateMemoryUsage() + program.MemoryUsage <= instance.MemoryCapacity;
         }
 
 

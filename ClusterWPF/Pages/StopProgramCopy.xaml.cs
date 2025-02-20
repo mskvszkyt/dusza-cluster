@@ -26,6 +26,11 @@ namespace ClusterWPF.Pages
             btnRemoveProgramCopy.Click += BtnRemoveProgramCopy_Click;
         }
 
+        /// <summary>
+        /// Loads the names of currently running program instances from all computers in the cluster 
+        /// and populates the ComboBox.
+        /// </summary>
+
         private void LoadProgramCopies()
         {
             // Get the program copies from all instances and project them into an anonymous type

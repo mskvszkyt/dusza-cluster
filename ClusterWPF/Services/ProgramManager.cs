@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace ConsoleApp1
 {
@@ -71,52 +72,7 @@ namespace ConsoleApp1
                 Console.ResetColor();
             }
         }
-        public static void Monitor(List<Instance> instances)
-        {
-            foreach (Instance instance in instances)
-            {
-                Console.WriteLine($"Gép neve: {instance.Name}");
-                Console.WriteLine($"Memória használat: {instance.CalculateMemoryUsage()}MB / {instance.MemoryCapacity}MB");
-                Console.WriteLine($"Processzor használat: {instance.CalculateProcessorUsage()} milimag / {instance.ProcessorCapacity} milimag");
-                Console.WriteLine();
-            }
 
-            IEnumerable<string> programNames = instances.SelectMany(i => i.Programs.Select(p => p.ProgramName.Split('-')[0])).Distinct();
-            Console.WriteLine("Programok:");
-            foreach (string name in programNames)
-            {
-                Console.WriteLine($" {name}");
-            }
-
-            Console.WriteLine("\nAzonosítók és státuszok:");
-            foreach (Instance instance in instances)
-            {
-                foreach (ProgInstance program in instance.Programs)
-                {
-                    Console.WriteLine($" {program.ProgramName.Split('-').Last()} - {(program.IsRunning ? "AKTÍV" : "INAKTÍV")}");
-                }
-            }
-
-            Console.WriteLine($"\nÖsszesen {instances.Sum(i => i.Programs.Count)} db program fut.");
-        }
-
-        public static void MonitorSearch(List<Instance> instances, string programName)
-        {
-            Console.WriteLine($"{programName} futó példányai:");
-            foreach (Instance instance in instances)
-            {
-                foreach (ProgInstance program in instance.Programs)
-                {
-                    if (program.ProgramName.StartsWith(programName))
-                    {
-                        Console.WriteLine($"Ezen fut: {instance.Name}");
-                        Console.WriteLine($"Memória használata: {program.MemoryUsage}MB");
-                        Console.WriteLine($"Processzor használata: {program.ProcessorUsage} milimag");
-                        Console.WriteLine();
-                    }
-                }
-            }
-        }
 
         public static void RunProgram(Cluster cluster, string path)
         {
@@ -193,6 +149,11 @@ namespace ConsoleApp1
             Console.WriteLine($"Sikeresen indítva: {progInstance.ProgramName} ({optimalInstance.Name})");
         }
 
+        /// <summary>
+        /// Generates a unique 6-character lowercase string key that does not exist in the provided list of existing keys.
+        /// </summary>
+        /// <param name="existingKeys">A list of keys to ensure uniqueness against.</param>
+        /// <returns>A unique 6-character lowercase string key.</returns>
         public static string GenerateUniqueKey(List<string> existingKeys)
         {
             Random rnd = new Random();
@@ -204,6 +165,7 @@ namespace ConsoleApp1
 
             return key;
         }
+
 
         public static void ShutDownProgram(string programName, string path, Cluster cluster)
         {
@@ -245,33 +207,7 @@ namespace ConsoleApp1
                 : "Figyelem: A program nem futott egyetlen gépen sem.");
         }
 
-        public static void ModifyClusterStartupSettings(Cluster cluster, string path)
-        {
-            Console.WriteLine("Válassza ki a módosítani kívánt programot");
-            for (int i = 0; i < cluster.ScheduledPrograms.Count; i++)
-            {
-                Console.WriteLine($"{i}. {cluster.ScheduledPrograms[i].ProgramName}");
-            }
-
-            if (int.TryParse(Console.ReadLine(), out int programIndex) &&
-                programIndex >= 0 &&
-                programIndex < cluster.ScheduledPrograms.Count)
-            {
-                ScheduledProgram program = cluster.ScheduledPrograms[programIndex];
-                Console.WriteLine("0. Példányszám módosítása\n1. CPU igény módosítása\n2. Memóriaigény módosítása");
-                if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 0 && choice <= 2)
-                {
-                    Console.WriteLine($"Jelenlegi érték: {GetPropertyValue(program, choice)}");
-                    Console.WriteLine("Új érték:");
-                    if (int.TryParse(Console.ReadLine(), out int newValue))
-                    {
-                        SetPropertyValue(program, choice, newValue);
-                        FileManager.WriteCluster(path, cluster);
-                        Console.WriteLine("Sikeres módosítás!");
-                    }
-                }
-            }
-        }
+     
 
         private static int GetPropertyValue(ScheduledProgram program, int choice) => choice switch
         {
@@ -291,11 +227,14 @@ namespace ConsoleApp1
             }
         }
 
+        /// <summary>
+        /// Displays an error message in a message box.
+        /// </summary>
+        /// <param name="message">The error message to display.</param>
         private static void ShowError(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
+            MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
     }
 }
