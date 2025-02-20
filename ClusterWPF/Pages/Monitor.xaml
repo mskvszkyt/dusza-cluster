@@ -42,6 +42,7 @@
         <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Padding="10" FontSize="20">Monitoring:</Label>
+                <Label x:Name="lbMonitorName" Padding="0 10 10 10" FontSize="20" Height="49" VerticalAlignment="Top"></Label>
             </ui:SimpleStackPanel>
         </Border>
 

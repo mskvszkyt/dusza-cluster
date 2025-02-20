@@ -14,69 +14,72 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
+        <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}">
             <Label HorizontalAlignment="Center" Padding="10" FontSize="20">New Program Instance</Label>
         </Border>
-        <ui:SimpleStackPanel Spacing="5" Grid.Row="1" Margin="0 10 0 0">
-            <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
-                    <Label Padding="10" HorizontalAlignment="Center">Computers:</Label>
-                    <ComboBox
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
+            <ui:SimpleStackPanel Spacing="5" Margin="0 10 0 0">
+                <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
+                        <Label Padding="10" HorizontalAlignment="Center">Computers:</Label>
+                        <ComboBox
+                            IsEditable="True"
+                            Width="220"
+                            Margin="10 0 10 0"
+                            x:Name="cbComputers"
+                            HorizontalAlignment="Center"
+                            ui:ControlHelper.PlaceholderText="Search a program..." />
+                    </ui:SimpleStackPanel>
+                    <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
+                        <Label Padding="10" HorizontalAlignment="Center">Existing programs:</Label>
+                        <ComboBox
                         IsEditable="True"
                         Width="220"
                         Margin="10 0 10 0"
-                        x:Name="cbComputers"
+                        x:Name="cbPrograms"
                         HorizontalAlignment="Center"
                         ui:ControlHelper.PlaceholderText="Search a program..." />
+                    </ui:SimpleStackPanel>
                 </ui:SimpleStackPanel>
-                <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
-                    <Label Padding="10" HorizontalAlignment="Center">Existing programs:</Label>
-                    <ComboBox
-                    IsEditable="True"
-                    Width="220"
-                    Margin="10 0 10 0"
-                    x:Name="cbPrograms"
-                    HorizontalAlignment="Center"
-                    ui:ControlHelper.PlaceholderText="Search a program..." />
+                <Button x:Name="btnRunProgram" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand" Margin="0 0 0 10" Click="btnRunProgram_Click">Run Program</Button>
+                <ui:SimpleStackPanel>
+                    <Label FontSize="24" HorizontalAlignment="Center" Margin="5 10">Create a new Program</Label>
+                    <TextBox
+                                ui:ControlHelper.Header="New program's name"
+                                ui:ControlHelper.PlaceholderText="..."
+                                x:Name="tbNewProgramName"
+                                TextAlignment="Center"
+                                Margin="0 10 0 0"
+                                Width="200px"
+                        >
+                    </TextBox>
+                    <TextBox
+                                ui:ControlHelper.Header="Memory usage: "
+                                ui:ControlHelper.PlaceholderText="..."
+                                x:Name="tbNewProgramsMemory"
+                                TextAlignment="Center"
+                        Margin="0 10 0 0"
+                                Width="200px"/>
+                    <TextBox
+                                ui:ControlHelper.Header="Processor usage: "
+                                ui:ControlHelper.PlaceholderText="..."
+                                x:Name="tbNewProgramsProcessor"
+                                TextAlignment="Center"
+                        Margin="0 10 0 0"
+                                Width="200px">
+                    </TextBox>
+                    <TextBox
+                        ui:ControlHelper.Header="Instance count: "
+                        ui:ControlHelper.PlaceholderText="..."
+                        x:Name="tbInstanceCount"
+                        TextAlignment="Center"
+                Margin="0 10 0 0"
+                        Width="200px">
+                    </TextBox>
+                    <Button x:Name="btnRunNewProgram" HorizontalAlignment="Center" Grid.Row="1" Width="200px" Cursor="Hand" Click="BtnCreateProgram_Click" Margin="0 0 0 30">Create program</Button>
                 </ui:SimpleStackPanel>
             </ui:SimpleStackPanel>
-            <Button x:Name="btnRunProgram" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand" Margin="0 0 0 10" Click="btnRunProgram_Click">Run Program</Button>
-            <ui:SimpleStackPanel>
-                <Label FontSize="24" HorizontalAlignment="Center" Margin="5 10">Create a new Program</Label>
-                <TextBox
-                            ui:ControlHelper.Header="New program's name"
-                            ui:ControlHelper.PlaceholderText="..."
-                            x:Name="tbNewProgramName"
-                            TextAlignment="Center"
-                            Margin="0 10 0 0"
-                            Width="200px"
-                    >
-                </TextBox>
-                <TextBox
-                            ui:ControlHelper.Header="Memory usage: "
-                            ui:ControlHelper.PlaceholderText="..."
-                            x:Name="tbNewProgramsMemory"
-                            TextAlignment="Center"
-                    Margin="0 10 0 0"
-                            Width="200px"/>
-                <TextBox
-                            ui:ControlHelper.Header="Processor usage: "
-                            ui:ControlHelper.PlaceholderText="..."
-                            x:Name="tbNewProgramsProcessor"
-                            TextAlignment="Center"
-                    Margin="0 10 0 0"
-                            Width="200px">
-                </TextBox>
-                <TextBox
-                    ui:ControlHelper.Header="Instance count: "
-                    ui:ControlHelper.PlaceholderText="..."
-                    x:Name="tbInstanceCount"
-                    TextAlignment="Center"
-            Margin="0 10 0 0"
-                    Width="200px">
-                        </TextBox>
-                        <Button x:Name="btnRunNewProgram" HorizontalAlignment="Center" Grid.Row="1" Width="200px" Cursor="Hand" Click="BtnCreateProgram_Click">Create program</Button>
-            </ui:SimpleStackPanel>
-        </ui:SimpleStackPanel>
+
+        </ScrollViewer>
     </Grid>
 </Page>
