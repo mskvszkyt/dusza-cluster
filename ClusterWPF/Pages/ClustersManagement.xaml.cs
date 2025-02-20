@@ -57,6 +57,7 @@ namespace ClusterWPF.Pages
             MergeScheduledPrograms(cluster1, mergedCluster);
             MergeScheduledPrograms(cluster2, mergedCluster);
 
+            Directory.CreateDirectory(mergedClusterPath);
             MoveComputerFiles(cluster1, mergedClusterPath);
             MoveComputerFiles(cluster2, mergedClusterPath);
 
@@ -146,13 +147,15 @@ namespace ClusterWPF.Pages
                 string sourceDir = Path.Combine(source.Path, instance.Name);
                 string targetDir = Path.Combine(targetPath, instance.Name);
 
+                if (!Directory.Exists(sourceDir))
+                    throw new DirectoryNotFoundException($"Source directory not found: {sourceDir}");
+
                 if (Directory.Exists(targetDir))
                     throw new IOException($"Duplicate directory: {targetDir}");
-
+                
                 Directory.Move(sourceDir, targetDir);
             }
         }
-
         public static void RollbackMerge(string mergedClusterPath)
         {
             try
@@ -356,9 +359,11 @@ namespace ClusterWPF.Pages
                 MessageBox.Show("Válassz egy klasztert előbb!");
                 return;
             }
+            
             try
             {
-                MergeClusters(cluster1, cluster2, Path.GetDirectoryName(cluster2.Path));
+                string mergePath = Path.Combine(Path.GetDirectoryName(cluster2.Path), $"MergedCluster_{cluster1.Path.Split('\\').Last()}-{cluster2.Path.Split("\\").Last()}-{DateTime.Now}");
+                MergeClusters(cluster1, cluster2, mergePath);
                 lbFromCluster.ItemsSource = mainWindow.clusters.Select(c => c.Path.Split('\\').Last());
                 lbToCluster.ItemsSource = mainWindow.clusters.Select(c => c.Path.Split('\\').Last());
             }
