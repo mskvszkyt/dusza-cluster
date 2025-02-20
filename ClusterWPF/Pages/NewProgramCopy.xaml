@@ -7,6 +7,7 @@
       xmlns:local="clr-namespace:ClusterWPF.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+
       Title="NewProgramCopy">
 
     <Grid>
@@ -27,7 +28,8 @@
                         Margin="10 0 10 0"
                         x:Name="cbComputers"
                         HorizontalAlignment="Center"
-                        ui:ControlHelper.PlaceholderText="Search a program..." />
+                        ui:ControlHelper.PlaceholderText="Search a program..."
+                        SelectionChanged="cbComputers_SelectionChanged"/>
                 </ui:SimpleStackPanel>
                 <ui:SimpleStackPanel Margin="40 20 40 20" Grid.Row="0">
                     <Label Padding="10" HorizontalAlignment="Center">Existing programs:</Label>
@@ -37,7 +39,8 @@
                     Margin="10 0 10 0"
                     x:Name="cbPrograms"
                     HorizontalAlignment="Center"
-                    ui:ControlHelper.PlaceholderText="Search a program..." />
+                    ui:ControlHelper.PlaceholderText="Search a program..." 
+                        SelectionChanged="cbPrograms_SelectionChanged"/>
                 </ui:SimpleStackPanel>
             </ui:SimpleStackPanel>
             <Button x:Name="btnRunProgram" HorizontalAlignment="Center" Grid.Row="1" Cursor="Hand" Margin="0 0 0 10" Click="btnRunProgram_Click">Run Program</Button>
