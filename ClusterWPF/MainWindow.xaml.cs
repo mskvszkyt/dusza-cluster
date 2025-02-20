@@ -63,7 +63,7 @@ namespace ClusterWPF
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
                     "Stop Program Instance" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
-                    "Run program Instance" => new Pages.NewProgramCopy(),
+                    "Run program Instance" => new Pages.NewProgramCopy(cluster, path),
                     "Charts" => new Pages.Charts()
                 };
             }
@@ -78,6 +78,7 @@ namespace ClusterWPF
                 cluster.Instances = FileManager.ReadInstances(path);
                 clusters.Add(cluster);
                 clusterNames.Add(path.Split('\\').Last());
+                _clusterState = true;
                 RefreshCurrentPage();
                 tbAddCluster.Text = string.Empty;
 
@@ -105,7 +106,7 @@ namespace ClusterWPF
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
                     "Stop Program Copy" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
-                    "Run program copy" => new Pages.NewProgramCopy(),
+                    "Run program copy" => new Pages.NewProgramCopy(cluster, path),
                     _ => CurrentPage.Content
                 };
             }

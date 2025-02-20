@@ -193,7 +193,7 @@ namespace ConsoleApp1
             Console.WriteLine($"Sikeresen indítva: {progInstance.ProgramName} ({optimalInstance.Name})");
         }
 
-        private static string GenerateUniqueKey(List<string> existingKeys)
+        public static string GenerateUniqueKey(List<string> existingKeys)
         {
             Random rnd = new Random();
             string key;

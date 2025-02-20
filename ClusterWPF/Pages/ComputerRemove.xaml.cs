@@ -28,45 +28,103 @@ namespace ClusterWPF.Pages
         {
             if (cbComputers.SelectedItem is not string selectedInstanceName)
             {
-                MessageBox.Show("Please select a computer to remove.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Válassz egy számítógépet az eltávolításhoz!", "Figyelmeztetés", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             var instanceToRemove = _cluster.Instances.FirstOrDefault(i => i.Name == selectedInstanceName);
-            if (instanceToRemove != null)
-            {
-                _cluster.Instances.Remove(instanceToRemove);
+            if (instanceToRemove == null) return;
 
-                string instanceFolderPath = Path.Combine(_clusterPath, instanceToRemove.Name);
-                if (Directory.Exists(instanceFolderPath))
+            if (instanceToRemove.Programs.Any())
+            {
+                var moveChoice = MessageBox.Show(
+                    "Ez a számítógép futtat programokat. Át szeretnéd helyezni ezeket egy másik számítógépre?",
+                    "Programok áthelyezése",
+                    MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Question);
+
+                if (moveChoice == MessageBoxResult.Yes)
                 {
-                    try
+                    var availableInstances = _cluster.Instances.Where(i => i != instanceToRemove).ToList();
+
+                    if (!availableInstances.Any())
                     {
-                        Directory.Delete(instanceFolderPath, true);
-                        MessageBox.Show($"Deleted folder: {instanceFolderPath}");
+                        MessageBox.Show("Nincs elérhető számítógép a programok áthelyezésére!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
                     }
-                    catch (Exception ex)
+
+                    foreach (var program in instanceToRemove.Programs.ToList())
                     {
-                        MessageBox.Show($"Failed to delete folder {instanceFolderPath}.\nError: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        var targetInstance = availableInstances.FirstOrDefault(i =>
+                            i.CalculateProcessorUsage() + program.ProcessorUsage <= i.ProcessorCapacity &&
+                            i.CalculateMemoryUsage() + program.MemoryUsage <= i.MemoryCapacity);
+
+                        if (targetInstance != null)
+                        {
+                            targetInstance.Programs.Add(program);
+                            instanceToRemove.Programs.Remove(program);
+
+                            // Programfájl áthelyezése
+                            string oldPath = Path.Combine(_clusterPath, instanceToRemove.Name, program.ProgramName);
+                            string newPath = Path.Combine(_clusterPath, targetInstance.Name, program.ProgramName);
+
+                            if (File.Exists(oldPath))
+                            {
+                                try
+                                {
+                                    File.Move(oldPath, newPath);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"Nem sikerült áthelyezni a(z) {program.ProgramName} programot!\nHiba: {ex.Message}",
+                                        "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Nincs elég erőforrás a(z) {program.ProgramName} áthelyezésére!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
-
-                // Remove cluster folder if empty
-                if (Directory.Exists(_clusterPath) && !Directory.EnumerateFileSystemEntries(_clusterPath).Any())
+                else if (moveChoice == MessageBoxResult.Cancel)
                 {
-                    try
-                    {
-                        Directory.Delete(_clusterPath);
-                        MessageBox.Show($"Deleted empty cluster folder: {_clusterPath}");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Failed to delete cluster folder {_clusterPath}.\nError: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    return;
                 }
             }
 
-            // Refresh the list
+            // Számítógép eltávolítása
+            _cluster.Instances.Remove(instanceToRemove);
+
+            string instanceFolderPath = Path.Combine(_clusterPath, instanceToRemove.Name);
+            if (Directory.Exists(instanceFolderPath))
+            {
+                try
+                {
+                    Directory.Delete(instanceFolderPath, true);
+                    MessageBox.Show($"Törölve: {instanceFolderPath}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Nem sikerült törölni a(z) {instanceFolderPath} mappát!\nHiba: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            // Üres cluster mappa törlése, ha szükséges
+            if (Directory.Exists(_clusterPath) && !Directory.EnumerateFileSystemEntries(_clusterPath).Any())
+            {
+                try
+                {
+                    Directory.Delete(_clusterPath);
+                    MessageBox.Show($"Törölve: {_clusterPath} (üres klaszter mappa)");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Nem sikerült törölni a klaszter mappát {_clusterPath}!\nHiba: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            // Lista frissítése
             _allInstances = _cluster.Instances.ToList();
             cbComputers.ItemsSource = _allInstances.Select(i => i.Name).ToList();
         }
