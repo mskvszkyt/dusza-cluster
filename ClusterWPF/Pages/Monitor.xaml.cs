@@ -20,15 +20,15 @@ namespace ClusterWPF.Pages
     public partial class Monitor : Page
     {
         private List<Instance> _instances;
-        bool _clusterState;
+        bool _clusterState = false;
         private string _path;
 
-        public Monitor(List<Instance> instances, bool clusterState, string path)
+        public Monitor(Cluster cluster, string path)
         {
-            _instances = instances;
-            _clusterState = clusterState;
+            _instances = cluster.Instances;
             _path = path;
             InitializeComponent();
+            _clusterState = ProgramManager.ValidateClusterState(cluster);
             PopulateUI();
             PopulateStatistics();
             PopulateSearchComboBox();
@@ -37,6 +37,7 @@ namespace ClusterWPF.Pages
             {
                lbMonitorName.Content = path.TrimEnd('\\').Split('\\').Last();
             }
+            
         }
 
         private void PopulatePrograms()
@@ -377,6 +378,7 @@ namespace ClusterWPF.Pages
             }
 
             PopulateUI();
+
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)

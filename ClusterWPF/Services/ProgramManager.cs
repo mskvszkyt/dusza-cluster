@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace ConsoleApp1
 {
     public static class ProgramManager
     {
-        public static void ValidateClusterState(Cluster cluster)
+        public static bool ValidateClusterState(Cluster cluster)
         {
             bool clusterValid = true;
 
@@ -66,9 +67,11 @@ namespace ConsoleApp1
 
             if (clusterValid)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("A klaszter állapota megfelelő");
-                Console.ResetColor();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         public static void Monitor(List<Instance> instances)
@@ -293,9 +296,8 @@ namespace ConsoleApp1
 
         private static void ShowError(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
+            MessageBox.Show(message, "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
         }
     }
 }

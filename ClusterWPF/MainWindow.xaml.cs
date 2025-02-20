@@ -1,4 +1,4 @@
-using ConsoleApp1;
+﻿using ConsoleApp1;
 using ControlzEx.Theming;
 using Microsoft.Win32;
 using System.ComponentModel;
@@ -59,16 +59,17 @@ namespace ClusterWPF
 
                 CurrentPage.Content = tabs switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState, path),
-                    "Add new computer" => new Pages.AddNewComputer(cluster, path),
-                    "Remove Computer" => new Pages.ComputerRemove(cluster, path),
-                    "Remove Program" => new Pages.RemoveProgram(cluster, path),
-                    "Stop Program Instance" => new Pages.StopProgramCopy(cluster, path),
-                    "Modify Computer" => new Pages.ModifyComputer(cluster, path),
-                    "Run program Instance" => new Pages.NewProgramCopy(cluster, path),
-                    "Charts" => new Pages.Charts(cluster),
-                    "Cluster management" => new Pages.ClustersManagement()
+                    "Monitor" => new Pages.Monitor(cluster, path),
+                    "Új gép hozzáadása" => new Pages.AddNewComputer(cluster, path),
+                    "Gép eltávolítása" => new Pages.ComputerRemove(cluster, path),
+                    "Program eltávolítása" => new Pages.RemoveProgram(cluster, path),
+                    "Programpéldány leállítása" => new Pages.StopProgramCopy(cluster, path),
+                    "Gép módosítása" => new Pages.ModifyComputer(cluster, path),
+                    "Program futtatása" => new Pages.NewProgramCopy(cluster, path),
+                    "Grafikonok" => new Pages.Charts(cluster),
+                    "Klaszter műveletek" => new Pages.ClustersManagement()
                 };
+
             }
         }
 
@@ -95,7 +96,7 @@ namespace ClusterWPF
             }
             else
             {
-                MessageBox.Show($"Ez a klaszter m�r be van t�ltve.");
+                MessageBox.Show($"Ez a klaszter mar be van toltve.");
             }
         }
             
@@ -107,16 +108,15 @@ namespace ClusterWPF
             {
                 CurrentPage.Content = selectedTabHeader switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster.Instances, _clusterState, path),
-                    "Add new computer" => new Pages.AddNewComputer(cluster, path),
-                    "Remove Computer" => new Pages.ComputerRemove(cluster, path),
-                    "Remove Program" => new Pages.RemoveProgram(cluster, path),
-                    "Stop Program Copy" => new Pages.StopProgramCopy(cluster, path),
-                    "Modify Computer" => new Pages.ModifyComputer(cluster, path),
-                    "Run program copy" => new Pages.NewProgramCopy(cluster, path),
-                    "Charts" => new Pages.Charts(cluster),
-                    "Cluster management" => new Pages.ClustersManagement(),
-                    _ => CurrentPage.Content
+                    "Monitor" => new Pages.Monitor(cluster, path),
+                    "Új gép hozzáadása" => new Pages.AddNewComputer(cluster, path),
+                    "Gép eltávolítása" => new Pages.ComputerRemove(cluster, path),
+                    "Program eltávolítása" => new Pages.RemoveProgram(cluster, path),
+                    "Programpéldány leállítása" => new Pages.StopProgramCopy(cluster, path),
+                    "Gép módosítása" => new Pages.ModifyComputer(cluster, path),
+                    "Program futtatása" => new Pages.NewProgramCopy(cluster, path),
+                    "Grafikonok" => new Pages.Charts(cluster),
+                    "Klaszter műveletek" => new Pages.ClustersManagement()
                 };
             }
         }
@@ -168,7 +168,7 @@ namespace ClusterWPF
                 });
                 if (failed.Count != 0)
                 {
-                    MessageBox.Show($"A k�vetkez� klaszterek m�r be vannak t�ltve: {string.Join(", ", failed)}");
+                    MessageBox.Show($"A kovetkezo klaszterek mar be vannak toltve: {string.Join(", ", failed)}");
                 }
             }
         }
