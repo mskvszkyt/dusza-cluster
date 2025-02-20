@@ -12,6 +12,8 @@ using MahApps.Metro.Controls;
 using ModernWpf.Controls.Primitives;
 using Page = System.Windows.Controls.Page;
 using System.Diagnostics;
+using System.Windows.Input;
+using System.IO;
 
 namespace ClusterWPF.Pages
 {
@@ -19,19 +21,23 @@ namespace ClusterWPF.Pages
     {
         private List<Instance> _instances;
         bool _clusterState;
+        private string _path;
 
-        public Monitor(List<Instance> instances, bool clusterState)
+        public Monitor(List<Instance> instances, bool clusterState, string path)
         {
             _instances = instances;
             _clusterState = clusterState;
+            _path = path;
             InitializeComponent();
             PopulateUI();
             PopulateStatistics();
             PopulateSearchComboBox();
             cbSelect.SelectionChanged += ComboBox_SelectionChanged;
+            if (path != null)
+            {
+               lbMonitorName.Content = path.TrimEnd('\\').Split('\\').Last();
+            }
         }
-
-        
 
         private void PopulatePrograms()
         {
@@ -78,8 +84,9 @@ namespace ClusterWPF.Pages
 
         private void PopulateUI()
         {
-
+            InstanceContainer.Children.Clear();
             PopulatePrograms();
+            PopulateStatistics();
 
             if (_clusterState)
             {
@@ -114,6 +121,7 @@ namespace ClusterWPF.Pages
                 };
 
                 var listBox = new ListBox { VerticalAlignment = VerticalAlignment.Stretch, IsHitTestVisible = false };
+
                 foreach (var item in group)
                 {
                     var statusColor = item.program.IsRunning ? Brushes.Green : Brushes.Red;
@@ -280,7 +288,8 @@ namespace ClusterWPF.Pages
                     Content = "Remove",
                     HorizontalAlignment = HorizontalAlignment.Center,
                     Width = 200,
-                    Margin = new Thickness(5)
+                    Margin = new Thickness(5),
+                    Cursor = Cursors.Hand
                 };
                 removeButton.Click += (s, e) => RemoveInstance(instance);
                 stackPanel.Children.Add(removeButton);
@@ -292,8 +301,81 @@ namespace ClusterWPF.Pages
 
         private void RemoveInstance(Instance instance)
         {
+            if (instance.Programs.Any())
+            {
+                var moveChoice = MessageBox.Show(
+                    "Ez a számítógép futtat programokat. Át szeretnéd helyezni ezeket egy másik számítógépre?",
+                    "Programok áthelyezése",
+                    MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Question);
+
+                if (moveChoice == MessageBoxResult.Yes)
+                {
+                    var availableInstances = _instances.Where(i => i != instance).ToList();
+
+                    if (!availableInstances.Any())
+                    {
+                        MessageBox.Show("Nincs elérhető számítógép a programok áthelyezésére!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    foreach (var program in instance.Programs.ToList())
+                    {
+                        var targetInstance = availableInstances.FirstOrDefault(i =>
+                            i.CalculateProcessorUsage() + program.ProcessorUsage <= i.ProcessorCapacity &&
+                            i.CalculateMemoryUsage() + program.MemoryUsage <= i.MemoryCapacity);
+
+                        if (targetInstance != null)
+                        {
+                            targetInstance.Programs.Add(program);
+                            instance.Programs.Remove(program);
+
+                            // Programfájl áthelyezése
+                            string oldPath = Path.Combine(_path, instance.Name, program.ProgramName);
+                            string newPath = Path.Combine(_path, targetInstance.Name, program.ProgramName);
+
+                            if (File.Exists(oldPath))
+                            {
+                                try
+                                {
+                                    File.Move(oldPath, newPath);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"Nem sikerült áthelyezni a(z) {program.ProgramName} programot!\nHiba: {ex.Message}",
+                                        "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Nincs elég erőforrás a(z) {program.ProgramName} áthelyezésére!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                else if (moveChoice == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            // Számítógép eltávolítása
             _instances.Remove(instance);
-            InstanceContainer.Children.Clear();
+
+            string instanceFolderPath = Path.Combine(_path, instance.Name);
+            if (Directory.Exists(instanceFolderPath))
+            {
+                try
+                {
+                    Directory.Delete(instanceFolderPath, true);
+                    MessageBox.Show($"Törölve: {instanceFolderPath}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Nem sikerült törölni a(z) {instanceFolderPath} mappát!\nHiba: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
             PopulateUI();
         }
 
