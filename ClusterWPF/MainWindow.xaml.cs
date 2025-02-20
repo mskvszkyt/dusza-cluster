@@ -95,7 +95,7 @@ namespace ClusterWPF
             }
             else
             {
-                MessageBox.Show($"The cluster is already loaded.");
+                MessageBox.Show($"Ez a klaszter már be van töltve.");
             }
         }
             
@@ -168,7 +168,7 @@ namespace ClusterWPF
                 });
                 if (failed.Count != 0)
                 {
-                    MessageBox.Show($"The following clusters are already loaded: {string.Join(", ", failed)}");
+                    MessageBox.Show($"A következõ klaszterek már be vannak töltve: {string.Join(", ", failed)}");
                 }
             }
         }
