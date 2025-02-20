@@ -7,20 +7,20 @@
       xmlns:ui="http://schemas.modernwpf.com/2019" 
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddNewComputer">
+      Title="Gép Hozzáadás">
         <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
-            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Add New Computer</Label>
+            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Új gép hozzáadása</Label>
         </Border>
         <ui:SimpleStackPanel Width="400px" Spacing="20" Grid.Row="1" Margin="0 20 0 0">
-                <TextBox ui:ControlHelper.Header="Name:" x:Name="tbNewComputerName"></TextBox>
-                <TextBox ui:ControlHelper.Header="Memory:" x:Name="tbNewComputerMemory"></TextBox>
-                <TextBox ui:ControlHelper.Header="Processor:" x:Name="tbNewComputerProcessor"></TextBox>
-                <Button x:Name="btnAddNewComputer" HorizontalAlignment="Center" Cursor="Hand">Add new computer</Button>
+                <TextBox ui:ControlHelper.Header="Név:" x:Name="tbNewComputerName"></TextBox>
+                <TextBox ui:ControlHelper.Header="Memória(MB):" x:Name="tbNewComputerMemory"></TextBox>
+                <TextBox ui:ControlHelper.Header="Processzor(mMg):" x:Name="tbNewComputerProcessor"></TextBox>
+                <Button x:Name="btnAddNewComputer" HorizontalAlignment="Center" Cursor="Hand">Új gép hozzáadása</Button>
             </ui:SimpleStackPanel>
         </Grid>
 </Page>
