@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.modernwpf.com/2019" 
       xmlns:local="clr-namespace:ClusterWPF.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -16,8 +17,95 @@
         <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
             <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Clusters Management</Label>
         </Border>
-        
-        
-        
+        <ScrollViewer Grid.Row="1">
+            <ui:SimpleStackPanel>
+                <Label Margin="5 20 5 5" FontSize="20" HorizontalAlignment="Center">Merge cluster</Label>
+                <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
+                <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
+                    <ui:SimpleStackPanel Width="200">
+                        <Label HorizontalAlignment="Center">From:</Label>
+                        <ScrollViewer Height="250">
+                            <ListBox x:Name="lbFromCluster" SelectionChanged="lbFromCluster_SelectionChanged"></ListBox>
+                        </ScrollViewer>
+                    </ui:SimpleStackPanel>
+
+                    <Grid Width="100" Height="30" Margin="15 0">
+                        <!-- Right-pointing arrow -->
+                        <Path Stroke="{DynamicResource MahApps.Brushes.Button.Border}" Fill="{DynamicResource MahApps.Brushes.Button.Border}">
+                            <Path.Data>
+                                <!-- Geometry for the arrow -->
+                                <PathGeometry>
+                                    <PathFigure StartPoint="0,15">
+                                        <!-- Start at left-middle -->
+                                        <!-- Line to the tip of the arrow -->
+                                        <LineSegment Point="70,15"/>
+                                        <!-- Horizontal line -->
+                                        <!-- Arrowhead (triangle) -->
+                                        <LineSegment Point="70,5"/>
+                                        <!-- Top of arrowhead -->
+                                        <LineSegment Point="100,15"/>
+                                        <!-- Tip of arrowhead -->
+                                        <LineSegment Point="70,25"/>
+                                        <!-- Bottom of arrowhead -->
+                                        <LineSegment Point="70,15"/>
+                                        <!-- Back to horizontal line -->
+                                    </PathFigure>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                    </Grid>
+
+                    <ui:SimpleStackPanel Width="200">
+                        <Label HorizontalAlignment="Center">To:</Label>
+                        <ScrollViewer Height="250">
+                            <ListBox x:Name="lbToCluster"></ListBox>
+                        </ScrollViewer>
+                    </ui:SimpleStackPanel>
+                </ui:SimpleStackPanel>
+
+                <Button x:Name="btnMerge" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMerge_Click">Merge</Button>
+                
+                <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
+                
+                <Label Margin="5 10 5 10" FontSize="20" HorizontalAlignment="Center">Move Instance</Label>
+                <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
+
+                <Label Margin="0 20 0 5" HorizontalAlignment="Center">Select an Instance on this cluster:</Label>
+                <ComboBox
+                    IsEditable="True"
+                    Width="220"
+                    Margin="10 0 10 0"
+                    x:Name="cbProgramInstances"
+                    HorizontalAlignment="Center"
+                    ui:ControlHelper.PlaceholderText="Search a program Instance..." />
+
+                <Label Margin="0 15 0 5" HorizontalAlignment="Center">Select a cluster to move:</Label>
+                <ScrollViewer Height="250" Width="200">
+                    <ListBox x:Name="lbClustersForInstance"></ListBox>
+                </ScrollViewer>
+                <Button x:Name="btnMoveInstance" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMoveInstance_Click">Move</Button>
+
+                <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
+
+                <Label Margin="5 10 5 10" FontSize="20" HorizontalAlignment="Center">Move PC</Label>
+                <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
+
+                <Label Margin="0 20 0 5" HorizontalAlignment="Center">Select an PC on this cluster:</Label>
+                <ComboBox
+                    IsEditable="True"
+                    Width="220"
+                    Margin="10 0 10 0"
+                    x:Name="cbPCs"
+                    HorizontalAlignment="Center"
+                    ui:ControlHelper.PlaceholderText="Search a PC..." />
+
+                <Label Margin="0 15 0 5" HorizontalAlignment="Center">Select a cluster to move:</Label>
+                <ScrollViewer Height="250" Width="200">
+                    <ListBox x:Name="lbClustersForPC"></ListBox>
+                </ScrollViewer>
+                <Button x:Name="btnMovePC" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMovePC_Click">Move</Button>
+
+            </ui:SimpleStackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

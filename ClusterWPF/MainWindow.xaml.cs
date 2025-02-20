@@ -14,14 +14,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Windows.UI.ViewManagement;
+using ClusterWPF.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace ClusterWPF
 {
     public partial class MainWindow : Window
     {
-        List<Cluster> clusters = new List<Cluster>();
+        public ObservableCollection<Cluster> clusters { get; set; }
         bool _clusterState;
-        Cluster cluster = new Cluster();
+        public Cluster cluster { get; set; }
         string path;
         BindingList<string> clusterNames = new();
 
@@ -64,30 +66,36 @@ namespace ClusterWPF
                     "Stop Program Instance" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
                     "Run program Instance" => new Pages.NewProgramCopy(cluster, path),
-                    "Charts" => new Pages.Charts()
+                    "Charts" => new Pages.Charts(cluster),
+                    "Cluster management" => new Pages.ClustersManagement()
                 };
             }
         }
 
         private void btnAddNewCluster_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (!clusterNames.Contains(tbAddCluster.Text.Split('\\').Last()))
             {
-                path = tbAddCluster.Text;
-                cluster = FileManager.GetClusterRequirements(path);
-                cluster.Instances = FileManager.ReadInstances(path);
-                clusters.Add(cluster);
-                clusterNames.Add(path.Split('\\').Last());
-                _clusterState = true;
-                RefreshCurrentPage();
-                tbAddCluster.Text = string.Empty;
-
-                lbClusterNames.SelectedItem = path.Split('\\').Last();
+                try
+                {
+                    path = tbAddCluster.Text;
+                    cluster = FileManager.GetClusterRequirements(path);
+                    cluster.Instances = FileManager.ReadInstances(path);
+                    clusters.Add(cluster);
+                    clusterNames.Add(path.Split('\\').Last());
+                    RefreshCurrentPage();
+                    tbAddCluster.Text = string.Empty;
+                    lbClusterNames.SelectedItem = path.Split('\\').Last();
+                }
+                catch (Exception exception)
+                {
+                    _clusterState = false;
+                    MessageBox.Show(exception.Message);
+                }
             }
-            catch (Exception exception)
+            else
             {
-                _clusterState = false;
-                MessageBox.Show(exception.Message);
+                MessageBox.Show($"The cluster is already loaded.");
             }
         }
             
@@ -106,7 +114,10 @@ namespace ClusterWPF
                     "Remove Program" => new Pages.RemoveProgram(cluster, path),
                     "Stop Program Copy" => new Pages.StopProgramCopy(cluster, path),
                     "Modify Computer" => new Pages.ModifyComputer(cluster, path),
+
                     "Run program copy" => new Pages.NewProgramCopy(cluster, path),
+                    "Charts" => new Pages.Charts(cluster),
+                    "Cluster management" => new Pages.ClustersManagement(),
                     _ => CurrentPage.Content
                 };
             }
@@ -117,6 +128,51 @@ namespace ClusterWPF
             cluster = clusters.FirstOrDefault(c => c.Path.EndsWith(lbClusterNames.SelectedItem.ToString()));
             path = cluster.Path;
             RefreshCurrentPage();
+        }
+
+        private void btnSelectFolder_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFolderDialog dialog = new OpenFolderDialog
+            {
+                Title = "Select a Folder",
+                Multiselect = true 
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                string[] selectedFolderPath = dialog.FolderNames;
+                List<string> failed = new();
+                Console.WriteLine(selectedFolderPath);
+                selectedFolderPath.ToList().ForEach(currentpath =>
+                {
+                    if (!clusterNames.Contains(currentpath.Split('\\').Last()))
+                    {
+                        try
+                        {
+                                path = currentpath;
+                                cluster = FileManager.GetClusterRequirements(path);
+                                cluster.Instances = FileManager.ReadInstances(path);
+                                clusters.Add(cluster);
+                                clusterNames.Add(path.Split('\\').Last());
+                                RefreshCurrentPage();
+                                lbClusterNames.SelectedItem = path.Split('\\').Last();
+                        }
+                        catch (Exception exception)
+                        {
+                            _clusterState = false;
+                            MessageBox.Show(exception.Message);
+                        }
+                    }
+                    else
+                    {
+                        failed.Add(currentpath);
+                    }
+                });
+                if (failed.Count != 0)
+                {
+                    MessageBox.Show($"The following clusters are already loaded: {string.Join(", ", failed)}");
+                }
+            }
         }
     }
 }

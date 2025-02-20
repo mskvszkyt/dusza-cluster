@@ -211,7 +211,7 @@ namespace ConsoleApp1
             ScheduledProgram? scheduledProgram = cluster.ScheduledPrograms.FirstOrDefault(sp => sp.ProgramName == programName);
             if (scheduledProgram == null)
             {
-                ShowError("HIBA: NEM FUT ILYEN PROGRAM");
+                ShowError("HIBA: Nem fut ilyen program");
                 return;
             }
             cluster.ScheduledPrograms.Remove(scheduledProgram);
@@ -243,44 +243,6 @@ namespace ConsoleApp1
             Console.WriteLine(anyDeleted
                 ? "Sikeresen törölve a program és minden példánya!"
                 : "Figyelem: A program nem futott egyetlen gépen sem.");
-        }
-
-        public static void StopProgram(Cluster cluster, string path)
-        {
-            Console.WriteLine("Válassza ki a törölni kívánt programot");
-            var allPrograms = cluster.Instances
-                .SelectMany(i => i.Programs)
-                .Select(p => new {
-                    Id = p.ProgramName.Split('-').Last(),
-                    FullName = p.ProgramName
-                })
-                .ToList();
-
-            allPrograms.ForEach(p => Console.WriteLine($" {p.Id} - {p.FullName}"));
-            Console.WriteLine("Adja meg az egyedi azonosítóját a programnak!");
-            string programId = Console.ReadLine()?.Trim();
-
-            foreach (Instance instance in cluster.Instances)
-            {
-                ProgInstance? program = instance.Programs.FirstOrDefault(p =>
-                    p.ProgramName.EndsWith($"-{programId}", StringComparison.Ordinal)
-                );
-
-                if (program != null)
-                {
-                    // Delete physical file
-                    string filePath = Path.Combine(path, instance.Name, program.ProgramName);
-                    if (File.Exists(filePath)) File.Delete(filePath);
-
-                    // Remove from memory
-                    instance.Programs.Remove(program);
-
-                    Console.WriteLine($"Sikeresen törölve: {program.ProgramName}");
-                    return;
-                }
-            }
-
-            ShowError("HIBA: NEM TALÁLHATÓ PROGRAM");
         }
 
         public static void ModifyClusterStartupSettings(Cluster cluster, string path)

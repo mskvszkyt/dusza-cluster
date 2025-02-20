@@ -32,11 +32,9 @@ namespace ClusterWPF.Pages
             _programCopies = new ObservableCollection<dynamic>(_cluster.Instances
                 .SelectMany(i => i.Programs)
                 .Where(i => i.IsRunning)
-                .Select(p => new
-                {
-                    Id = p.ProgramName.Split('-').Last(),
-                    FullName = p.ProgramName
-                })
+                .Select(p =>
+                    p.ProgramName
+                )
                 .ToList());
 
             cbProgramInstances.ItemsSource = _programCopies;
@@ -54,7 +52,7 @@ namespace ClusterWPF.Pages
             }
 
             // Extract the program name from the selected item
-            string programName = selectedProgramCopy.FullName;
+            string programName = selectedProgramCopy;
 
             foreach (var instance in _cluster.Instances)
             {

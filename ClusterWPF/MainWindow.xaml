@@ -17,44 +17,22 @@
         <TabControl SelectionChanged="TabControl_SelectionChanged" x:Name="tcPages">
             <TabControl.Items>
                 <TabItem Header="Monitor" Cursor="Hand">
-                    <ui:TabItemHelper.Icon>
-                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/cmd.png" ShowAsMonochrome="False" />
-                    </ui:TabItemHelper.Icon>
                 </TabItem>
                 <TabItem Header="Add new computer" Cursor="Hand">
-                    <ui:TabItemHelper.Icon>
-                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/powershell.png" ShowAsMonochrome="False" />
-                    </ui:TabItemHelper.Icon>
                 </TabItem>
                 <TabItem Header="Remove Computer" Cursor="Hand">
-                    <ui:TabItemHelper.Icon>
-                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
-                    </ui:TabItemHelper.Icon>
                 </TabItem>
                 <TabItem Header="Modify Computer" Cursor="Hand">
-                    <ui:TabItemHelper.Icon>
-                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
-                    </ui:TabItemHelper.Icon>
                 </TabItem>
                 <TabItem Header="Remove Program" Cursor="Hand">
-                    <ui:TabItemHelper.Icon>
-                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
-                    </ui:TabItemHelper.Icon>
                 </TabItem>
                 <TabItem Header="Stop Program Instance" Cursor="Hand">
-                    <ui:TabItemHelper.Icon>
-                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
-                    </ui:TabItemHelper.Icon>
                 </TabItem>
                 <TabItem Header="Run program Instance" Cursor="Hand">
-                    <ui:TabItemHelper.Icon>
-                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/linux.png" ShowAsMonochrome="False" />
-                    </ui:TabItemHelper.Icon>
                 </TabItem>
                 <TabItem Header="Charts" Cursor="Hand">
-                    <ui:TabItemHelper.Icon>
-                        <ui:BitmapIcon UriSource="/Assets/TabViewIcons/cmd.png" ShowAsMonochrome="False" />
-                    </ui:TabItemHelper.Icon>
+                </TabItem>
+                <TabItem Header="Cluster management" Cursor="Hand">
                 </TabItem>
             </TabControl.Items>
         </TabControl>
@@ -80,7 +58,7 @@
                 </ui:SimpleStackPanel>
                 <ui:SimpleStackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
                     <Label></Label>
-                    <Button Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand">Select folder</Button>
+                    <Button Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand" x:Name="btnSelectFolder" Click="btnSelectFolder_Click">Select folder</Button>
                     <TextBox
                         Margin="10 0 10 0"
                         ui:ControlHelper.PlaceholderText="PATH..."

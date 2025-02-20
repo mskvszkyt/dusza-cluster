@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Images\PC.png" />
+    <None Remove="Pages\Images\PC2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="LiveChartsCore" Version="2.0.0-rc5.1" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView" Version="2.0.0-rc5.1" />
@@ -16,6 +21,15 @@
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Pages\Images\PC.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\PC2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
