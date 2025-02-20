@@ -30,6 +30,13 @@ namespace ClusterWPF.Pages
         {
             InitializeComponent();
             mainWindow = (MainWindow)Application.Current.MainWindow;
+            ObservableCollection<string> clusterNames = new(mainWindow.clusters.Select(c => c.Path.Split('\\').Last()));
+            lbToCluster.ItemsSource = clusterNames;
+            lbFromCluster.ItemsSource = clusterNames;
+            lbClustersForInstance.ItemsSource = clusterNames.Where(cn => cn != mainWindow.cluster.Path.Split('\\').Last());
+            lbClustersForPC.ItemsSource = clusterNames.Where(cn => cn != mainWindow.cluster.Path.Split('\\').Last());
+            cbProgramInstances.ItemsSource = mainWindow.cluster?.Instances.SelectMany(c => c.Programs.Select(p => p.ProgramName));
+            cbPCs.ItemsSource = mainWindow.cluster?.Instances.Select(c => c.Name);
         }
 
         public Cluster MergeClusters(Cluster cluster1, Cluster cluster2, string mergedClusterPath)
@@ -37,7 +44,7 @@ namespace ClusterWPF.Pages
             if (!ValidateMerge(cluster1, cluster2, mergedClusterPath))
                 throw new InvalidOperationException("Merge validation failed");
 
-            var mergedCluster = new Cluster
+            Cluster mergedCluster = new Cluster
             {
                 Path = mergedClusterPath,
                 Instances = new(),
@@ -161,6 +168,10 @@ namespace ClusterWPF.Pages
 
         public void TransferProgramToCluster(ProgInstance program, Cluster sourceCluster, Cluster targetCluster)
         {
+            if (sourceCluster.Path == targetCluster.Path)
+            {
+                MessageBox.Show("Válassz ki egy különböző");
+            }
             Instance? sourceComputer = sourceCluster.Instances.FirstOrDefault(c => c.Programs.Any(p => p.ProgramName == program.ProgramName));
             if (sourceComputer == null)
             {
@@ -327,19 +338,26 @@ namespace ClusterWPF.Pages
 
         private void btnMerge_Click(object sender, RoutedEventArgs e)
         {
-            Cluster? cluster1 = mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbFromCluster.SelectedItem);
-            Cluster? cluster2 = mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbToCluster.SelectedItem);
+            Cluster? cluster1 = mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbFromCluster.SelectedItem.ToString());
+            Cluster? cluster2 = mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbToCluster.SelectedItem.ToString());
             if (cluster1 == null || cluster2 == null)
             {
                 MessageBox.Show("Válassz egy klasztert előbb!");
                 return;
             }
-            MergeClusters(cluster1, cluster2, Path.GetDirectoryName(cluster2.Path));
+            try
+            {
+                MergeClusters(cluster1, cluster2, Path.GetDirectoryName(cluster2.Path));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnMoveInstance_Click(object sender, RoutedEventArgs e)
         {
-            if (mainWindow.cluster == null)
+            if (mainWindow.cluster == null || lbClustersForInstance.SelectedItem == null)
             {
                 MessageBox.Show("Válassz ki egy klasztert előbb!");
                 return;
@@ -350,12 +368,12 @@ namespace ClusterWPF.Pages
                 return;
             }
             ProgInstance program = mainWindow.cluster.Instances.SelectMany(c => c.Programs).First(p => p.ProgramName == cbProgramInstances.SelectedItem.ToString());
-            TransferProgramToCluster(program, mainWindow.cluster, mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbClustersForInstance.SelectedItem));
+            TransferProgramToCluster(program, mainWindow.cluster, mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbClustersForInstance.SelectedItem.ToString()));
         }
 
         private void btnMovePC_Click(object sender, RoutedEventArgs e)
         {
-            if (mainWindow.cluster == null)
+            if (mainWindow.cluster == null || lbClustersForPC.SelectedItem == null)
             {
                 MessageBox.Show("Válassz ki egy klasztert előbb!");
                 return;
@@ -365,7 +383,7 @@ namespace ClusterWPF.Pages
                 MessageBox.Show("Válassz ki egy gépet előbb!");
                 return;
             }
-            TransferComputerToCluster(cbPCs.SelectedItem.ToString(), mainWindow.cluster, mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbClustersForPC.SelectedItem));
+            TransferComputerToCluster(cbPCs.SelectedItem.ToString(), mainWindow.cluster, mainWindow.clusters.First(c => c.Path.Split('\\').Last() == lbClustersForPC.SelectedItem.ToString()));
         }
     }
 }

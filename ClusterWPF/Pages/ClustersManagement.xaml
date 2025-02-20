@@ -25,7 +25,7 @@
                     <ui:SimpleStackPanel Width="200">
                         <Label HorizontalAlignment="Center">From:</Label>
                         <ScrollViewer Height="250">
-                            <ListBox x:Name="lbFromCluster" SelectionChanged="lbFromCluster_SelectionChanged"></ListBox>
+                            <ListBox x:Name="lbFromCluster"></ListBox>
                         </ScrollViewer>
                     </ui:SimpleStackPanel>
 

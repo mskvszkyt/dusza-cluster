@@ -21,9 +21,9 @@ namespace ClusterWPF
 {
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Cluster> clusters { get; set; }
-        bool _clusterState;
-        public Cluster cluster { get; set; }
+        public ObservableCollection<Cluster> clusters { get; set; } = new();
+        bool _clusterState = false;
+        public Cluster cluster { get; set; } = new();
         string path;
         BindingList<string> clusterNames = new();
 
