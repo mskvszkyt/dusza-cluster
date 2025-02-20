@@ -55,7 +55,7 @@ namespace ClusterWPF.Pages
                 var expander = new Expander
                 {
                     Padding = new Thickness(10),
-                    Header = $"ProgramName: {group.Key}",
+                    Header = $"Programnév: {group.Key}",
                     ExpandDirection = ExpandDirection.Down,
                     IsExpanded = false,
                     FontSize = 16,
@@ -72,7 +72,7 @@ namespace ClusterWPF.Pages
 
                     stackPanel.Children.Add(new Label { Content = item.program.ProgramName.Split("-")[1] });
                     stackPanel.Children.Add(new Label { Content = ":", Margin = new Thickness(10, 0, 10, 0) });
-                    stackPanel.Children.Add(new Label { Content = item.program.IsRunning ? "Active" : "Inactive", Foreground = statusColor });
+                    stackPanel.Children.Add(new Label { Content = item.program.IsRunning ? "Aktív" : "Inaktív", Foreground = statusColor });
 
                     listBoxItem.Content = stackPanel;
                     listBox.Items.Add(listBoxItem);
@@ -91,12 +91,12 @@ namespace ClusterWPF.Pages
 
             if (_clusterState)
             {
-                lbClusterStatus.Content = "Correct";
+                lbClusterStatus.Content = "Megfelelő";
                 lbClusterStatus.Foreground = Brushes.Green;
 
             } else
             {
-                lbClusterStatus.Content = "Incorrect";
+                lbClusterStatus.Content = "Inkorrekt";
                 lbClusterStatus.Foreground = Brushes.Red;
             }
 
@@ -114,7 +114,7 @@ namespace ClusterWPF.Pages
                 var expander = new Expander
                 {
                     Padding = new Thickness(10),
-                    Header = $"ProgramName: {group.Key}",
+                    Header = $"Programnév: {group.Key}",
                     ExpandDirection = ExpandDirection.Down,
                     IsExpanded = false,
                     FontSize = 16,
@@ -132,7 +132,7 @@ namespace ClusterWPF.Pages
 
                     stackPanel.Children.Add(new Label { Content = item.program.ProgramName.Split("-")[1] });
                     stackPanel.Children.Add(new Label { Content = ":", Margin = new Thickness(10, 0, 10, 0) });
-                    stackPanel.Children.Add(new Label { Content = item.program.IsRunning ? "Active" : "Inactive", Foreground = statusColor });
+                    stackPanel.Children.Add(new Label { Content = item.program.IsRunning ? "Aktív" : "Inaktív", Foreground = statusColor });
 
                     listBoxItem.Content = stackPanel;
                     listBox.Items.Add(listBoxItem);
@@ -146,9 +146,9 @@ namespace ClusterWPF.Pages
             var programList = _instances.SelectMany(instance => instance.Programs.Where(x => x.IsRunning == true).Select(program => new
             {
                 Name = program.ProgramName,
-                RunningOn = $"Running on: {instance.Name}",
-                MemoryUsage = $"Memory usage: {program.MemoryUsage}MB",
-                ProcessorUsage = $"Processor usage: {program.ProcessorUsage}mm"
+                RunningOn = $"Futtató gép: {instance.Name}",
+                MemoryUsage = $"Memória használat: {program.MemoryUsage}MB",
+                ProcessorUsage = $"Processzor használat: {program.ProcessorUsage}mMg"
             })).ToList();
 
             // Set the ItemsSource of the ItemsControl to the list of program details
@@ -212,7 +212,7 @@ namespace ClusterWPF.Pages
                 // Memory Usage
                 stackPanel.Children.Add(new Label
                 {
-                    Content = "Memory Usage:",
+                    Content = "Memória használat:",
                     Padding = new Thickness(5)
                 });
 
@@ -245,7 +245,7 @@ namespace ClusterWPF.Pages
                 // Processor Usage
                 stackPanel.Children.Add(new Label
                 {
-                    Content = "Processor Usage:",
+                    Content = "Processzor használat:",
                     Padding = new Thickness(5)
                 });
 
@@ -286,7 +286,7 @@ namespace ClusterWPF.Pages
                 // Remove Button
                 var removeButton = new Button
                 {
-                    Content = "Remove",
+                    Content = "Törlés",
                     HorizontalAlignment = HorizontalAlignment.Center,
                     Width = 200,
                     Margin = new Thickness(5),
@@ -393,9 +393,9 @@ namespace ClusterWPF.Pages
                 {
                     Name = program.ProgramName, // Get the instance name
                     ProgramName = _instances.FirstOrDefault(instance => instance.Programs.Contains(program))?.Name.ToLower(),
-                    RunningOn = $"Running on: {_instances.FirstOrDefault(instance => instance.Programs.Contains(program))?.Name}",
-                    MemoryUsage = $"Memory usage: {program.MemoryUsage}MB",
-                    ProcessorUsage = $"Processor usage: {program.ProcessorUsage}mm"
+                    RunningOn = $"Futtató gép: {_instances.FirstOrDefault(instance => instance.Programs.Contains(program))?.Name}",
+                    MemoryUsage = $"Memória használat: {program.MemoryUsage}MB",
+                    ProcessorUsage = $"Processzor használat: {program.ProcessorUsage}mm"
                 }).ToList();
 
             // Update the ItemsControl with filtered results

@@ -40,7 +40,7 @@ namespace ClusterWPF.Pages
         {
             if (cbPrograms.SelectedItem == null)
             {
-                MessageBox.Show("Please select a program to remove.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Válassz ki az eltávolítandó programot.", "Figyelmeztetés", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -61,7 +61,7 @@ namespace ClusterWPF.Pages
             var scheduledProgram = cluster.ScheduledPrograms.FirstOrDefault(sp => sp.ProgramName == programName);
             if (scheduledProgram == null)
             {
-                ShowError("Error: Program not found");
+                ShowError("Hiba: Nem található program.");
                 return;
             }
             cluster.ScheduledPrograms.Remove(scheduledProgram);
@@ -91,14 +91,14 @@ namespace ClusterWPF.Pages
             FileManager.WriteCluster(path, cluster);
 
             MessageBox.Show(anyDeleted
-                ? "Program and all its instances have been successfully removed."
-                : "Warning: The program was not running on any machine.",
+                ? "A program és minden példánya eltávolításra került."
+                : "Figyelmeztetés: A program nem futott egyik gépen sem.",
                 "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private static void ShowError(string message)
         {
-            MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(message, "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

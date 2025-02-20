@@ -47,7 +47,7 @@ namespace ClusterWPF.Pages
 
             if (selectedProgramCopy == null)
             {
-                MessageBox.Show("Please select a program copy to stop.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Válaszd ki a leállítandó programpéldányt.", "Figyelmeztetés", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -67,13 +67,13 @@ namespace ClusterWPF.Pages
                     // Remove the program copy from the instance's list
                     instance.Programs.Remove(programCopy);
 
-                    MessageBox.Show($"Successfully stopped program copy: {programName}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Példány sikeresen leállítva: {programName}", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
                     LoadProgramCopies(); // Reload the program copies list
                     return;
                 }
             }
 
-            MessageBox.Show("Error: Program copy not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show("Hiba: A programpéldány nem található.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

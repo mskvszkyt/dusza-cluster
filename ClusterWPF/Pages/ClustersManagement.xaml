@@ -7,48 +7,46 @@
       xmlns:local="clr-namespace:ClusterWPF.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClustersManagement">
+      Title="Klaszter Kezelés">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Grid.ColumnSpan="2">
-            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Clusters Management</Label>
+            <Label HorizontalAlignment="Center" Padding="10" FontSize="20">Klaszter kezelés</Label>
         </Border>
         <ScrollViewer Grid.Row="1">
             <ui:SimpleStackPanel>
-                <Label Margin="5 20 5 5" FontSize="20" HorizontalAlignment="Center">Merge cluster</Label>
+                <Label Margin="5 20 5 5" FontSize="20" HorizontalAlignment="Center">Klaszterek egyesítése</Label>
                 <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
                 <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
                     <ui:SimpleStackPanel Width="200">
-                        <Label HorizontalAlignment="Center">From:</Label>
+                        <Label HorizontalAlignment="Center">Innen:</Label>
                         <ScrollViewer Height="250">
                             <ListBox x:Name="lbFromCluster"></ListBox>
                         </ScrollViewer>
                     </ui:SimpleStackPanel>
 
                     <Grid Width="100" Height="30" Margin="15 0">
-                        <!-- Right-pointing arrow -->
+                        <!-- Jobbra mutató nyíl -->
                         <Path Stroke="{DynamicResource MahApps.Brushes.Button.Border}" Fill="{DynamicResource MahApps.Brushes.Button.Border}">
                             <Path.Data>
-                                <!-- Geometry for the arrow -->
+                                <!-- Nyíl geometriája -->
                                 <PathGeometry>
                                     <PathFigure StartPoint="0,15">
-                                        <!-- Start at left-middle -->
-                                        <!-- Line to the tip of the arrow -->
+                                        <!-- Bal középső kezdőpont -->
                                         <LineSegment Point="70,15"/>
-                                        <!-- Horizontal line -->
-                                        <!-- Arrowhead (triangle) -->
+                                        <!-- Vízszintes vonal -->
                                         <LineSegment Point="70,5"/>
-                                        <!-- Top of arrowhead -->
+                                        <!-- Nyílfej (háromszög) teteje -->
                                         <LineSegment Point="100,15"/>
-                                        <!-- Tip of arrowhead -->
+                                        <!-- Nyíl csúcsa -->
                                         <LineSegment Point="70,25"/>
-                                        <!-- Bottom of arrowhead -->
+                                        <!-- Nyílfej alja -->
                                         <LineSegment Point="70,15"/>
-                                        <!-- Back to horizontal line -->
+                                        <!-- Vissza a vízszintes vonalhoz -->
                                     </PathFigure>
                                 </PathGeometry>
                             </Path.Data>
@@ -56,54 +54,54 @@
                     </Grid>
 
                     <ui:SimpleStackPanel Width="200">
-                        <Label HorizontalAlignment="Center">To:</Label>
+                        <Label HorizontalAlignment="Center">Ide:</Label>
                         <ScrollViewer Height="250">
                             <ListBox x:Name="lbToCluster"></ListBox>
                         </ScrollViewer>
                     </ui:SimpleStackPanel>
                 </ui:SimpleStackPanel>
 
-                <Button x:Name="btnMerge" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMerge_Click">Merge</Button>
-                
-                <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
-                
-                <Label Margin="5 10 5 10" FontSize="20" HorizontalAlignment="Center">Move Instance</Label>
+                <Button x:Name="btnMerge" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMerge_Click">Egyesítés</Button>
+
                 <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
 
-                <Label Margin="0 20 0 5" HorizontalAlignment="Center">Select an Instance on this cluster:</Label>
+                <Label Margin="5 10 5 10" FontSize="20" HorizontalAlignment="Center">Programpéldány áthelyezése</Label>
+                <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
+
+                <Label Margin="0 20 0 5" HorizontalAlignment="Center">Válasszon egy programpéldányt ebből a klaszterből:</Label>
                 <ComboBox
                     IsEditable="True"
                     Width="220"
                     Margin="10 0 10 0"
                     x:Name="cbProgramInstances"
                     HorizontalAlignment="Center"
-                    ui:ControlHelper.PlaceholderText="Search a program Instance..." />
+                    ui:ControlHelper.PlaceholderText="Példány keresése..." />
 
-                <Label Margin="0 15 0 5" HorizontalAlignment="Center">Select a cluster to move:</Label>
+                <Label Margin="0 15 0 5" HorizontalAlignment="Center">Válasszon egy célklasztert:</Label>
                 <ScrollViewer Height="250" Width="200">
                     <ListBox x:Name="lbClustersForInstance"></ListBox>
                 </ScrollViewer>
-                <Button x:Name="btnMoveInstance" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMoveInstance_Click">Move</Button>
+                <Button x:Name="btnMoveInstance" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMoveInstance_Click">Áthelyezés</Button>
 
                 <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
 
-                <Label Margin="5 10 5 10" FontSize="20" HorizontalAlignment="Center">Move PC</Label>
+                <Label Margin="5 10 5 10" FontSize="20" HorizontalAlignment="Center">Számítógép áthelyezése</Label>
                 <Border Margin="10 5" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" BorderThickness="1"></Border>
 
-                <Label Margin="0 20 0 5" HorizontalAlignment="Center">Select an PC on this cluster:</Label>
+                <Label Margin="0 20 0 5" HorizontalAlignment="Center">Válasszon egy számítógépet ebből a klaszterből:</Label>
                 <ComboBox
                     IsEditable="True"
                     Width="220"
                     Margin="10 0 10 0"
                     x:Name="cbPCs"
                     HorizontalAlignment="Center"
-                    ui:ControlHelper.PlaceholderText="Search a PC..." />
+                    ui:ControlHelper.PlaceholderText="Számítógép keresése..." />
 
-                <Label Margin="0 15 0 5" HorizontalAlignment="Center">Select a cluster to move:</Label>
+                <Label Margin="0 15 0 5" HorizontalAlignment="Center">Válasszon egy célklasztert:</Label>
                 <ScrollViewer Height="250" Width="200">
                     <ListBox x:Name="lbClustersForPC"></ListBox>
                 </ScrollViewer>
-                <Button x:Name="btnMovePC" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMovePC_Click">Move</Button>
+                <Button x:Name="btnMovePC" Cursor="Hand" Margin="0 20" Padding="40 5" HorizontalAlignment="Center" Click="btnMovePC_Click">Áthelyezés</Button>
 
             </ui:SimpleStackPanel>
         </ScrollViewer>

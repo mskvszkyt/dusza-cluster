@@ -30,7 +30,7 @@
                 </TabItem>
                 <TabItem Header="Program futtatása" Cursor="Hand">
                 </TabItem>
-                <TabItem Header="Grafikonok" Cursor="Hand">
+                <TabItem Header="Diagramok" Cursor="Hand">
                 </TabItem>
                 <TabItem Header="Klaszter műveletek" Cursor="Hand">
                 </TabItem>
@@ -58,7 +58,7 @@
                 </ui:SimpleStackPanel>
                 <ui:SimpleStackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
                     <Label></Label>
-                    <Button Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand" x:Name="btnSelectFolder" Click="btnSelectFolder_Click">Válassz mappát</Button>
+                    <Button Margin="10 0 10 0" HorizontalAlignment="Center" Cursor="Hand" x:Name="btnSelectFolder" Click="btnSelectFolder_Click">Tallózás</Button>
                     <TextBox
                         Margin="10 0 10 0"
                         ui:ControlHelper.PlaceholderText="Elérési út..."
