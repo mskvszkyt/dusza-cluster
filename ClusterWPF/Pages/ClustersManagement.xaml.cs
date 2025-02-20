@@ -42,7 +42,7 @@ namespace ClusterWPF.Pages
         public Cluster MergeClusters(Cluster cluster1, Cluster cluster2, string mergedClusterPath)
         {
             if (!ValidateMerge(cluster1, cluster2, mergedClusterPath))
-                throw new InvalidOperationException("Merge validation failed");
+                throw new InvalidOperationException("Hibás egyesítési kísérlet.");
 
             Cluster mergedCluster = new Cluster
             {
@@ -148,10 +148,10 @@ namespace ClusterWPF.Pages
                 string targetDir = Path.Combine(targetPath, instance.Name);
 
                 if (!Directory.Exists(sourceDir))
-                    throw new DirectoryNotFoundException($"Source directory not found: {sourceDir}");
+                    throw new DirectoryNotFoundException($"Forrásmappa nem található: {sourceDir}");
 
                 if (Directory.Exists(targetDir))
-                    throw new IOException($"Duplicate directory: {targetDir}");
+                    throw new IOException($"A mappa már létezik: {targetDir}");
                 
                 Directory.Move(sourceDir, targetDir);
             }
@@ -362,7 +362,7 @@ namespace ClusterWPF.Pages
             
             try
             {
-                string mergePath = Path.Combine(Path.GetDirectoryName(cluster2.Path), $"MergedCluster_{cluster1.Path.Split('\\').Last()}-{cluster2.Path.Split("\\").Last()}-{DateTime.Now}");
+                string mergePath = Path.Combine(Path.GetDirectoryName(cluster2.Path), $"{cluster1.Path.Split('\\').Last()}-{cluster2.Path.Split("\\").Last()}-{DateTime.Now}");
                 MergeClusters(cluster1, cluster2, mergePath);
                 lbFromCluster.ItemsSource = mainWindow.clusters.Select(c => c.Path.Split('\\').Last());
                 lbToCluster.ItemsSource = mainWindow.clusters.Select(c => c.Path.Split('\\').Last());

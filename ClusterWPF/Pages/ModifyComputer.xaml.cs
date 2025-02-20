@@ -65,7 +65,7 @@ namespace ClusterWPF.Pages
         {
             if (dgdatas.SelectedItem is not Instance selectedInstance)
             {
-                MessageBox.Show("Please select a computer to modify.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Válassz ki egy módosítandó gépet.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -85,23 +85,23 @@ namespace ClusterWPF.Pages
                     try
                     {
                         File.WriteAllText(configFilePath, $"{newProcessor}\n{newMemory}");
-                        MessageBox.Show("Computer specifications updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("A gép sikeresen módosítva lett!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Failed to update config file.\nError: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($"Hiba történt a config fájl módosítása során.\nHiba: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Configuration file not found. Please check the instance folder.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Konfigurációs fájl nem található. Ellenőrizd a gép mappáját.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 // Since the ObservableCollection is bound, changes should automatically reflect in the DataGrid
             }
             else
             {
-                MessageBox.Show("Invalid input. Please enter numeric values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Kérjük, érvényes numerikus értékeket adjon meg a processzorhoz és a memóriához.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -15,19 +15,19 @@
             <Button Command="{Binding ToggleSeries0Command}" Margin="8 0" Padding="5" Cursor="Hand">
                 <StackPanel Orientation="Horizontal" Cursor="Hand">
                 <Ellipse Width="10" Height="10" Fill="DeepSkyBlue" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Label Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">Toggle memory usage</Label>
+                    <Label Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">Memória használat</Label>
                 </StackPanel>
             </Button>
             <Button Command="{Binding ToggleSeries1Command}" Margin="8 0" Padding="5" Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
                     <Ellipse Width="10" Height="10" Fill="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Label Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">Toggle processor usage</Label>
+                    <Label Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">Processzor használat</Label>
                 </StackPanel>
             </Button>
             <Button Command="{Binding ToggleSeries2Command}" Margin="8 0" Padding="5" Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
                     <Ellipse Width="10" Height="10" Fill="PaleGreen" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Label Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">Toggle average usage</Label>
+                    <Label Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">Átlagos használat</Label>
                 </StackPanel>
             </Button>
         </StackPanel>
