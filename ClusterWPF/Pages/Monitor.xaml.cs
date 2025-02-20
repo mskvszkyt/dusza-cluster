@@ -181,11 +181,16 @@ namespace ClusterWPF.Pages
                 });
 
                 // PC Image
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri("pack://application:,,,/Pages/Images/PC2.png");
+                bitmap.EndInit();
+
                 stackPanel.Children.Add(new Image
                 {
                     Width = 100,
                     Height = 80,
-                    Source = new BitmapImage(new Uri("Images/PC.png", UriKind.Relative)),
+                    Source = bitmap,
                     RenderTransformOrigin = new System.Windows.Point(0.5, 0.5)
                 });
 

@@ -41,32 +41,6 @@
                 Margin="10"
                 />
             
-            <Label Margin="10">
-                Memory usage:
-            </Label>
-            
-            <mah:RangeSlider Margin="10"
-                             Minimum="0"
-                             Maximum="20" 
-                             TickFrequency="1"
-                             IsSnapToTickEnabled="True"
-                             x:Name="sldMemory"
-                             
-                             />
-            <!--TODO: maximumot kicserélni az elérhető legnagyobb adattal-->
-
-            <Label Margin="10">
-                Processor usage:
-            </Label>
-            
-            <mah:RangeSlider Margin="10"
-                             Minimum="0"
-                             Maximum="20" 
-                             TickFrequency="1"
-                             IsSnapToTickEnabled="True"
-                             x:Name="sldProcessor"
-                             />
-            
             <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}" Margin="0 10 0 10"></Border>
             <Label HorizontalAlignment="Center" Margin="10" FontSize="16">Selected computer's specs:</Label>
             <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
