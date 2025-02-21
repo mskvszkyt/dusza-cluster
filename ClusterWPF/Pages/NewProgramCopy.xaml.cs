@@ -27,6 +27,7 @@ namespace ClusterWPF.Pages
         public NewProgramCopy()
         {
             InitializeComponent();
+            mainWindow = (MainWindow)Application.Current.MainWindow;
             PopulateComboBoxes();
         }
 

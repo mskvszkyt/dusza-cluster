@@ -15,7 +15,7 @@ namespace ClusterWPF.Pages
         public ComputerRemove()
         {
             InitializeComponent();
-            mainWindow.cluster.Instances = mainWindow.cluster.Instances;
+            mainWindow = (MainWindow)Application.Current.MainWindow;
             cbComputers.ItemsSource = mainWindow.cluster.Instances.Select(i => i.Name).ToList();
             btnRemoveComputer.Click += BtnRemoveComputer_Click;
         }
