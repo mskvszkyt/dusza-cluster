@@ -26,7 +26,16 @@ namespace ClusterWPF.Pages
 
         private void BtnAddNewComputer_Click(object sender, RoutedEventArgs e)
         {
+            if (mainWindow.cluster == null)
+            {
+                MessageBox.Show("Előbb válassz ki egy klasztert.");
+            }
             string instanceName = tbNewComputerName.Text;
+            if (mainWindow.clusters.Any(c => c.Instances.Any(i => i.Name == instanceName)))
+            {
+                MessageBox.Show("Már létezik ilyen nevű számítógép.");
+                return;
+            }
             int processor;
             int memory;
 

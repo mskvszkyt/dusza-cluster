@@ -69,7 +69,7 @@
                                 Width="200px">
                     </TextBox>
                     <TextBox
-                        ui:ControlHelper.Header="Instance count: "
+                        ui:ControlHelper.Header="Programpéldányok száma: "
                         ui:ControlHelper.PlaceholderText="..."
                         x:Name="tbInstanceCount"
                         TextAlignment="Center"
