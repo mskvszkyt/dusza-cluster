@@ -76,7 +76,7 @@
                     <Label Margin="5 0 0 0" FontSize="16" x:Name="lbInactiveProcesses" FontWeight="Bold" Foreground="{DynamicResource AccentBrush}">0</Label>
                 </ui:SimpleStackPanel>
 
-                <ui:SimpleStackPanel Orientation="Horizontal">
+                <ui:SimpleStackPanel Orientation="Horizontal" MouseDown="LbClusterStatus_Click" Cursor="Hand">
                     <Label Margin="10 0 0 0" FontSize="16">Klaszter státusz:</Label>
                     <Label Margin="5 0 0 0" FontSize="16" x:Name="lbClusterStatus" FontWeight="Bold" Foreground="Green">Megfelelő</Label>
                 </ui:SimpleStackPanel>

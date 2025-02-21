@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 
 namespace ConsoleApp1
 {
     public static class ProgramManager
     {
-        public static bool ValidateClusterState(Cluster cluster)
+        private static bool hasShownErrors = false;
+
+        public static bool ValidateClusterState(Cluster cluster, bool showErrors, bool showOnce)
         {
             bool clusterValid = true;
+            StringBuilder errorMessages = new StringBuilder();
 
             // 1. Verify program instance counts
             foreach (ScheduledProgram scheduled in cluster.ScheduledPrograms)
@@ -34,18 +38,20 @@ namespace ConsoleApp1
                 if (activeCount < scheduled.InstanceCount)
                 {
                     clusterValid = false;
-                    ShowError($"HIBA: {scheduled.ProgramName}\n" +
-                              $"  Kívánt AKTÍV példányszám: {scheduled.InstanceCount}\n" +
-                              $"  Aktuális AKTÍV: {activeCount}");
+                    errorMessages.AppendLine($"HIBA: {scheduled.ProgramName}")
+                                 .AppendLine($"  Kívánt AKTÍV példányszám: {scheduled.InstanceCount}")
+                                 .AppendLine($"  Aktuális AKTÍV: {activeCount}")
+                                 .AppendLine();
                 }
 
                 // Check maximum total instances
                 if (totalCount > scheduled.InstanceCount)
                 {
                     clusterValid = false;
-                    ShowError($"HIBA: {scheduled.ProgramName}\n" +
-                              $"  Megengedett maximális példányszám: {scheduled.InstanceCount}\n" +
-                              $"  Aktuális összes példány: {totalCount}");
+                    errorMessages.AppendLine($"HIBA: {scheduled.ProgramName}")
+                                 .AppendLine($"  Megengedett maximális példányszám: {scheduled.InstanceCount}")
+                                 .AppendLine($"  Aktuális összes példány: {totalCount}")
+                                 .AppendLine();
                 }
             }
 
@@ -55,25 +61,29 @@ namespace ConsoleApp1
                 int totalProcessor = instance.Programs.Sum(p => p.ProcessorUsage);
                 int totalMemory = instance.Programs.Sum(p => p.MemoryUsage);
 
-                if (totalProcessor > instance.ProcessorCapacity ||
-                    totalMemory > instance.MemoryCapacity)
+                if (totalProcessor > instance.ProcessorCapacity || totalMemory > instance.MemoryCapacity)
                 {
                     clusterValid = false;
-                    ShowError($"HIBA: {instance.Name} erőforrás túlcsordulás\n" +
-                              $"  Processzor: {totalProcessor}/{instance.ProcessorCapacity} milimag\n" +
-                              $"  Memória: {totalMemory}/{instance.MemoryCapacity} MB");
+                    errorMessages.AppendLine($"HIBA: {instance.Name} erőforrás túlcsordulás")
+                                 .AppendLine($"  Processzor: {totalProcessor}/{instance.ProcessorCapacity} milimag")
+                                 .AppendLine($"  Memória: {totalMemory}/{instance.MemoryCapacity} MB")
+                                 .AppendLine();
                 }
             }
 
-            if (clusterValid)
+            if (errorMessages.Length > 0)
             {
-                return true;
+                if (showErrors && (!showOnce || !hasShownErrors))
+                {
+                    ShowError(errorMessages.ToString());
+                    hasShownErrors = true;
+                }
+               
             }
-            else
-            {
-                return false;
-            }
+
+            return clusterValid; 
         }
+
         public static void Monitor(List<Instance> instances)
         {
             foreach (Instance instance in instances)
