@@ -29,7 +29,6 @@ namespace ClusterWPF.Pages
             // Get the program copies from all instances and project them into an anonymous type
             _programCopies = new ObservableCollection<dynamic>(mainWindow.cluster.Instances
                 .SelectMany(i => i.Programs)
-                .Where(i => i.IsRunning)
                 .Select(p =>
                     p.ProgramName
                 )
