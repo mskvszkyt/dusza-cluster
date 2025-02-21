@@ -69,7 +69,7 @@ namespace ConsoleApp1
             }
             else
             {
-                throw   new FileNotFoundException("The cluster file could not be found.");
+                throw   new FileNotFoundException("A klaszter nem található.");
             }
 
             return cluster;

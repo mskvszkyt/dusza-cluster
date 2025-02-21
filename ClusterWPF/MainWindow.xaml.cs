@@ -96,7 +96,7 @@ namespace ClusterWPF
             }
             else
             {
-                MessageBox.Show($"Ez a klaszter mar be van toltve.");
+                MessageBox.Show($"Ez a klaszter már be van töltve.");
             }
         }
             
@@ -132,7 +132,7 @@ namespace ClusterWPF
         {
             OpenFolderDialog dialog = new OpenFolderDialog
             {
-                Title = "Select a Folder",
+                Title = "Tallózás",
                 Multiselect = true 
             };
 
@@ -168,7 +168,7 @@ namespace ClusterWPF
                 });
                 if (failed.Count != 0)
                 {
-                    MessageBox.Show($"A kovetkezo klaszterek mar be vannak toltve: {string.Join(", ", failed)}");
+                    MessageBox.Show($"A következő klaszterek már be vannak toltve: {string.Join(", ", failed)}");
                 }
             }
         }
