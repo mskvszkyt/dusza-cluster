@@ -22,6 +22,10 @@ namespace ClusterWPF.Pages
 
         private void BtnRemoveComputer_Click(object sender, RoutedEventArgs e)
         {
+            if (mainWindow.cluster == null)
+            {
+                MessageBox.Show("Előbb válassz ki egy klasztert.");
+            }
             if (cbComputers.SelectedItem is not string selectedInstanceName)
             {
                 MessageBox.Show("Válassz egy számítógépet az eltávolításhoz!", "Figyelmeztetés", MessageBoxButton.OK, MessageBoxImage.Warning);
