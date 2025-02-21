@@ -14,14 +14,12 @@ namespace ClusterWPF.Pages
     /// </summary>
     public partial class AddNewComputer : Page
     {
-        private Cluster _cluster;
-        private string _path;
+        private MainWindow mainWindow;
 
-        public AddNewComputer(Cluster cluster, string path)
+        public AddNewComputer()
         {
             InitializeComponent();
-            _cluster = cluster;
-            _path = path;
+            mainWindow = (MainWindow)Application.Current.MainWindow;
 
             btnAddNewComputer.Click += BtnAddNewComputer_Click;
         }
@@ -42,9 +40,9 @@ namespace ClusterWPF.Pages
                     MemoryCapacity = memory
                 };
 
-                _cluster.Instances.Add(newInstance);
+                mainWindow.cluster.Instances.Add(newInstance);
 
-                string instancePath = Path.Combine(_path, instanceName);
+                string instancePath = Path.Combine(mainWindow.cluster.Path, instanceName);
                 Directory.CreateDirectory(instancePath);
                 File.WriteAllText(Path.Combine(instancePath, ".szamitogep_config"), $"{processor}\n{memory}");
 

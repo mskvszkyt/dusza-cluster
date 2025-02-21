@@ -10,17 +10,14 @@ namespace ClusterWPF.Pages
 {
     public partial class RemoveProgram : Page
     {
-        private readonly Cluster _cluster;
-        private readonly string _path;
-
         // Use ObservableCollection for dynamic updates
+        private MainWindow mainWindow;
         private ObservableCollection<dynamic> _programs;
 
-        public RemoveProgram(Cluster cluster, string path)
+        public RemoveProgram()
         {
             InitializeComponent();
-            _cluster = cluster;
-            _path = path;
+            mainWindow = (MainWindow)Application.Current.MainWindow;
             LoadPrograms();
 
             btnRemoveProgram.Click += BtnRemoveProgram_Click;
@@ -29,7 +26,7 @@ namespace ClusterWPF.Pages
         private void LoadPrograms()
         {
             // Fetch all scheduled programs and display them in the ListBox
-            _programs = new ObservableCollection<dynamic>(_cluster.ScheduledPrograms
+            _programs = new ObservableCollection<dynamic>(mainWindow.cluster.ScheduledPrograms
                 .Select(p => p.ProgramName)
                 .ToList());
 
@@ -49,7 +46,7 @@ namespace ClusterWPF.Pages
             string programName = selectedProgram;
 
             // Call the method to shut down the program
-            ShutDownProgram(programName, _path, _cluster);
+            ShutDownProgram(programName, mainWindow.cluster.Path, mainWindow.cluster);
 
             // Reload the list of programs after removal
             LoadPrograms();

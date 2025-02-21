@@ -12,18 +12,16 @@ namespace ClusterWPF.Pages
 {
     public partial class ModifyComputer : Page
     {
-        private Cluster _cluster;
-        private string _clusterPath;
+        private MainWindow mainWindow;
         private ObservableCollection<Instance> _allInstances;
 
-        public ModifyComputer(Cluster cluster, string clusterPath)
+        public ModifyComputer()
         {
             InitializeComponent();
-            _cluster = cluster;
-            _clusterPath = clusterPath;
+            mainWindow = (MainWindow)Application.Current.MainWindow;
 
             // Initialize the ObservableCollection with the Instances
-            _allInstances = new ObservableCollection<Instance>(_cluster.Instances);
+            _allInstances = new ObservableCollection<Instance>(mainWindow.cluster.Instances);
 
             // Bind the DataGrid to the ObservableCollection
             dgdatas.ItemsSource = _allInstances;
@@ -77,7 +75,7 @@ namespace ClusterWPF.Pages
                 selectedInstance.ProcessorCapacity = newProcessor;
 
                 // Update the .szamitogep_config file
-                string instancePath = Path.Combine(_clusterPath, selectedInstance.Name);
+                string instancePath = Path.Combine(mainWindow.cluster.Path, selectedInstance.Name);
                 string configFilePath = Path.Combine(instancePath, ".szamitogep_config");
 
                 if (File.Exists(configFilePath))

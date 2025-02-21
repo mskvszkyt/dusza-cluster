@@ -10,17 +10,15 @@ namespace ClusterWPF.Pages
 {
     public partial class StopProgramCopy : Page
     {
-        private readonly Cluster _cluster;
-        private readonly string _path;
+        private MainWindow mainWindow;
 
         // ObservableCollection for dynamic updates
         private ObservableCollection<dynamic> _programCopies;
 
-        public StopProgramCopy(Cluster cluster, string path)
+        public StopProgramCopy()
         {
             InitializeComponent();
-            _cluster = cluster;
-            _path = path;
+            mainWindow = (MainWindow)Application.Current.MainWindow;
             LoadProgramCopies();
 
             btnRemoveProgramCopy.Click += BtnRemoveProgramCopy_Click;
@@ -29,7 +27,7 @@ namespace ClusterWPF.Pages
         private void LoadProgramCopies()
         {
             // Get the program copies from all instances and project them into an anonymous type
-            _programCopies = new ObservableCollection<dynamic>(_cluster.Instances
+            _programCopies = new ObservableCollection<dynamic>(mainWindow.cluster.Instances
                 .SelectMany(i => i.Programs)
                 .Where(i => i.IsRunning)
                 .Select(p =>
@@ -54,14 +52,14 @@ namespace ClusterWPF.Pages
             // Extract the program name from the selected item
             string programName = selectedProgramCopy;
 
-            foreach (var instance in _cluster.Instances)
+            foreach (var instance in mainWindow.cluster.Instances)
             {
                 var programCopy = instance.Programs.FirstOrDefault(p => p.ProgramName == programName);
 
                 if (programCopy != null)
                 {
                     // Delete the physical file
-                    string filePath = Path.Combine(_path, instance.Name, programName);
+                    string filePath = Path.Combine(mainWindow.cluster.Path, instance.Name, programName);
                     if (File.Exists(filePath)) File.Delete(filePath);
 
                     // Remove the program copy from the instance's list

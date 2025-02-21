@@ -10,17 +10,13 @@ namespace ClusterWPF.Pages
 {
     public partial class ComputerRemove : Page
     {
-        private Cluster _cluster;
-        private List<Instance> _allInstances;
-        private readonly string _clusterPath;
+        private MainWindow mainWindow;
 
-        public ComputerRemove(Cluster cluster, string clusterPath)
+        public ComputerRemove()
         {
             InitializeComponent();
-            _cluster = cluster;
-            _clusterPath = clusterPath;
-            _allInstances = _cluster.Instances.ToList();
-            cbComputers.ItemsSource = _allInstances.Select(i => i.Name).ToList();
+            mainWindow.cluster.Instances = mainWindow.cluster.Instances;
+            cbComputers.ItemsSource = mainWindow.cluster.Instances.Select(i => i.Name).ToList();
             btnRemoveComputer.Click += BtnRemoveComputer_Click;
         }
 
@@ -32,7 +28,7 @@ namespace ClusterWPF.Pages
                 return;
             }
 
-            var instanceToRemove = _cluster.Instances.FirstOrDefault(i => i.Name == selectedInstanceName);
+            var instanceToRemove = mainWindow.cluster.Instances.FirstOrDefault(i => i.Name == selectedInstanceName);
             if (instanceToRemove == null) return;
 
             if (instanceToRemove.Programs.Any())
@@ -45,7 +41,7 @@ namespace ClusterWPF.Pages
 
                 if (moveChoice == MessageBoxResult.Yes)
                 {
-                    var availableInstances = _cluster.Instances.Where(i => i != instanceToRemove).ToList();
+                    var availableInstances = mainWindow.cluster.Instances.Where(i => i != instanceToRemove).ToList();
 
                     if (!availableInstances.Any())
                     {
@@ -65,8 +61,8 @@ namespace ClusterWPF.Pages
                             instanceToRemove.Programs.Remove(program);
 
                             // Programfájl áthelyezése
-                            string oldPath = Path.Combine(_clusterPath, instanceToRemove.Name, program.ProgramName);
-                            string newPath = Path.Combine(_clusterPath, targetInstance.Name, program.ProgramName);
+                            string oldPath = Path.Combine(mainWindow.cluster.Path, instanceToRemove.Name, program.ProgramName);
+                            string newPath = Path.Combine(mainWindow.cluster.Path, targetInstance.Name, program.ProgramName);
 
                             if (File.Exists(oldPath))
                             {
@@ -94,9 +90,9 @@ namespace ClusterWPF.Pages
             }
 
             // Számítógép eltávolítása
-            _cluster.Instances.Remove(instanceToRemove);
+            mainWindow.cluster.Instances.Remove(instanceToRemove);
 
-            string instanceFolderPath = Path.Combine(_clusterPath, instanceToRemove.Name);
+            string instanceFolderPath = Path.Combine(mainWindow.cluster.Path, instanceToRemove.Name);
             if (Directory.Exists(instanceFolderPath))
             {
                 try
@@ -111,22 +107,22 @@ namespace ClusterWPF.Pages
             }
 
             // Üres cluster mappa törlése, ha szükséges
-            if (Directory.Exists(_clusterPath) && !Directory.EnumerateFileSystemEntries(_clusterPath).Any())
+            if (Directory.Exists(mainWindow.cluster.Path) && !Directory.EnumerateFileSystemEntries(mainWindow.cluster.Path).Any())
             {
                 try
                 {
-                    Directory.Delete(_clusterPath);
-                    MessageBox.Show($"Törölve: {_clusterPath} (üres klaszter mappa)");
+                    Directory.Delete(mainWindow.cluster.Path);
+                    MessageBox.Show($"Törölve: {mainWindow.cluster.Path} (üres klaszter mappa)");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Nem sikerült törölni a klaszter mappát {_clusterPath}!\nHiba: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Nem sikerült törölni a klaszter mappát {mainWindow.cluster.Path}!\nHiba: {ex.Message}", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 
             // Lista frissítése
-            _allInstances = _cluster.Instances.ToList();
-            cbComputers.ItemsSource = _allInstances.Select(i => i.Name).ToList();
+            mainWindow.cluster.Instances = mainWindow.cluster.Instances.ToList();
+            cbComputers.ItemsSource = mainWindow.cluster.Instances.Select(i => i.Name).ToList();
         }
     }
 }

@@ -20,39 +20,36 @@ namespace ClusterWPF.Pages
 {
     public partial class Monitor : Page
     {
-        private Cluster _cluster;
-        private List<Instance> _instances;
+        private MainWindow mainWindow = new MainWindow();
         bool _clusterState = false;
-        private string _path;
 
-        public Monitor(Cluster cluster, string path)
+        public Monitor()
         {
-            _cluster = cluster;
-            _instances = cluster.Instances;
-            _path = path;
             InitializeComponent();
-            _clusterState = ProgramManager.ValidateClusterState(cluster, true,true);
+            mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.cluster.Instances = mainWindow.cluster.Instances;
+            _clusterState = ProgramManager.ValidateClusterState(mainWindow.cluster, true,true);
             PopulateUI();
             PopulateStatistics();
             PopulateSearchComboBox();
             cbSelect.SelectionChanged += ComboBox_SelectionChanged;
-            if (path != null)
+            if (mainWindow.cluster.Path != null)
             {
-               lbMonitorName.Content = path.TrimEnd('\\').Split('\\').Last();
+               lbMonitorName.Content = mainWindow.cluster.Path.TrimEnd('\\').Split('\\').Last();
             }
             
         }
 
         private void LbClusterStatus_Click(object sender, MouseButtonEventArgs e)
         {
-            bool isClusterValid = ProgramManager.ValidateClusterState(_cluster, true, false);
+            bool isClusterValid = ProgramManager.ValidateClusterState(mainWindow.cluster, true, false);
             lbClusterStatus.Content = isClusterValid ? "Megfelelő" : "Hibás";
             lbClusterStatus.Foreground = isClusterValid ? Brushes.Green : Brushes.Red;
         }
 
         private void PopulatePrograms()
         {
-            var groupedPrograms = _instances
+            var groupedPrograms = mainWindow.cluster.Instances
                 .SelectMany(instance => instance.Programs.Select(program => new { instance, program }))
                 .GroupBy(x => x.program.ProgramName.Split('-')[0]);
 
@@ -111,7 +108,7 @@ namespace ClusterWPF.Pages
             }
 
             // Group programs by base name (before '-')
-            var groupedPrograms = _instances
+            var groupedPrograms = mainWindow.cluster.Instances
                 .SelectMany(instance => instance.Programs.Select(program => new { instance, program }))
                 .GroupBy(x => x.program.ProgramName.Split('-')[0]);
 
@@ -153,7 +150,7 @@ namespace ClusterWPF.Pages
             }
 
             // Initialize the program instances collection for the ItemsControl
-            var programList = _instances.SelectMany(instance => instance.Programs.Where(x => x.IsRunning == true).Select(program => new
+            var programList = mainWindow.cluster.Instances.SelectMany(instance => instance.Programs.Where(x => x.IsRunning == true).Select(program => new
             {
                 Name = program.ProgramName,
                 RunningOn = $"Futtató gép: {instance.Name}",
@@ -164,7 +161,7 @@ namespace ClusterWPF.Pages
             // Set the ItemsSource of the ItemsControl to the list of program details
             programInstances.ItemsSource = programList;
 
-            foreach (var instance in _instances)
+            foreach (var instance in mainWindow.cluster.Instances)
             {
                 var instanceBorder = new Border
                 {
@@ -322,7 +319,7 @@ namespace ClusterWPF.Pages
 
                 if (moveChoice == MessageBoxResult.Yes)
                 {
-                    var availableInstances = _instances.Where(i => i != instance).ToList();
+                    var availableInstances = mainWindow.cluster.Instances.Where(i => i != instance).ToList();
 
                     if (!availableInstances.Any())
                     {
@@ -342,8 +339,8 @@ namespace ClusterWPF.Pages
                             instance.Programs.Remove(program);
 
                             // Programfájl áthelyezése
-                            string oldPath = Path.Combine(_path, instance.Name, program.ProgramName);
-                            string newPath = Path.Combine(_path, targetInstance.Name, program.ProgramName);
+                            string oldPath = Path.Combine(mainWindow.cluster.Path, instance.Name, program.ProgramName);
+                            string newPath = Path.Combine(mainWindow.cluster.Path, targetInstance.Name, program.ProgramName);
 
                             if (File.Exists(oldPath))
                             {
@@ -371,9 +368,9 @@ namespace ClusterWPF.Pages
             }
 
             // Számítógép eltávolítása
-            _instances.Remove(instance);
+            mainWindow.cluster.Instances.Remove(instance);
 
-            string instanceFolderPath = Path.Combine(_path, instance.Name);
+            string instanceFolderPath = Path.Combine(mainWindow.cluster.Path, instance.Name);
             if (Directory.Exists(instanceFolderPath))
             {
                 try
@@ -397,13 +394,13 @@ namespace ClusterWPF.Pages
             var query = searchComboBox.Text.ToLower();
 
             // Filter the programs based on the search query
-            var filteredPrograms = _instances.SelectMany(instance => instance.Programs)
+            var filteredPrograms = mainWindow.cluster.Instances.SelectMany(instance => instance.Programs)
                 .Where(program => program.ProgramName.ToLower().Contains(query) && program.IsRunning == true)
                 .Select(program => new
                 {
                     Name = program.ProgramName, // Get the instance name
-                    ProgramName = _instances.FirstOrDefault(instance => instance.Programs.Contains(program))?.Name.ToLower(),
-                    RunningOn = $"Futtató gép: {_instances.FirstOrDefault(instance => instance.Programs.Contains(program))?.Name}",
+                    ProgramName = mainWindow.cluster.Instances.FirstOrDefault(instance => instance.Programs.Contains(program))?.Name.ToLower(),
+                    RunningOn = $"Futtató gép: {mainWindow.cluster.Instances.FirstOrDefault(instance => instance.Programs.Contains(program))?.Name}",
                     MemoryUsage = $"Memória használat: {program.MemoryUsage}MB",
                     ProcessorUsage = $"Processzor használat: {program.ProcessorUsage}mm"
                 }).ToList();
@@ -415,10 +412,10 @@ namespace ClusterWPF.Pages
         private void PopulateStatistics()
         {
             // Count active and inactive processes across all instances
-            int activeCount = _instances.SelectMany(instance => instance.Programs)
+            int activeCount = mainWindow.cluster.Instances.SelectMany(instance => instance.Programs)
                                         .Count(program => program.IsRunning);
 
-            int inactiveCount = _instances.SelectMany(instance => instance.Programs)
+            int inactiveCount = mainWindow.cluster.Instances.SelectMany(instance => instance.Programs)
                                           .Count(program => !program.IsRunning);
 
             lbActiveProcesses.Content = activeCount.ToString();
@@ -428,7 +425,7 @@ namespace ClusterWPF.Pages
         private void PopulateSearchComboBox()
         {
            
-            var programNames = _instances.SelectMany(instance => instance.Programs)
+            var programNames = mainWindow.cluster.Instances.SelectMany(instance => instance.Programs)
                                          .Where(program => program.IsRunning)
                                          .Select(program => program.ProgramName)
                                          .Distinct()

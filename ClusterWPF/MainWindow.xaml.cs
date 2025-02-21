@@ -59,12 +59,12 @@ namespace ClusterWPF
 
                 CurrentPage.Content = tabs switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster, path),
-                    "Új gép hozzáadása" => new Pages.AddNewComputer(cluster, path),
-                    "Gép eltávolítása" => new Pages.ComputerRemove(cluster, path),
-                    "Program eltávolítása" => new Pages.RemoveProgram(cluster, path),
-                    "Programpéldány leállítása" => new Pages.StopProgramCopy(cluster, path),
-                    "Gép módosítása" => new Pages.ModifyComputer(cluster, path),
+                    "Monitor" => new Pages.Monitor(),
+                    "Új gép hozzáadása" => new Pages.AddNewComputer(),
+                    "Gép eltávolítása" => new Pages.ComputerRemove(),
+                    "Program eltávolítása" => new Pages.RemoveProgram(),
+                    "Programpéldány leállítása" => new Pages.StopProgramCopy(),
+                    "Gép módosítása" => new Pages.ModifyComputer(),
                     "Program futtatása" => new Pages.NewProgramCopy(),
                     "Diagram" => new Pages.Charts(cluster),
                     "Klaszter műveletek" => new Pages.ClustersManagement()
@@ -108,12 +108,12 @@ namespace ClusterWPF
             {
                 CurrentPage.Content = selectedTabHeader switch
                 {
-                    "Monitor" => new Pages.Monitor(cluster, path),
-                    "Új gép hozzáadása" => new Pages.AddNewComputer(cluster, path),
-                    "Gép eltávolítása" => new Pages.ComputerRemove(cluster, path),
-                    "Program eltávolítása" => new Pages.RemoveProgram(cluster, path),
-                    "Programpéldány leállítása" => new Pages.StopProgramCopy(cluster, path),
-                    "Gép módosítása" => new Pages.ModifyComputer(cluster, path),
+                    "Monitor" => new Pages.Monitor(),
+                    "Új gép hozzáadása" => new Pages.AddNewComputer(),
+                    "Gép eltávolítása" => new Pages.ComputerRemove(),
+                    "Program eltávolítása" => new Pages.RemoveProgram(),
+                    "Programpéldány leállítása" => new Pages.StopProgramCopy(),
+                    "Gép módosítása" => new Pages.ModifyComputer(),
                     "Program futtatása" => new Pages.NewProgramCopy(),
                     "Diagram" => new Pages.Charts(cluster),
                     "Klaszter műveletek" => new Pages.ClustersManagement()
