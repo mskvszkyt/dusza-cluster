@@ -15,14 +15,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ConsoleApp1.ProgInstance">
-    <Position X="4.5" Y="1.5" Width="1.5" />
+    <Position X="3.5" Y="1.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAAAQAAAgAAAAAAAAAEAAEAAAAA=</HashCode>
       <FileName>Models\ProgInstance.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ConsoleApp1.ScheduledProgram">
-    <Position X="2.25" Y="2" Width="2" />
+    <Position X="1.25" Y="2" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAQAAAAAEAAACAAAA=</HashCode>
       <FileName>Models\ScheduledProgram.cs</FileName>
