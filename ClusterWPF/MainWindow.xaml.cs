@@ -66,7 +66,7 @@ namespace ClusterWPF
                     "Programpéldány leállítása" => new Pages.StopProgramCopy(cluster, path),
                     "Gép módosítása" => new Pages.ModifyComputer(cluster, path),
                     "Program futtatása" => new Pages.NewProgramCopy(cluster, path),
-                    "Grafikonok" => new Pages.Charts(cluster),
+                    "Diagram" => new Pages.Charts(cluster),
                     "Klaszter műveletek" => new Pages.ClustersManagement()
                 };
 
@@ -115,7 +115,7 @@ namespace ClusterWPF
                     "Programpéldány leállítása" => new Pages.StopProgramCopy(cluster, path),
                     "Gép módosítása" => new Pages.ModifyComputer(cluster, path),
                     "Program futtatása" => new Pages.NewProgramCopy(cluster, path),
-                    "Grafikonok" => new Pages.Charts(cluster),
+                    "Diagram" => new Pages.Charts(cluster),
                     "Klaszter műveletek" => new Pages.ClustersManagement()
                 };
             }
