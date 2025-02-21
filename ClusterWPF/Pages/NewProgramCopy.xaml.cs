@@ -184,35 +184,46 @@ namespace ClusterWPF.Pages
                     .OrderBy(i => i.CalculateProcessorUsage() + i.CalculateMemoryUsage())
                     .ToList();
 
-                foreach (var instance in availableInstances)
+                // Loop to keep trying to allocate instances
+                while (instancesStarted < instancesNeeded && availableInstances.Count > 0)
                 {
-                    if (instancesStarted >= instancesNeeded) break;
-
-                    string key = ProgramManager.GenerateUniqueKey(FileManager.GetExistingKeys(mainWindow.cluster.Path));
-                    string uniqueProgramName = $"{baseProgramName}-{key}";
-
-                    ProgInstance newProgramInstance = new ProgInstance(
-                        uniqueProgramName,
-                        true,
-                        scheduledProgram.ProcessorRequirement,
-                        scheduledProgram.MemoryRequirement,
-                        DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
-                    );
-
-                    if (instance.CalculateProcessorUsage() + newProgramInstance.ProcessorUsage <= instance.ProcessorCapacity &&
-                        instance.CalculateMemoryUsage() + newProgramInstance.MemoryUsage <= instance.MemoryCapacity)
+                    foreach (var instance in availableInstances)
                     {
-                        instance.Programs.Add(newProgramInstance);
-                        instancesStarted++;
+                        if (instancesStarted >= instancesNeeded) break;
 
-                        // Create physical file
-                        string instancePath = Path.Combine(mainWindow.cluster.Path, instance.Name);
-                        Directory.CreateDirectory(instancePath);
-                        File.WriteAllText(
-                            Path.Combine(instancePath, newProgramInstance.ProgramName),
-                            $"{newProgramInstance.StartDate}\nAKTÍV\n{newProgramInstance.ProcessorUsage}\n{newProgramInstance.MemoryUsage}"
+                        string key = ProgramManager.GenerateUniqueKey(FileManager.GetExistingKeys(mainWindow.cluster.Path));
+                        string uniqueProgramName = $"{baseProgramName}-{key}";
+
+                        ProgInstance newProgramInstance = new ProgInstance(
+                            uniqueProgramName,
+                            true,
+                            scheduledProgram.ProcessorRequirement,
+                            scheduledProgram.MemoryRequirement,
+                            DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                         );
+
+                        if (instance.CalculateProcessorUsage() + newProgramInstance.ProcessorUsage <= instance.ProcessorCapacity &&
+                            instance.CalculateMemoryUsage() + newProgramInstance.MemoryUsage <= instance.MemoryCapacity)
+                        {
+                            instance.Programs.Add(newProgramInstance);
+                            instancesStarted++;
+
+                            // Create physical file
+                            string instancePath = Path.Combine(mainWindow.cluster.Path, instance.Name);
+                            Directory.CreateDirectory(instancePath);
+                            File.WriteAllText(
+                                Path.Combine(instancePath, newProgramInstance.ProgramName),
+                                $"{newProgramInstance.StartDate}\nAKTÍV\n{newProgramInstance.ProcessorUsage}\n{newProgramInstance.MemoryUsage}"
+                            );
+                        }
                     }
+
+                    // Recalculate available instances after each loop
+                    availableInstances = mainWindow.cluster.Instances
+                        .Where(i => i.CalculateProcessorUsage() < i.ProcessorCapacity &&
+                                    i.CalculateMemoryUsage() < i.MemoryCapacity)
+                        .OrderBy(i => i.CalculateProcessorUsage() + i.CalculateMemoryUsage())
+                        .ToList();
                 }
 
                 if (instancesStarted < instancesNeeded)
