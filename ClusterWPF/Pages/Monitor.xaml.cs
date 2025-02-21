@@ -14,21 +14,24 @@ using Page = System.Windows.Controls.Page;
 using System.Diagnostics;
 using System.Windows.Input;
 using System.IO;
+using System.Diagnostics.Metrics;
 
 namespace ClusterWPF.Pages
 {
     public partial class Monitor : Page
     {
+        private Cluster _cluster;
         private List<Instance> _instances;
         bool _clusterState = false;
         private string _path;
 
         public Monitor(Cluster cluster, string path)
         {
+            _cluster = cluster;
             _instances = cluster.Instances;
             _path = path;
             InitializeComponent();
-            _clusterState = ProgramManager.ValidateClusterState(cluster);
+            _clusterState = ProgramManager.ValidateClusterState(cluster, true,true);
             PopulateUI();
             PopulateStatistics();
             PopulateSearchComboBox();
@@ -38,6 +41,13 @@ namespace ClusterWPF.Pages
                lbMonitorName.Content = path.TrimEnd('\\').Split('\\').Last();
             }
             
+        }
+
+        private void LbClusterStatus_Click(object sender, MouseButtonEventArgs e)
+        {
+            bool isClusterValid = ProgramManager.ValidateClusterState(_cluster, true, false);
+            lbClusterStatus.Content = isClusterValid ? "Megfelelő" : "Hibás";
+            lbClusterStatus.Foreground = isClusterValid ? Brushes.Green : Brushes.Red;
         }
 
         private void PopulatePrograms()
@@ -96,7 +106,7 @@ namespace ClusterWPF.Pages
 
             } else
             {
-                lbClusterStatus.Content = "Inkorrekt";
+                lbClusterStatus.Content = "Hibás";
                 lbClusterStatus.Foreground = Brushes.Red;
             }
 

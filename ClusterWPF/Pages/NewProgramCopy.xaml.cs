@@ -134,7 +134,11 @@ namespace ClusterWPF.Pages
                             Path.Combine(newInstancePath, existingInstance.ProgramName),
                             $"{existingInstance.StartDate}\nAKTÍV\n{existingInstance.ProcessorUsage}\n{existingInstance.MemoryUsage}"
                         );
+
+                        FileManager.WriteCluster(_clusterPath, _cluster);
                     }
+                    cbComputers.SelectedIndex = -1;
+                    cbPrograms.SelectedIndex = -1;
                 }
             }
 
