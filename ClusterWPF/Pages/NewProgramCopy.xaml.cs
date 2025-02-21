@@ -23,26 +23,23 @@ namespace ClusterWPF.Pages
     /// </summary>
     public partial class NewProgramCopy : Page
     {
-        private Cluster _cluster;
-        private string _clusterPath;
-        public NewProgramCopy(Cluster cluster, string path)
+        private MainWindow mainWindow;
+        public NewProgramCopy()
         {
             InitializeComponent();
-            _cluster = cluster;
-            _clusterPath = path;
             PopulateComboBoxes();
         }
 
         private void PopulateComboBoxes()
         {
             // Get scheduled programs (Programs that can be run)
-            var scheduledPrograms = _cluster.ScheduledPrograms
+            var scheduledPrograms = mainWindow.cluster.ScheduledPrograms
                 .Select(sp => sp.ProgramName)
                 .Distinct()
                 .ToList();
 
             // Get programs that are already running but inactive
-            var inactivePrograms = _cluster.Instances
+            var inactivePrograms = mainWindow.cluster.Instances
                 .SelectMany(i => i.Programs)
                 .Where(p => !p.IsRunning)  // Select only inactive ones
                 .Select(p => p.ProgramName)
@@ -67,7 +64,7 @@ namespace ClusterWPF.Pages
             // --- Handling already running programs from cbComputers ---
             if (cbComputers.SelectedItem != null)
             {
-                Instance? currentInstance = _cluster.Instances
+                Instance? currentInstance = mainWindow.cluster.Instances
                     .FirstOrDefault(i => i.Programs.Any(p => p.ProgramName == selectedProgram));
 
                 if (currentInstance == null)
@@ -92,7 +89,7 @@ namespace ClusterWPF.Pages
                     MessageBox.Show($"A(z) {existingInstance.ProgramName} program elindult ezen: {currentInstance.Name}.", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     // File writing for already running program instance
-                    string instancePath = Path.Combine(_clusterPath, currentInstance.Name);
+                    string instancePath = Path.Combine(mainWindow.cluster.Path, currentInstance.Name);
                     Directory.CreateDirectory(instancePath);
 
                     File.WriteAllText(
@@ -107,7 +104,7 @@ namespace ClusterWPF.Pages
 
                     if (result == MessageBoxResult.Yes)
                     {
-                        Instance? newInstance = _cluster.Instances
+                        Instance? newInstance = mainWindow.cluster.Instances
                             .Where(i => i != currentInstance &&
                                         i.CalculateProcessorUsage() + existingInstance.ProcessorUsage <= i.ProcessorCapacity &&
                                         i.CalculateMemoryUsage() + existingInstance.MemoryUsage <= i.MemoryCapacity)
@@ -127,7 +124,7 @@ namespace ClusterWPF.Pages
                         MessageBox.Show($"A(z) {existingInstance.ProgramName} program elindult a {newInstance.Name} számítógépen.", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
 
                         // File writing for program moved to new instance
-                        string newInstancePath = Path.Combine(_clusterPath, newInstance.Name);
+                        string newInstancePath = Path.Combine(mainWindow.cluster.Path, newInstance.Name);
                         Directory.CreateDirectory(newInstancePath);
 
                         File.WriteAllText(
@@ -135,7 +132,7 @@ namespace ClusterWPF.Pages
                             $"{existingInstance.StartDate}\nAKTÍV\n{existingInstance.ProcessorUsage}\n{existingInstance.MemoryUsage}"
                         );
 
-                        FileManager.WriteCluster(_clusterPath, _cluster);
+                        FileManager.WriteCluster(mainWindow.cluster.Path, mainWindow.cluster);
                     }
                     cbComputers.SelectedIndex = -1;
                     cbPrograms.SelectedIndex = -1;
@@ -145,7 +142,7 @@ namespace ClusterWPF.Pages
 
             else if (cbPrograms.SelectedItem != null)
             {
-                ScheduledProgram? scheduledProgram = _cluster.ScheduledPrograms
+                ScheduledProgram? scheduledProgram = mainWindow.cluster.ScheduledPrograms
                     .FirstOrDefault(sp => sp.ProgramName == selectedProgram);
 
                 if (scheduledProgram == null)
@@ -158,7 +155,7 @@ namespace ClusterWPF.Pages
                 int instancesStarted = 0;
                 string baseProgramName = selectedProgram.Split('-')[0];
 
-                int currentlyRunningInstances = _cluster.Instances
+                int currentlyRunningInstances = mainWindow.cluster.Instances
                     .SelectMany(i => i.Programs)
                     .Count(p => p.ProgramName.StartsWith(baseProgramName + "-"));
 
@@ -180,7 +177,7 @@ namespace ClusterWPF.Pages
                     }
                 }
 
-                List<Instance> availableInstances = _cluster.Instances
+                List<Instance> availableInstances = mainWindow.cluster.Instances
                     .Where(i => i.CalculateProcessorUsage() < i.ProcessorCapacity &&
                                 i.CalculateMemoryUsage() < i.MemoryCapacity)
                     .OrderBy(i => i.CalculateProcessorUsage() + i.CalculateMemoryUsage())
@@ -190,7 +187,7 @@ namespace ClusterWPF.Pages
                 {
                     if (instancesStarted >= instancesNeeded) break;
 
-                    string key = ProgramManager.GenerateUniqueKey(FileManager.GetExistingKeys(_clusterPath));
+                    string key = ProgramManager.GenerateUniqueKey(FileManager.GetExistingKeys(mainWindow.cluster.Path));
                     string uniqueProgramName = $"{baseProgramName}-{key}";
 
                     ProgInstance newProgramInstance = new ProgInstance(
@@ -208,7 +205,7 @@ namespace ClusterWPF.Pages
                         instancesStarted++;
 
                         // Create physical file
-                        string instancePath = Path.Combine(_clusterPath, instance.Name);
+                        string instancePath = Path.Combine(mainWindow.cluster.Path, instance.Name);
                         Directory.CreateDirectory(instancePath);
                         File.WriteAllText(
                             Path.Combine(instancePath, newProgramInstance.ProgramName),
@@ -271,7 +268,7 @@ namespace ClusterWPF.Pages
             }
 
             // Check if the program name already exists in ScheduledPrograms
-            if (_cluster.ScheduledPrograms.Any(sp => sp.ProgramName == programName))
+            if (mainWindow.cluster.ScheduledPrograms.Any(sp => sp.ProgramName == programName))
             {
                 MessageBox.Show("Ez a program már létezik az ütemezett programok között!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -286,10 +283,10 @@ namespace ClusterWPF.Pages
                 MemoryRequirement = memoryUsage
             };
 
-            _cluster.ScheduledPrograms.Add(newScheduledProgram);
+            mainWindow.cluster.ScheduledPrograms.Add(newScheduledProgram);
 
             // Write the updated cluster data to the file
-            FileManager.WriteCluster(_clusterPath, _cluster);
+            FileManager.WriteCluster(mainWindow.cluster.Path, mainWindow.cluster);
 
             MessageBox.Show($"A(z) {programName} program sikeresen hozzáadva az ütemezett programokhoz!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
 
