@@ -62,6 +62,12 @@ namespace ClusterWPF.Pages
             MoveComputerFiles(cluster2, mergedClusterPath);
 
             FileManager.WriteCluster(mergedClusterPath, mergedCluster);
+
+            Directory.Delete(cluster1.Path, true);
+            Directory.Delete(cluster2.Path, true);
+
+            mainWindow.clusters.Remove(cluster2);
+            mainWindow.clusters.Remove(cluster1);
             return mergedCluster;
         }
 
@@ -104,6 +110,7 @@ namespace ClusterWPF.Pages
                 }
 
                 target.Instances.Add(newInstance);
+                source.Instances.Remove(instance);
             }
         }
 
@@ -152,7 +159,7 @@ namespace ClusterWPF.Pages
 
                 if (Directory.Exists(targetDir))
                     throw new IOException($"A mappa már létezik: {targetDir}");
-                
+
                 Directory.Move(sourceDir, targetDir);
             }
         }
@@ -228,7 +235,7 @@ namespace ClusterWPF.Pages
                 MessageBox.Show($"A program már létezik a célklaszterben, új kulcs hozzáadva! {newKey}");
             }
 
-            
+
 
             string sourcePath = Path.Combine(sourceCluster.Path, sourceComputer.Name, program.ProgramName);
             string targetPath = Path.Combine(targetCluster.Path, targetComputer.Name, program.ProgramName);
@@ -359,10 +366,15 @@ namespace ClusterWPF.Pages
                 MessageBox.Show("Válassz egy klasztert előbb!");
                 return;
             }
-            
+
             try
             {
-                string mergePath = Path.Combine(Path.GetDirectoryName(cluster2.Path), $"{cluster1.Path.Split('\\').Last()}-{cluster2.Path.Split("\\").Last()}-{DateTime.Today}");
+                if (Directory.Exists(Path.Combine(Path.GetDirectoryName(cluster2.Path), $"{cluster1.Path.Split('\\').Last()}-{cluster2.Path.Split("\\").Last()}")))
+                {
+                    MessageBox.Show("Ezeknek a klasztereknek már létezik egyesített példánya.");
+                    return;
+                }
+                string mergePath = Path.Combine(Path.GetDirectoryName(cluster2.Path), $"{cluster1.Path.Split('\\').Last()}-{cluster2.Path.Split("\\").Last()}");
                 MergeClusters(cluster1, cluster2, mergePath);
                 lbFromCluster.ItemsSource = mainWindow.clusters.Select(c => c.Path.Split('\\').Last());
                 lbToCluster.ItemsSource = mainWindow.clusters.Select(c => c.Path.Split('\\').Last());
