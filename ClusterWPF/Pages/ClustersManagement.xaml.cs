@@ -362,7 +362,7 @@ namespace ClusterWPF.Pages
             
             try
             {
-                string mergePath = Path.Combine(Path.GetDirectoryName(cluster2.Path), $"{cluster1.Path.Split('\\').Last()}-{cluster2.Path.Split("\\").Last()}-{DateTime.Now}");
+                string mergePath = Path.Combine(Path.GetDirectoryName(cluster2.Path), $"{cluster1.Path.Split('\\').Last()}-{cluster2.Path.Split("\\").Last()}-{DateTime.Today}");
                 MergeClusters(cluster1, cluster2, mergePath);
                 lbFromCluster.ItemsSource = mainWindow.clusters.Select(c => c.Path.Split('\\').Last());
                 lbToCluster.ItemsSource = mainWindow.clusters.Select(c => c.Path.Split('\\').Last());
