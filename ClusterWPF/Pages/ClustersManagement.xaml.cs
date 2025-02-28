@@ -1,4 +1,4 @@
-﻿using ConsoleApp1;
+using ConsoleApp1;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -68,6 +68,7 @@ namespace ClusterWPF.Pages
 
             mainWindow.clusters.Remove(cluster2);
             mainWindow.clusters.Remove(cluster1);
+
             return mergedCluster;
         }
 
@@ -110,7 +111,6 @@ namespace ClusterWPF.Pages
                 }
 
                 target.Instances.Add(newInstance);
-                source.Instances.Remove(instance);
             }
         }
 
